@@ -1,0 +1,368 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mcdull.cert.fragment.NewStudentFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        android:orientation="vertical"
+        android:background="@color/title_color"
+        android:id="@+id/eCardStatus"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_credit_card_white_48dp"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:id="@+id/tv_eCardTitleText"
+                android:text="一卡通信息"
+                android:textColor="@color/avoscloud_feedback_white"
+                android:textSize="14dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal"
+                android:gravity="right"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/bt_checkEcardPaylist"
+                    android:text="消费明细 >"
+                    android:textColor="@color/avoscloud_feedback_white"
+                    android:background="#00000000"
+                    android:textSize="14dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/bt_ecard"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.49"
+             >
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tv_eCardConsume"
+                android:text="————"
+                android:textColor="@color/avoscloud_feedback_white"
+                android:textSize="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:text="今日消费"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bt_EcardBalance"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.49"
+             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:text="剩余金额"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tv_eCardBalance"
+                android:text="————"
+                android:textColor="@color/avoscloud_feedback_white"
+                android:textSize="25dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="196dp"
+        android:orientation="vertical"
+        android:background="@color/avoscloud_feedback_white"
+        android:id="@+id/functionArea"
+        >
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_gravity="center"
+        android:layout_height="98dp"
+        android:orientation="horizontal"
+        android:background="@drawable/whitegrade"
+        android:id="@+id/functionArea1"
+        >
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@color/avoscloud_feedback_white"
+            android:id="@+id/bt_map"
+            >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_navi"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="校园导航"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_callInClass"
+            >
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_callinclass"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="点名工具"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_examScore"
+            >
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_examscore"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="成绩查询"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_examTime"
+            >
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_examtime"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="考试安排"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_pcRepair"
+            >
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_pcrepair"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="电脑维修"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="288dp"
+        android:layout_height="98dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/avoscloud_feedback_white"
+        android:id="@+id/functionArea2"
+        >
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_reExam"
+            >
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_reexam"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="补考查询"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_cetSearch"
+            >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_cet"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="查四六级"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_weather"
+            >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:id="@+id/img_weather"
+                android:background="@drawable/ic_img_weather"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="天气情况"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_backgroundRepair"
+            >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_backgroundrapair"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="花椒维权"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

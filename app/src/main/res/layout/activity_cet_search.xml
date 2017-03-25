@@ -1,0 +1,271 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <View
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/bt_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_arrow_back_grey600_48dp" />
+
+            </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:text="全国大学英语四级考试"
+            android:id="@+id/tv_type"
+            android:textColor="#377d73"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:text="成绩报告单"
+            android:textColor="#377d73"/>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+        <ImageView
+
+            android:layout_width="117dp"
+            android:layout_height="70dp"
+            android:background="@drawable/cet1"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:text="姓        名："
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:id="@+id/tv_cetName"
+                android:text="name"
+                />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:text="学        校："
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_cetSchool"
+                android:textSize="16dp"
+                android:text="school"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="330dp"
+        android:layout_gravity="center"
+        android:layout_height="2dp"
+        android:background="@drawable/xuxian_cet"
+        android:layerType="software"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="28dp"
+        android:gravity="center"
+        android:background="@color/CETGray"
+        android:textSize="16dp"
+        android:text="笔试"
+        android:textColor="#000"/>
+</LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+            <TableLayout
+                android:id="@+id/WriteTable"
+                android:layout_width="wrap_content"
+                android:background="@color/CETGray"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/white"
+                    android:layout_marginLeft="1dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView android:text="总分"
+                        android:textSize="20dp"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:layout_width="90dp"
+                        android:layout_height="35dp" />
+                    <TextView android:text="听力\n(35%)"
+                        android:textSize="13dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content" />
+                    <TextView android:text="阅读\n(35%)"
+                        android:textSize="13dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content" />
+                    <TextView android:text="写作和翻译\n(30%)"
+                        android:textSize="13dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                <TableRow
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView android:text="503"
+                        android:gravity="center"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:id="@+id/tv_cetTotalScore"
+                        android:background="@color/white"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp" />
+                    <TextView android:text="192"
+                        android:textSize="25dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:id="@+id/tv_cetListeningScore"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp" />
+                    <TextView android:text="149"
+                        android:textSize="25dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:id="@+id/tv_cetReadingScore"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp" />
+                    <TextView android:text="162"
+                        android:textSize="25dp"
+                        android:gravity="center"
+                        android:background="@color/white"
+                        android:id="@+id/tv_cetWritingScore"
+                        android:layout_marginLeft="1dp"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="330dp"
+            android:layout_height="28dp"
+            android:gravity="center"
+            android:background="@color/CETGray"
+            android:textSize="16dp"
+            android:text="口试"
+            android:textColor="#000"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textSize="18dp"
+            android:text="等级："
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:id="@+id/tv_cetSpeakLevel"
+            android:textSize="18dp"
+            android:text="——"
+            />
+    </LinearLayout>
+</LinearLayout>

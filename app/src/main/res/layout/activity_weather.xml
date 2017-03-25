@@ -1,0 +1,59 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0fa2f2"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#0fa2f2"
+            android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0fa2f2"
+            android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_arrow_back_white_48dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0fa2f2"
+                android:gravity="right">
+            <Button
+                android:id="@+id/bt_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_search_white_48dp" />
+                </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/weather_item"/>
+    <ImageView
+        android:id="@+id/bg_weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_weather2"/>
+
+
+</LinearLayout>

@@ -1,0 +1,201 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="故障描述: "
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/type_0"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#29b6f6"
+                    android:gravity="center"
+                    android:text="我不知道"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+
+
+                <TextView
+                    android:id="@+id/type_1"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#ffaaccdd"
+                    android:gravity="center"
+                    android:text="系统重装"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/type_2"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#acd"
+                    android:gravity="center"
+                    android:text="拆机清灰"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/type_3"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#acd"
+                    android:gravity="center"
+                    android:text="运行卡顿"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/type_4"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#acd"
+                    android:gravity="center"
+                    android:text="无法开机"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/type_5"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="#acd"
+                    android:gravity="center"
+                    android:text="软件安装"
+                    android:textColor="#fff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_discribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/et_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sn_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:id="@+id/bt_sure"
+                android:layout_width="282dip"
+                android:layout_height="48dip"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/lancornerbt"
+                android:text="提交"
+                android:textColor="#fff"
+                android:textSize="21sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:lines="2"
+                android:text="对于某些硬件上的损毁我们仅能为您检查故障原因并在您购买相关配件的情况下为您更换" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:lines="2"
+                android:text="技术提供:计算机紧急响应组 维修部" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

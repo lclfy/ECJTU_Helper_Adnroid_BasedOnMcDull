@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/bt_back"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_margin="7dp"
+        android:background="@drawable/map_back_bt" />
+
+    <View
+        android:id="@+id/bt_find"
+        android:layout_width="30dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/find_map_bt"
+        android:gravity="center"
+        android:textSize="17sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3000"
+        android:visibility="gone" />
+
+</RelativeLayout>

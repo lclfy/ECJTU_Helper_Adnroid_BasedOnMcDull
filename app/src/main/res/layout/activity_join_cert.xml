@@ -1,0 +1,243 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="姓名"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="140dp"
+            android:layout_height="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请输入您的真实姓名"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="手机"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="140dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:inputType="number"
+            android:hint="请输入您的手机号"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="年级"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="140dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view3"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请输选择您的入学年份"
+            android:inputType="text"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="部门"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="140dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_sector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view4"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请输选择您的想要加入的部门"
+            android:inputType="text"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <Button
+        android:id="@+id/bt_sure"
+        android:layout_width="270dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/lancornerbt"
+        android:text="确定"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="注：报名成功后我们将会在招新面试前通过短信形式通知面试时间及地点."
+            android:textColor="#000" />
+
+    </LinearLayout>
+
+</LinearLayout>

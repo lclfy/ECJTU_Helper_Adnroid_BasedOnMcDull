@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">花椒校园通</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_new_sign">NewSignActivity</string>
+    <string name="title_activity_old_sign">OldSignActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_my_loc">MyLocActivity</string>
+    <string name="title_activity_query">QueryActivity</string>
+    <string name="title_activity_pager_query">PagerQueryActivity</string>
+    <string name="title_activity_fm_query">FmQueryActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_score_search">ScoreSearchActivity</string>
+    <string name="title_activity_score">ScoreActivity</string>
+    <string name="title_activity_exam_schedule">ExamScheduleActivity</string>
+    <string name="title_activity_exam">ExamActivity</string>
+    <string name="title_activity_re_exam_schedule">ReExamScheduleActivity</string>
+    <string name="title_activity_re_exam">ReExamActivity</string>
+    <string name="title_activity_ecard_schedule">EcardScheduleActivity</string>
+    <string name="title_activity_ecard">EcardActivity</string>
+    <string name="title_activity_cetsearch_schedule">CetsearchScheduleActivity</string>
+    <string name="title_activity_cet_search">CetSearchActivity</string>
+    <string name="title_activity_library_schedule">LibraryScheduleActivity</string>
+    <string name="title_activity_library">LibraryActivity</string>
+    <string name="title_activity_import_course">ImportCourseActivity</string>
+    <string name="title_activity_my_data">MyDataActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="title_activity_bug_feedback">BugFeedbackActivity</string>
+    <string name="title_activity_enroll">EnrollActivity</string>
+    <string name="title_activity_show_enroll">ShowEnrollActivity</string>
+    <string name="title_activity_trip">TripActivity</string>
+    <string name="title_activity_cert">CERTActivity</string>
+    <string name="title_activity_join_cert">JoinCERTActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_repair">RepairActivity</string>
+    <string name="title_activity_modify">ModifyActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_theme">ThemeActivity</string>
+    <string name="title_activity_repair_suc">RepairSucActivity</string>
+    <string name="title_activity_new_student_course">NewStudentCourse</string>
+    <string name="title_activity_sign">SignActivity</string>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="title_activity_weathersearch">WeatherSearchActivity</string>
+
+</resources>

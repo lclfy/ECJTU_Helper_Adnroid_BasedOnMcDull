@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/view_home_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_color"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/icon" />
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_ring_bt" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/bt_mydata"
+            android:layout_marginTop="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_menu_bt"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/me_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="个人信息"
+                android:textColor="#000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:id="@+id/bt_bug"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/left_menu_bt"-->
+            <!--android:gravity="center_vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="35dp"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:src="@drawable/bug" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="21dp"-->
+                <!--android:text="意见建议"-->
+                <!--android:textColor="#000"-->
+                <!--android:textSize="14sp" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/bt_join"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:background="@drawable/left_menu_bt"-->
+            <!--android:gravity="center_vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="35dp"-->
+                <!--android:layout_height="35dp"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:src="@drawable/join_me" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="21dp"-->
+                <!--android:text="制作团队"-->
+                <!--android:textColor="#000"-->
+                <!--android:textSize="14sp" />-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/bt_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_menu_bt"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/setting" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="个人设置"
+                android:textColor="#000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

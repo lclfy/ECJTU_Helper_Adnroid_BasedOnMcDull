@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginRegisterActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#0000"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/map_back_bt" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bt_join"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/join_margin_bottom"
+        android:layout_marginRight="@dimen/join_margin_right" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:background="@drawable/circle" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/circletm" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/circletm" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/circletm" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/circletm" />
+
+    </LinearLayout>
+
+</RelativeLayout>

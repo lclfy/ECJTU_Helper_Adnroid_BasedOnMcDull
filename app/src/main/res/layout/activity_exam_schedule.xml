@@ -1,0 +1,192 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F0F2"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="年级"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="70dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_select_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view1"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请选择年级"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="学院"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="70dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_select_college"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view2"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请选择学院"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dip" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="班级"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="70dip"
+            android:layout_height="10dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/tv_select_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/view3"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#ffffff"
+            android:hint="请选择班级"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BBBBBB" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:id="@+id/bt_sure"
+            android:layout_width="282dip"
+            android:layout_height="48dip"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/lancornerbt" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="确定"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+    </RelativeLayout>
+
+</LinearLayout>

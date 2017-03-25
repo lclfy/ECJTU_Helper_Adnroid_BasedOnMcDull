@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 获得焦点但未按下时的背景图片 -->
+    <item android:drawable="@drawable/ic_arrow_back_grey600_48dp" android:state_enabled="true" android:state_focused="true" android:state_pressed="false" />
+    <!-- 按下时的背景图片 -->
+    <item android:drawable="@drawable/ic_arrow_back_grey600_48dp" android:state_enabled="true" android:state_pressed="true" />
+    <!-- 默认时的背景图片 -->
+    <item android:drawable="@drawable/ic_arrow_back_white_48dp" />
+</selector>

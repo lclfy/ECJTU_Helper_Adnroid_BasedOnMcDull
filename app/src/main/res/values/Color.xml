@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bt_left_menu">#fff</color>
+    <color name="bt_list_down">#bfbfbf</color>
+    <color name="bt_list_up">#0eee</color>
+    <color name="title_color">#009688</color>
+    <color name="blue" >#29b6f6</color>
+    <color name="green" >#009688</color>
+    <color name="CETGray" >#c8c8c8</color>
+    <color name="white" >#FFF</color>
+    <color name="red" >#D01716</color>
+    <color name="zhuhong">#f76762</color>
+    <color name="caolv">#36c4ac</color>
+</resources>

@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="20dip"
+            android:text="姓名：陆俊名"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_zkz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text="准考证号：20142110010424"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text="专业：信息工程"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_ems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text="EMS单号："
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text="最新物流信息："
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_wuliu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text=""
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
