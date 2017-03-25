@@ -24,7 +24,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            proguardFile '/Users/Begin/AndroidStudioProjects/hjxyt/app/proguard.cfg'
+            proguardFile 'C:/Users/75800/hjxyt/app/proguard.cfg'
             signingConfig signingConfigs.config
             pseudoLocalesEnabled true
         }
@@ -36,6 +36,7 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
     lintOptions {
+        disable 'MissingTranslation'
         abortOnError false
     }
     productFlavors {

@@ -123,6 +123,8 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
                 if (bitmap != null) {
                     MyDataActivity.this.bmp = bitmap;
                     mIvIcon.setImageBitmap(Util.toRoundBitmap(bitmap));
+                }else {
+
                 }
             }
         });

@@ -117,8 +117,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         view.findViewById(R.id.eCardStatus).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
 
         view.findViewById(R.id.bt_examScore).setOnClickListener(this);
-        view.findViewById(R.id.bt_examTime).setOnClickListener(this);
         view.findViewById(R.id.bt_reExam).setOnClickListener(this);
+        view.findViewById(R.id.bt_examTime).setOnClickListener(this);
         view.findViewById(R.id.bt_pcRepair).setOnClickListener(this);
         view.findViewById(R.id.bt_cetSearch).setOnClickListener(this);
         view.findViewById(R.id.bt_backgroundRepair).setOnClickListener(this);

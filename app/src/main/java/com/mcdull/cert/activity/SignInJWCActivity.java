@@ -71,7 +71,7 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
         this.mEtJwcPwd = (TextInputLayout) findViewById(R.id.et_jwc_pwd);
         mEtName.setHint("姓名");
         mEtStudentId.setHint("学号");
-        mEtECardPwd.setHint("一卡通密码");
+        mEtECardPwd.setHint("一卡通密码(如未修改则为888888)");
         mEtJwcPwd.setHint("教务管理系统密码(15级及以后必填)");
 
         findViewById(R.id.bt_sure).setOnClickListener(this);
@@ -131,10 +131,10 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
     }
 
     private void toSign() {
-        String studentId = mEtStudentId.getEditText().getText().toString();
-        String name = mEtName.getEditText().getText().toString();
-        String eCardPwd = mEtECardPwd.getEditText().getText().toString();
-        String jwcPwd = mEtJwcPwd.getEditText().getText().toString();
+        studentId = mEtStudentId.getEditText().getText().toString();
+        name = mEtName.getEditText().getText().toString();
+        eCardPwd = mEtECardPwd.getEditText().getText().toString();
+        jwcPwd = mEtJwcPwd.getEditText().getText().toString();
 
         mEtECardPwd.setErrorEnabled(false);
         mEtName.setErrorEnabled(false);
@@ -234,7 +234,7 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
             public void done(List<AVObject> list, AVException e) {
                 if (e == null) {
                     Map<String, String> map = new ArrayMap<>();
-                    map.put("stuid", name);//设置get参数
+                    map.put("stuid", studentId);//设置get参数
                         map.put("passwd", jwcPwd);//设置get参数
                     new InternetUtil(validateHandler,basicURL + "profile", map,true,SignInJWCActivity.this);//传入参数
 
