@@ -265,8 +265,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_add_course:
-                Intent intent = new Intent(getActivity(), ImportCourseActivity.class);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("ARGUMENT", "refreshCourse");
+                CourseFragment contentFragment = new CourseFragment();
+                contentFragment.setArguments(bundle);
                 break;
             case R.id.bt_me:
                 openLeftWin();

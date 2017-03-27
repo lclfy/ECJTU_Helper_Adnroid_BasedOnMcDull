@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.Streams;
@@ -46,6 +47,7 @@ public class ScoreActivity extends MyTitleActivity {
         initView();
 
         init();
+        Toast.makeText(ScoreActivity.this, "补考成绩仍可在此处查询\n将显示补考或重修", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -69,6 +71,8 @@ public class ScoreActivity extends MyTitleActivity {
                     ExamMap.put("khfs", ScoreDetails.khfs);
                     ExamMap.put("kcxf", ScoreDetails.kcxf);
                     ExamMap.put("kscj", ScoreDetails.kscj);
+                    ExamMap.put("ckcj", ScoreDetails.ckcj);
+                    ExamMap.put("cxcj", ScoreDetails.cxcj);
                     list.add(ExamMap);
                 }
                 ScoreAdapter ScoreAdapter = new ScoreAdapter(this, list);

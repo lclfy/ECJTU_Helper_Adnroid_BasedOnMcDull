@@ -63,24 +63,65 @@ public class ScoreAdapter extends BaseAdapter {
 
 		Map<String,String> item = list.get(position);
 		//及格和不及格放不一样的图
-		try {
+		if (item.get("ckcj").length()==0){
+			//没有补考
+			try {
+				//试试考试成绩是不是分数，是的话按60换图
+				if (Integer.parseInt(item.get("kscj")) < 60){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else {
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
+			}catch (Exception e){
+				//不是的话按及格不及格换图
+				if (item.get("kscj").contains("不及格")){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else{
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
+			}
+			tv_Right.setText(item.get("kscj"));
+		}else if (item.get("cxcj").length()==0){
+			//有补考无重修
 			//试试考试成绩是不是分数，是的话按60换图
-			if (Integer.parseInt(item.get("kscj")) < 60){
-				MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
-			}else {
-				MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+			try {
+				if (Integer.parseInt(item.get("ckcj")) < 60){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else {
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
+			}	catch (Exception e){
+				//不是的话按及格不及格换图
+				if (item.get("ckcj").contains("不及格")){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else{
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
 			}
-		}catch (Exception e){
-			//不是的话按及格不及格换图
-			if (item.get("kscj").contains("不及格")){
-				MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
-			}else{
-				MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+			tv_Right.setText("补考："+item.get("cxcj"));
+		}else{
+			//重修
+			//试试考试成绩是不是分数，是的话按60换图
+			try {
+				if (Integer.parseInt(item.get("cxcj")) < 60){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else {
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
+			}	catch (Exception e){
+				//不是的话按及格不及格换图
+				if (item.get("cxcj").contains("不及格")){
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore_failed1);
+				}else{
+					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
+				}
 			}
+			tv_Right.setText("重修："+item.get("cxcj"));
 		}
+
 		tv_FirstLine.setText(item.get("kcmc") + "-" + item.get("khfs"));
 		tv_SecondLine.setText("本课程有"+item.get("kcxf")+"个学分");
-		tv_Right.setText(item.get("kscj"));
+
 
 		return view;
 	}

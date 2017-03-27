@@ -82,6 +82,29 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         findViewById(R.id.status_bar).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
         try{
             findViewById(R.id.eCardStatus).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            TextView tvCalenderTitle = (TextView)findViewById(R.id.calenderArea_title);
+            tvCalenderTitle.setTextColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            //设置跟随主题变换颜色的图标的颜色
+            switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 0)){
+                case 0:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_purple);
+                    break;
+                case 1:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_pink);
+                    break;
+                case 2:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_teal);
+                    break;
+                case 3:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_blue);
+                    break;
+                case 4:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_amber);
+                    break;
+                case 5:
+                    findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_red);
+                    break;
+            }
         }catch (Exception e){
 
         }

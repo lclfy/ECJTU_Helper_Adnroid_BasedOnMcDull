@@ -105,6 +105,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbDeepPurple.getId();
                     edit.putInt("theme", 0xff673AB7);
+                    edit.putInt("themeInt",0);
                     edit.apply();
                 }
                 break;
@@ -112,6 +113,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbPink.getId();
                     edit.putInt("theme", 0xffE91E63);
+                    edit.putInt("themeInt",1);
                     edit.apply();
                 }
                 break;
@@ -119,6 +121,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbTeal.getId();
                     edit.putInt("theme", 0xff009688);
+                    edit.putInt("themeInt",2);
                     edit.apply();
                 }
                 break;
@@ -126,6 +129,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbBlue.getId();
                     edit.putInt("theme", 0xff2196F3);
+                    edit.putInt("themeInt",3);
                     edit.apply();
                 }
                 break;
@@ -133,6 +137,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbAmber.getId();
                     edit.putInt("theme", 0xffFFC107);
+                    edit.putInt("themeInt",4);
                     edit.apply();
                 }
                 break;
@@ -140,6 +145,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbRed.getId();
                     edit.putInt("theme", 0xffF44336);
+                    edit.putInt("themeInt",5);
                     edit.apply();
                 }
                 break;

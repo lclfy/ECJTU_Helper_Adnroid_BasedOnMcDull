@@ -133,6 +133,10 @@
             android:label="@string/title_activity_exam_schedule"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.SelectedCourseIDActivity"
+            android:label="@string/title_activity_selected_course_id"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.ExamActivity"
             android:label="@string/title_activity_exam"
             android:screenOrientation="portrait" />

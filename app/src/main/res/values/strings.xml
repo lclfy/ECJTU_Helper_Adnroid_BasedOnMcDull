@@ -15,6 +15,7 @@
     <string name="title_activity_score_search">ScoreSearchActivity</string>
     <string name="title_activity_score">ScoreActivity</string>
     <string name="title_activity_exam_schedule">ExamScheduleActivity</string>
+    <string name="title_activity_selected_course_id">ExamScheduleActivity</string>
     <string name="title_activity_exam">ExamActivity</string>
     <string name="title_activity_re_exam_schedule">ReExamScheduleActivity</string>
     <string name="title_activity_re_exam">ReExamActivity</string>

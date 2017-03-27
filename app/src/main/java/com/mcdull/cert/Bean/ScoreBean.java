@@ -20,8 +20,8 @@ public class ScoreBean {
             public String khfs;//考核方式
             public String kcxf;//课程学分
             public String kscj;//考试成绩
-            public String ckcj;
-            public String cxcj;
+            public String ckcj;//补考成绩1
+            public String cxcj;//重修成绩
         }
 
     }

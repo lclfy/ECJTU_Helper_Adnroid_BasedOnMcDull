@@ -26,7 +26,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
+                android:layout_marginLeft="16dp"
                 android:id="@+id/tv_eCardTitleText"
                 android:text="一卡通信息"
                 android:textColor="@color/avoscloud_feedback_white"
@@ -114,10 +114,90 @@
         </RelativeLayout>
     </LinearLayout>
     </LinearLayout>
+    <ScrollView
+        android:id="@+id/mainMenuScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        android:layout_height="196dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/avoscloud_feedback_white"
+        android:id="@+id/scrollArea"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/avoscloud_feedback_white"
+            android:id="@+id/calenderArea"
+            >
+        <View
+            android:id="@+id/scroll_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:visibility="gone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/avoscloud_feedback_white"
+            >
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:id="@+id/calenderIcon"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/ic_calendericon_deep_teal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="16dp"
+                android:textSize="14dp"
+                android:id="@+id/calenderArea_title"
+                android:textColor="@color/title_color"
+                android:text="加载当日课表…"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:id="@+id/tv_reTryBtn"
+                android:visibility="gone"
+                android:background="@color/avoscloud_feedback_white"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:textSize="14dp"
+                    android:id="@+id/tv_reTry"
+                    android:textColor="@color/title_color"
+                    android:text="重试"/>
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+        <ListView
+            android:divider="@null"
+            android:id="@+id/lv_calenderListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/avoscloud_feedback_white"
         android:id="@+id/functionArea"
@@ -132,7 +212,7 @@
         >
         <LinearLayout
             android:layout_width="65dp"
-            android:layout_height="98dp"
+            android:layout_height="97dp"
             android:orientation="vertical"
             android:background="@color/avoscloud_feedback_white"
             android:id="@+id/bt_map"
@@ -255,7 +335,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="288dp"
+        android:layout_width="330dp"
         android:layout_height="98dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
@@ -263,7 +343,7 @@
         android:id="@+id/functionArea2"
         >
         <LinearLayout
-            android:layout_width="72dp"
+            android:layout_width="65dp"
             android:layout_height="98dp"
             android:orientation="vertical"
             android:background="@drawable/whitegrade"
@@ -287,7 +367,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="72dp"
+            android:layout_width="65dp"
             android:layout_height="98dp"
             android:orientation="vertical"
             android:background="@drawable/whitegrade"
@@ -310,7 +390,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="72dp"
+            android:layout_width="65dp"
             android:layout_height="98dp"
             android:orientation="vertical"
             android:background="@drawable/whitegrade"
@@ -334,7 +414,7 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="72dp"
+            android:layout_width="65dp"
             android:layout_height="98dp"
             android:orientation="vertical"
             android:background="@drawable/whitegrade"
@@ -356,11 +436,34 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="65dp"
+            android:layout_height="98dp"
+            android:orientation="vertical"
+            android:background="@drawable/whitegrade"
+            android:id="@+id/bt_selectedcourse_id"
+            >
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/ic_img_selectedcourse_id"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:text="选修小班"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
     </LinearLayout>
-
-
+    </LinearLayout>
+    </ScrollView>
 
 
 

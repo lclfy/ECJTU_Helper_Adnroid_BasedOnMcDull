@@ -19,15 +19,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
 
 import com.google.gson.Gson;
 import com.mcdull.cert.Bean.CETBean;
+import com.mcdull.cert.Bean.CalenderBean;
 import com.mcdull.cert.Bean.ExamTimeBean;
 import com.mcdull.cert.Bean.ReExamBean;
 import com.mcdull.cert.Bean.ScoreBean;
+import com.mcdull.cert.Bean.SelectedCourseIDBean;
 import com.mcdull.cert.Bean.WeatherBean;
 import com.mcdull.cert.Bean.eCardBean;
 import com.mcdull.cert.Bean.eCardOwnerBean;
@@ -41,8 +45,10 @@ import com.mcdull.cert.activity.ReExamActivity;
 import com.mcdull.cert.activity.RepairActivity;
 import com.mcdull.cert.activity.RepairSucActivity;
 import com.mcdull.cert.activity.ScoreActivity;
+import com.mcdull.cert.activity.SelectedCourseIDActivity;
 import com.mcdull.cert.activity.TripActivity;
 import com.mcdull.cert.activity.WeatherActivity;
+import com.mcdull.cert.adapter.CalenderAdapter;
 import com.mcdull.cert.utils.InternetUtil;
 import android.os.Handler;
 import android.os.Message;
@@ -61,7 +67,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -77,6 +86,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     private AVUser user;
     private Activity activity;
 
+
     //新的URL
     private String basicURL = "http://api1.ecjtu.org/v1/";
 
@@ -86,6 +96,14 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
     //天气的TextView
     private ImageView tv_nowTemperature;
+    //日历的TextView
+    private TextView tv_calenderTitle;
+    //日历的listview
+    private ListView lvCalender;
+    //刷新日历的标记，第一次启动的时候不需要修改重试按钮状态
+    private boolean isFirstTime = true;
+    //判断是否需要查询第二天的日历
+    boolean searchNextDays = false;
     //用于绘制实时天气
     private Bitmap imgMarker;
     private int width,height;   //图片的高度和宽度
@@ -104,6 +122,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         user = AVUser.getCurrentUser();
         //获取主界面的一卡通信息
         findECard(true);
+        //获取主界面的日历信息
+        findCalender();
         return view;
     }
 
@@ -115,7 +135,29 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         view.findViewById(R.id.bt_EcardBalance).setOnClickListener(this);
         view.findViewById(R.id.bt_checkEcardPaylist).setOnClickListener(this);
         view.findViewById(R.id.eCardStatus).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
-
+        TextView tvCalenderTitle = (TextView)view.findViewById(R.id.calenderArea_title);
+        tvCalenderTitle.setTextColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+        //设置跟随主题变换颜色的图标的颜色
+        switch (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 0)){
+            case 0:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_purple);
+                break;
+            case 1:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_pink);
+                break;
+            case 2:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_teal);
+                break;
+            case 3:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_blue);
+                break;
+            case 4:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_amber);
+                break;
+            case 5:
+                view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_red);
+                break;
+        }
         view.findViewById(R.id.bt_examScore).setOnClickListener(this);
         view.findViewById(R.id.bt_reExam).setOnClickListener(this);
         view.findViewById(R.id.bt_examTime).setOnClickListener(this);
@@ -123,6 +165,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         view.findViewById(R.id.bt_cetSearch).setOnClickListener(this);
         view.findViewById(R.id.bt_backgroundRepair).setOnClickListener(this);
         view.findViewById(R.id.bt_callInClass).setOnClickListener(this);
+
+        view.findViewById(R.id.bt_selectedcourse_id).setOnClickListener(this);
+        view.findViewById(R.id.tv_reTryBtn).setOnClickListener(this);
+
 
     }
 
@@ -144,13 +190,13 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.bt_examScore:
-                SearchforReExam_Exam_Score(2);
+                universalSearch(2);
                 break;
             case R.id.bt_examTime:
-                SearchforReExam_Exam_Score(1);
+                universalSearch(1);
                 break;
             case R.id.bt_reExam:
-                SearchforReExam_Exam_Score(0);
+                universalSearch(0);
                 break;
             case R.id.bt_pcRepair:
                 getOrderState();
@@ -178,6 +224,12 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.bt_checkEcardPaylist:
                 findECard(false);
+                break;
+            case R.id.bt_selectedcourse_id:
+                universalSearch(3);
+                break;
+            case R.id.tv_reTryBtn:
+                findCalender();
                 break;
 
         }
@@ -235,12 +287,30 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     return;
                 }
                 //用Gson解析天气Json数据
-                //WeatherBean bean = new Gson().fromJson(json, WeatherBean.class);
+                WeatherBean bean = new WeatherBean();
+                try{
+                    bean = new Gson().fromJson(json, WeatherBean.class);
+                    createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weatherJson", json);
+                    intent.putExtra("Title","天气情况");
+                    startActivity(intent);
+                }catch (Exception e ){
+                    try{
+                        bean = new Gson().fromJson(json, WeatherBean.class);
+                        createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weatherJson", json);
+                        intent.putExtra("Title","天气情况");
+                        startActivity(intent);
+                    }catch (Exception e1){
+                        Toast.makeText(getActivity(), "天气刷新失败", Toast.LENGTH_SHORT).show();
+                    }
 
-                Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                intent.putExtra("weatherJson", json);
-                intent.putExtra("Title","天气情况");
-                startActivity(intent);
+                }
+
+
+
             }
         }
     };
@@ -255,12 +325,23 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
                 if (Util.replace(json).equals("false")) {
-                    Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //用Gson解析天气Json数据
-                WeatherBean bean = new Gson().fromJson(json, WeatherBean.class);
-                createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                WeatherBean bean = new WeatherBean();
+                try{
+                    bean = new Gson().fromJson(json, WeatherBean.class);
+                    createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                }catch (Exception e ){
+                    try{
+                        bean = new Gson().fromJson(json, WeatherBean.class);
+                        createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                    }catch (Exception e1){
+                        return;
+                    }
+
+                }
+
             }
         }
     };
@@ -362,11 +443,11 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         final String studentId = user.getString("StudentId");
         final String eCardPassword = user.getString("EcardPwd");
         if (TextUtils.isEmpty(studentId) || studentId.equals("null")) {
-            Toast.makeText(getActivity(), "若需查询一卡通信息，请先在个人信息页补全信息", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "若需查询，请先在个人信息页补全信息", Toast.LENGTH_SHORT).show();
             return;
         }
         if ((TextUtils.isEmpty(eCardPassword) || eCardPassword.equals("null"))&&studentId.length() == 14) {
-            Toast.makeText(getActivity(), "若需查询一卡通信息，请先在个人信息页补全信息", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "若需查询，请先在个人信息页补全信息", Toast.LENGTH_SHORT).show();
             return;
         }
         
@@ -381,7 +462,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     map.put("user", studentId);//设置get参数
                     //map.put("user", "73083");//设置get参数
                     //map.put("passwd", eCardPassword);//设置get参数
-                    map.put("passwd", "888888");//设置get参数
+                    map.put("passwd", eCardPassword);//设置get参数
 
                     if (isMainMenu){
                         new InternetUtil(eCardMainMenuHandler,basicURL + "ecard_daytrade", map,true,getActivity());//传入参数
@@ -593,6 +674,256 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         }
     };
 
+    //今日课表-校园日历
+    private void findCalender() {
+        if (!isFirstTime){
+            //设置主界面日历的标题
+            tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+            tv_calenderTitle.setText("加载当日课表…");
+
+            //把重试按钮隐藏
+            getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.GONE);
+        }else {
+            //第一次进来的时候判断要不要查明天的
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+            //把日期和时间区分开
+            String[] date_Time = formatter.format(curDate).split(" ");
+            if (Integer.parseInt(date_Time[1].split(":")[0]) >= 20) {
+                //8点以后查明天的
+                searchNextDays = !searchNextDays;
+            }
+            isFirstTime = !isFirstTime;
+        }
+
+        final String studentId = user.getString("StudentId");
+        final String JwcPwd = user.getString("JwcPwd");
+        //13,14级查不了
+        if (studentId.length() == 14){
+            return;
+        }
+        if (TextUtils.isEmpty(studentId) || studentId.equals("null")) {
+            return;
+        }
+        if (TextUtils.isEmpty(JwcPwd) || JwcPwd.equals("null")) {
+            return;
+        }
+
+
+        AVQuery<AVObject> query = new AVQuery<>("API");
+        query.whereEqualTo("title", "Calender");
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null) {
+                    Map<String, String> map = new ArrayMap<>();
+                    //判断要不要查询下一天的内容,如果需要将会返回第二天的日期
+                    String shouldSearchNextDay = shouldSearchNextDay_Calender();
+                    if (shouldSearchNextDay.length()!=0){
+                        map.put("date",shouldSearchNextDay);
+                    }
+                    map.put("stuid", studentId);//设置get参数
+                    map.put("passwd", JwcPwd);//设置get参数
+                    //判断查今天的还是明天的
+                    new InternetUtil(CalenderHandler,basicURL + "today", map,true,getActivity());//传入参数
+
+                } else {
+                    //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
+                    tv_calenderTitle.setText("加载失败");
+                    //显示重试按钮
+                    getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    waitWin.dismissWait();
+                }
+            }
+        });
+    }
+
+    Handler CalenderHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            //设置主界面日历的标题
+            tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+            if (msg.what == 0) {
+                waitWin.dismissWait();
+                //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
+                tv_calenderTitle.setText("加载失败");
+                //显示重试按钮
+                getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+            } else {
+                waitWin.dismissWait();
+
+                Bundle bundle = (Bundle) msg.obj;
+                String json = bundle.getString("Json");
+
+
+                if (Util.replace(json).equals("false")) {
+                    //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
+                    tv_calenderTitle.setText("加载失败");
+                    //显示重试按钮
+                    getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    return;
+                }
+                //更新主页面的信息
+                CalenderBean CalenderData = new CalenderBean();
+                try {
+                    CalenderData = new Gson().fromJson(json, CalenderBean.class);
+                }catch (Exception e){
+                    try {
+                        CalenderData = new Gson().fromJson(json, CalenderBean.class);
+                    }catch (Exception e1){
+                        tv_calenderTitle.setText("加载失败");
+                        //显示重试按钮
+                        getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    }
+                }
+                if (CalenderData!=null) {
+                    if (CalenderData.data!=null){
+                        //判断星期
+                        String weekday = "";
+                        switch (CalenderData.data.weekday){
+                            case "1":
+                                weekday = "一";
+                                break;
+                            case "2":
+                                weekday = "二";
+                                break;
+                            case "3":
+                                weekday = "三";
+                                break;
+                            case "4":
+                                weekday = "四";
+                                break;
+                            case "5":
+                                weekday = "五";
+                                break;
+                            case "6":
+                                weekday = "六";
+                                break;
+                            case "7":
+                                weekday = "日";
+                                break;
+                        }
+                        List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+                        //字幕君
+                        String day = "";
+                        if (searchNextDays){
+                            day = "明";
+                        }else {
+                            day = "今";
+                        }
+                        tv_calenderTitle.setText(day+"天是第"+CalenderData.data.week+"周，星期"+weekday);
+                        if (CalenderData.data.daylist.size()!=0){
+                            for (int item = 0;item<CalenderData.data.daylist.size();item++) {
+                                //获取每个补考安排
+                                CalenderBean.ChildCalenderBean.GrandChildCalenderBean CalenderDetails = CalenderData.data.daylist.get(item);
+                                //把arraylist填充成list
+                                //暂时不知道pktype的意思
+                                Map<String, String> CalenderMap = new ArrayMap<>();
+                                CalenderMap.put("course", CalenderDetails.course);
+                                CalenderMap.put("classRoom", CalenderDetails.classRoom);
+                                CalenderMap.put("classString", CalenderDetails.classString);
+                                list.add(CalenderMap);
+                            }
+                            //用一个透明栏来…有偏移
+                            //每行课需要35，一行时候不需要
+                            ViewGroup.LayoutParams para = getActivity().findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
+                            final float scale = getActivity().getResources().getDisplayMetrics().density;
+                            //dp换算成px
+                            para.height=(CalenderData.data.daylist.size()-1)*(int) (40 * scale + 0.5f);//修改高度
+
+                            getActivity().findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+                            lvCalender = (ListView)getActivity().findViewById(R.id.lv_calenderListView);
+                            CalenderAdapter Adapter = new CalenderAdapter(getActivity(), list);
+                            lvCalender.setEnabled(false);
+                            lvCalender.setAdapter(Adapter);
+                            setListViewHeightBasedOnChildren(lvCalender);
+                        }else {
+                            tv_calenderTitle.setText("加载失败");
+                            //显示重试按钮
+                            getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                        }
+                    }
+
+
+                }
+            }
+        }
+    };
+
+    //查明天的课表
+    private String shouldSearchNextDay_Calender() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        //把日期和时间区分开
+        String[] date_Time = formatter.format(curDate).split(" ");
+        //获取小时
+        if (searchNextDays){
+            String[] splitday = date_Time[0].split("-");
+            String yyyy = splitday[0];
+            String mm = splitday[1];
+            String dd = splitday[2];
+            if (Integer.parseInt(mm) == 2 && Integer.parseInt(dd)==28){
+                //2月特殊情况
+                if (Integer.parseInt(yyyy)%4 == 0){
+                    dd = "29";
+                }else {
+                    mm = "3";
+                    dd = "1";
+                }
+                return yyyy + "-" + mm + "-"+dd;
+            }else if (Integer.parseInt(dd)==31){
+                if (Integer.parseInt(mm) == 12){
+                    //年底特殊情况（不过年底应该都没有课了吧。。）
+                    yyyy = String.valueOf(Integer.parseInt(yyyy)+1);
+                    mm = "1";
+                    dd = "1";
+                }
+                //31号的下一天一定是下个月了。。
+                mm = String.valueOf(Integer.parseInt(mm)+1);
+                dd = "1";
+                return yyyy + "-" + mm + "-"+dd;
+            }else if (Integer.parseInt(dd)==30){
+                if (Integer.parseInt(mm) == 4 ||
+                        Integer.parseInt(mm) == 6||
+                        Integer.parseInt(mm) == 9||
+                        Integer.parseInt(mm) == 11){
+                    //30号的下一天是下个月的情况
+                    mm = String.valueOf(Integer.parseInt(mm)+1);
+                    dd = "1";
+                    return yyyy + "-" + mm + "-"+dd;
+                }else {
+                    //正常情况下查第二天的
+                    return yyyy + "-" + mm + "-" + String.valueOf(Integer.parseInt(dd) + 1);
+                }
+            }else {
+                //正常情况下查第二天的
+                return yyyy + "-" + mm + "-" + String.valueOf(Integer.parseInt(dd) + 1);
+            }
+        }
+        return "";
+
+    }
+
+    //设置listview的高度
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
 
     //下方功能按钮类
     //电脑维修
@@ -794,9 +1125,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     };
 
 
-    //补考信息/成绩查询/考试安排查询
-    private void SearchforReExam_Exam_Score(final int searchId) {
-        //该方法查询三项，0为补考信息，1为考试安排查询，2为考试成绩查询
+    //补考信息/成绩查询/考试安排查询//小班序号查询
+    private void universalSearch(final int searchId) {
+        //该方法查询三项，0为补考信息，1为考试安排查询，2为考试成绩查询,3为小班序号查询
         final String studentId = user.getString("StudentId");
         final String JwcPassword = user.getString("JwcPwd");
         if ( TextUtils.isEmpty(studentId) || studentId.equals("null")) {
@@ -821,6 +1152,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         new InternetUtil(ExamTimeHandler, basicURL+"exam", map);//传入参数
                     }else if (searchId == 2){
                         new InternetUtil(ScoreHandler, basicURL+"score", map);//传入参数
+                    }else if (searchId == 3){
+                        new InternetUtil(selectedCourseIDHandler, basicURL+"selectnumber", map);//传入参数
                     }
 
                 } else {
@@ -932,6 +1265,42 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     }else {
                         Intent intent = new Intent(getActivity(), ScoreActivity.class);
                         intent.putExtra("ScoreJson", json);
+                        startActivity(intent);
+                    }
+                }else{
+                    Toast.makeText(getActivity(), "请检查学号密码是否正确后重试", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+    };
+    //小班序号
+    Handler selectedCourseIDHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                waitWin.dismissWait();
+                Toast.makeText(getActivity(), "查询失败，请稍后重试", Toast.LENGTH_SHORT).show();
+            } else {
+                waitWin.dismissWait();
+
+                Bundle bundle = (Bundle) msg.obj;
+                String json = bundle.getString("Json");
+                SelectedCourseIDBean bean = new SelectedCourseIDBean();
+                try {
+                    bean = new Gson().fromJson(json, SelectedCourseIDBean.class);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), "查询失败，请重试", Toast.LENGTH_SHORT).show();
+                    waitWin.dismissWait();
+                    return;
+                }
+                if (bean.msg.contains("success")){
+                    if (bean.data == null ||bean.data.number == null){
+                        Toast.makeText(getActivity(), "无记录：请重试", Toast.LENGTH_SHORT).show();
+                        waitWin.dismissWait();
+                    }else {
+                        Intent intent = new Intent(getActivity(), SelectedCourseIDActivity.class);
+                        intent.putExtra("sCIDJson", json);
                         startActivity(intent);
                     }
                 }else{

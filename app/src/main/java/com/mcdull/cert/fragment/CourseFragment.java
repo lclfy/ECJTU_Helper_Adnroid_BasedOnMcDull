@@ -32,6 +32,11 @@ import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.Util;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,11 +70,13 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
                     CourseBean CourseData = new Gson().fromJson(json, CourseBean.class);
                     adapter.setCourseList(CourseData);
                     adapter.notifyDataSetChanged();
+                    saveObject("course",CourseData);
                 }catch (Exception e){
                     try {
                         CourseBean CourseData = new Gson().fromJson(json, CourseBean.class);
                         adapter.setCourseList(CourseData);
                         adapter.notifyDataSetChanged();
+                        saveObject("course",CourseData);
                     }catch (Exception e1){
                         Toast.makeText(getActivity(), "课表数据暂无法获取，请重试", Toast.LENGTH_SHORT).show();
                     }
@@ -85,32 +92,36 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onResume() {
         super.onResume();
-        final String studentId = AVUser.getCurrentUser().getString("StudentId");
-        if (TextUtils.isEmpty(studentId)) {
-            return;
-        }
-        Boolean isCourse = SP.getBoolean("isCourse", false);
-        if (!isCourse && studentId.length() == 16) {
-            //获取新生课表
-            String password = AVUser.getCurrentUser().getString("JwcPwd");
-            if (!TextUtils.isEmpty(password)) {
-                Map<String, String> map = new ArrayMap<>();
-                map.put("stuid", studentId);//设置get参数
-                map.put("passwd", password);//设置get参数
-                map.put("term", findCurrentTerm());//设置get参数
-                new InternetUtil(CourseHandler,basicURL + "schedule", map,true,getActivity());//传入参数
-            }
-            return;
-
-        }
-//        List<List<String>> courseList = CourseUtil.getCourse(getActivity());
-//        mBackGround.setVisibility(View.VISIBLE);
-
-//        for (int i = 0; i < courseList.size(); i++)
-//            if (!TextUtils.isEmpty(courseList.get(i).get(0)))
-//                mBackGround.setVisibility(View.GONE);
-//        adapter.setCourseList(courseList);
-//        adapter.notifyDataSetChanged();
+//        final String studentId = AVUser.getCurrentUser().getString("StudentId");
+//        if (TextUtils.isEmpty(studentId)) {
+//            return;
+//        }
+//        //判断本地有没有课表数据
+//        CourseBean courseList = new CourseBean();
+//        if (getObject("course")!= null){
+//            courseList = (CourseBean) getObject("course");
+//            if (courseList!=null){
+//                if (courseList.data!=null){
+//                    adapter.setCourseList(courseList);
+//                    adapter.notifyDataSetChanged();
+//                    return;
+//                }
+//            }
+//
+//        }
+//        if (!isCourse && studentId.length() == 16) {
+//            //获取新生课表
+//            String password = AVUser.getCurrentUser().getString("JwcPwd");
+//            if (!TextUtils.isEmpty(password)) {
+//                Map<String, String> map = new ArrayMap<>();
+//                map.put("stuid", studentId);//设置get参数
+//                map.put("passwd", password);//设置get参数
+//                map.put("term", findCurrentTerm());//设置get参数
+//                new InternetUtil(CourseHandler,basicURL + "schedule", map,true,getActivity());//传入参数
+//            }
+//            return;
+//
+//        }
     }
 
     @Override
@@ -122,29 +133,27 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
         CourseBean courseList = new CourseBean();
         adapter = new CourseAdapter(getActivity(), courseList, mGvCourse);
 
-//        mBackGround = view.findViewById(R.id.back);
-//        mBackGround.setVisibility(View.VISIBLE);
-//        mBackGround.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                v.setVisibility(View.GONE);
-//            }
-//        });
 
         mGvCourse.setAdapter(adapter);
         mGvCourse.setOnItemClickListener(this);
         mGvCourse.setOnItemLongClickListener(this);
 
-        this.SP = getActivity().getSharedPreferences("config", Context.MODE_PRIVATE);
-        Boolean isCourse = SP.getBoolean("isCourse", false);
         final String studentId = AVUser.getCurrentUser().getString("StudentId");
-
         if (TextUtils.isEmpty(studentId)) {
             return view;
         }
-        int[] time = Util.getSystemTime();
-        final String timeString = time[0] + "." + time[1];
-        if (!timeString.equals(SP.getString("time", null)) || !isCourse) {
+        //判断本地有没有课表数据
+        if (getObject("course")!= null){
+            courseList = (CourseBean) getObject("course");
+            if (courseList!=null){
+                if (courseList.data!=null){
+                    adapter.setCourseList(courseList);
+                    adapter.notifyDataSetChanged();
+                    return view;
+                }
+            }
+
+        }
         if (studentId.length() == 16) {
                 //获取课表
                 String password = AVUser.getCurrentUser().getString("JwcPwd");
@@ -159,18 +168,9 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
                     return view;
                 }
             } else {
-            Toast.makeText(getActivity(),"抱歉，暂不支持15级以前同学的课程表查询",Toast.LENGTH_SHORT);
+            //Toast.makeText(getActivity(),"抱歉，暂不支持15级以前同学的课程表查询",Toast.LENGTH_SHORT);
                 return view;
             }
-        } else {
-//            courseList = CourseUtil.getCourse(getActivity());
-//            for (int i = 0; i < courseList.size(); i++)
-//                if (!TextUtils.isEmpty(courseList.get(i).get(0)))
-//                    mBackGround.setVisibility(View.GONE);
-//            adapter.setCourseList(courseList);
-//            adapter.notifyDataSetChanged();
-            return view;
-        }
         return view;
     }
 
@@ -199,6 +199,69 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
             waitWin.dismissWait();
             waitWin = null;
         }
+    }
+
+    //存储课表
+    private void saveObject(String name,CourseBean course){
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = getActivity().openFileOutput(name, getActivity().MODE_PRIVATE);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(course);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //这里是保存文件产生异常
+        } finally {
+            if (fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    //fos流关闭异常
+                    e.printStackTrace();
+                }
+            }
+            if (oos != null){
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    //oos流关闭异常
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private Object getObject(String name){
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = getActivity().openFileInput(name);
+            ois = new ObjectInputStream(fis);
+            return ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //这里是读取文件产生异常
+        } finally {
+            if (fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    //fis流关闭异常
+                    e.printStackTrace();
+                }
+            }
+            if (ois != null){
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    //ois流关闭异常
+                    e.printStackTrace();
+                }
+            }
+        }
+        //读取产生异常，返回null
+        return null;
     }
 
     @Override
