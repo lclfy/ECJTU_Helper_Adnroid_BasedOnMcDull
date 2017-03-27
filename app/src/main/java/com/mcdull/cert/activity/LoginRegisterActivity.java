@@ -291,9 +291,9 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
     }
 
     private void toLogin() {
-
-        //String email = mLoginEMain.getText().toString();
-        //String pwd = mLoginPwd.getText().toString();
+//
+//        String email = mLoginEMain.getText().toString();
+//        String pwd = mLoginPwd.getText().toString();
         String email = "758003984@qq.com";
         String pwd = "1081884068lsc";
         if (TextUtils.isEmpty(email)) {

@@ -814,7 +814,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     Map<String, String> map = new ArrayMap<>();
                     map.put("stuid", studentId);//设置get参数
                     map.put("passwd",JwcPassword );//设置get参数
-                    //map.put("term","2016.1" );//学期，默认为当前
+//                    map.put("term","2016.1" );//学期，默认为当前
                     if (searchId == 0){
                         new InternetUtil(reExamHandler, basicURL+"bexam", map);//传入参数
                     }else if (searchId == 1){
@@ -851,7 +851,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     return;
                 }
                 if (bean.msg.contains("success")){
-                    if (bean.data == null){
+                    if (bean.data == null ||bean.data.data == null){
                         Toast.makeText(getActivity(), "无记录：当前无补考信息或无挂科", Toast.LENGTH_SHORT).show();
                         waitWin.dismissWait();
                     }else {
@@ -888,7 +888,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
 
                 if (bean.msg.contains("success")){
-                    if (bean.data == null){
+                    if (bean.data == null||bean.data.data == null){
                         Toast.makeText(getActivity(), "无记录：当前无考试安排", Toast.LENGTH_SHORT).show();
                         waitWin.dismissWait();
                     }else {
@@ -926,7 +926,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
 
                 if (bean.msg.contains("success")){
-                    if (bean.data == null){
+                    if (bean.data == null || bean.data.score == null){
                         Toast.makeText(getActivity(), "无记录：网络或服务器错误", Toast.LENGTH_SHORT).show();
                         waitWin.dismissWait();
                     }else {

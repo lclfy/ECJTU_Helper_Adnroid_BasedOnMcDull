@@ -55,7 +55,7 @@ public class ExamActivity extends MyTitleActivity {
         }
         List<Map<String,String>> list = new ArrayList<Map<String,String>>();
         if (ExamData != null) {
-            if (ExamData.data != null){
+            if (ExamData.data.data != null){
                 //有两个data，第一个data内包含学期和其他数据，第二个data包含全部信息（json就这么写的）
                 for (int item = 0;item<ExamData.data.data.size();item++) {
                     //获取每个补考安排
