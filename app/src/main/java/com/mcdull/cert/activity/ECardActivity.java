@@ -169,21 +169,22 @@ public class ECardActivity extends Activity {
                 final AlertDialog.Builder normalDialog =
                         new AlertDialog.Builder(ECardActivity.this);
                 normalDialog.setTitle("尚未下载建行手机银行");
-                normalDialog.setMessage("点击“确定”开始下载");
-                normalDialog.setPositiveButton("确定",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                new Thread(downLoadFile).start();
-                                Toast.makeText(ECardActivity.this, "已开始在后台下载建行手机银行\n下载完成后将自动打开", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    normalDialog.setNegativeButton("关闭",
+                normalDialog.setMessage("点击“下载”开始下载");
+                    normalDialog.setNegativeButton("取消",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     });
+            normalDialog.setPositiveButton("下载",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new Thread(downLoadFile).start();
+                            Toast.makeText(ECardActivity.this, "已开始在后台下载建行手机银行\n下载完成后将自动打开", Toast.LENGTH_LONG).show();
+                        }
+                    });
+            normalDialog.show();
             }
 
 

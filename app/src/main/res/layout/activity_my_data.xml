@@ -23,15 +23,20 @@
             android:layout_height="48dp"
             android:orientation="horizontal"
             android:weightSum="1">
-
-            <Button
+            <LinearLayout
                 android:id="@+id/bt_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="left"
+                android:orientation="vertical">
+            <Button
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/backbt"
                 android:layout_weight="0" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_title"
@@ -47,8 +52,13 @@
                 android:layout_height="48dp"
                 android:orientation="horizontal"
                 android:gravity="right">
-                <ImageView
+                <LinearLayout
                     android:id="@+id/tv_save"
+                    android:layout_width="60dp"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="right">
+                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginRight="16dp"
@@ -57,6 +67,7 @@
                     android:background="@drawable/ic_check_white_48dp"
                     android:textColor="#ffffff"
                     android:textSize="19sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

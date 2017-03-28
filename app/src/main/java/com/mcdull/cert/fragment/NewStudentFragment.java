@@ -552,7 +552,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
                 waitWin.dismissWait();
-                Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             } else {
                 waitWin.dismissWait();
 
@@ -560,7 +560,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 String json = bundle.getString("Json");
 
                 if (Util.replace(json).equals("false")) {
-                    Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //更新主页面的信息
@@ -588,7 +588,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             tv_eCardConsume.setText(String.valueOf(dayConsume)+"元");
                         }else {
                             tv_eCardConsume.setText("——");
-                            Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -611,7 +611,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
                 waitWin.dismissWait();
-                Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             } else {
                 waitWin.dismissWait();
 
@@ -619,7 +619,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 String json = bundle.getString("Json");
 
                 if (Util.replace(json).equals("false")) {
-                    Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //更新主页面的信息
@@ -648,7 +648,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             tv_eCardConsume.setText(String.valueOf(dayConsume)+"元");
                         }else {
                             tv_eCardConsume.setText("——");
-                            Toast.makeText(getActivity(), "一卡通消费数据暂时无法获取", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

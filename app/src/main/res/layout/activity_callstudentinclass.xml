@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="224dp"
+        android:layout_height="235dp"
         android:background="@drawable/ecard_new"
         android:orientation="vertical">
         <View
@@ -20,16 +20,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
-            <Button
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="45dp"
                 android:id="@+id/bt_back"
+                android:gravity="left"
+                android:orientation="vertical">
+            <Button
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/ic_arrow_back_white_48dp" />
 
-
+            </LinearLayout>
 
         </LinearLayout>
 

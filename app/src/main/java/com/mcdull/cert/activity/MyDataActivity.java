@@ -61,7 +61,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     private int WOMAN = -1;
     private AlertDialog alertDialog;
     private Bitmap bmp;
-    private ShowWaitPopupWindow waitWin;
     private Button bt_back;
     private ImageView tv_save;
 
@@ -86,7 +85,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             findViewById(R.id.status_bar).setVisibility(View.VISIBLE);
         }
-        waitWin = new ShowWaitPopupWindow(this);
 
         initView();
         //用于判断是否更改了学号
@@ -98,9 +96,9 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     }
 
     private void initView() {
-        //返回键
-        bt_back = (Button)findViewById(R.id.bt_back);
-        tv_save = (ImageView) findViewById(R.id.tv_save);
+        //返回键+保存键
+        findViewById(R.id.bt_back).setOnClickListener(this);
+        findViewById(R.id.tv_save).setOnClickListener(this);
         ((TextView) findViewById(R.id.tv_title)).setText("个人信息");
         findViewById(R.id.bt_name).setOnClickListener(this);
         this.mIvIcon = (ImageView) findViewById(R.id.iv_icon);
@@ -116,11 +114,9 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         mEtEcardPwd.setHint("一卡通密码");
         mEtStudentId.setErrorEnabled(false);
 
-        tv_save.setOnClickListener(this);
         mIvIcon.setOnClickListener(this);
         mCbMan.setOnCheckedChangeListener(this);
         mCbWoman.setOnCheckedChangeListener(this);
-        bt_back.setOnClickListener(this);
 
         String name = AVUser.getCurrentUser().getString("Name");
         mTvName.setText(name);
@@ -264,7 +260,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         if (!TextUtils.isEmpty(mEtEcardPwd.getEditText().getText().toString())) {
             eCardPwd = mEtEcardPwd.getEditText().getText().toString();
         }
-        waitWin.showWait();
 
         if (studentId.length() == 16){
             //需要验证教务处用户密码
@@ -277,6 +272,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     }
     public void validateStuID_JwcPwd(){
         //用于验证用户名密码能否登录进入教务系统
+        Toast.makeText(this, "正在登入教务处…", Toast.LENGTH_SHORT).show();
         AVQuery<AVObject> query = new AVQuery<>("API");
         query.whereEqualTo("title", "validate");
         query.findInBackground(new FindCallback<AVObject>() {
@@ -289,8 +285,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
                     new InternetUtil(validateHandler,basicURL + "profile", map,true,MyDataActivity.this);//传入参数
 
                 } else {
-                    Toast.makeText(MyDataActivity.this, "登入教务处失败\n请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
-                    waitWin.dismissWait();
+                    Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -302,7 +297,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
                 Bundle bundle = (Bundle) msg.obj;
                 String validateString = bundle.getString("Error");
                 if (validateString!= null){
@@ -311,10 +305,9 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
                         return;
                     }
                 }
-                Toast.makeText(MyDataActivity.this, "登入教务处失败\n可能为网络原因", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试", Toast.LENGTH_SHORT).show();
             } else {
                 //成功验证
-                waitWin.dismissWait();
                 validatedSave();
 
             }
@@ -358,7 +351,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
-                waitWin.dismissWait();
                 if (e == null) {
                     Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
                     finish();
@@ -428,9 +420,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (waitWin != null) {
-            waitWin.dismissWait();
-            waitWin = null;
         }
-    }
+
 }

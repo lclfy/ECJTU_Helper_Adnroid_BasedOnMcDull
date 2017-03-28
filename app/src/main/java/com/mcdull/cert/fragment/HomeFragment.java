@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private String studentId;
     private PopupWindow popupWindow;
     //课表刷新按钮
-    private Button btCourse;
     private ShowWaitPopupWindow waitWin;
     private ImageView mIvTX;
     private TabLayout mTabLayout;
@@ -206,7 +205,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         break;
                     case 2:
                         initIv();
-                        btCourse.setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.bt_add_course).setVisibility(View.VISIBLE);
                         if (TextUtils.isEmpty(studentId)) {
                             //提示新生输入学号、
                             showEditIdWin();
@@ -251,13 +250,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initIv() {
-        btCourse.setVisibility(View.GONE);
+        view.findViewById(R.id.bt_add_course).setVisibility(View.GONE);
     }
 
 
     private void initView() {
-        btCourse = (Button) view.findViewById(R.id.bt_add_course);
-        btCourse.setOnClickListener(this);
+        view.findViewById(R.id.bt_add_course).setOnClickListener(this);
         view.findViewById(R.id.bt_me).setOnClickListener(this);
         vpMain = (ViewPager) view.findViewById(R.id.vp_main);
         mIvTX = (ImageView) view.findViewById(R.id.iv_tx);
