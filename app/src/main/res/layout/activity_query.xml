@@ -60,7 +60,7 @@
                         android:id="@+id/iv_tx"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/icon" />
+                        android:src="@drawable/ic_account_circle_color2_48dp" />
 
                     <ImageView
                         android:layout_width="40dp"

@@ -22,7 +22,7 @@
                 android:id="@+id/iv_icon"
                 android:layout_width="66dp"
                 android:layout_height="66dp"
-                android:src="@drawable/icon" />
+                android:src="@drawable/ic_account_circle_color2_48dp" />
 
             <ImageView
                 android:layout_width="66dp"
@@ -87,53 +87,53 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:paddingTop="8dp"-->
-            <!--android:paddingBottom="8dp"-->
-            <!--android:id="@+id/bt_bug"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/left_menu_bt"-->
-            <!--android:gravity="center_vertical">-->
+        <LinearLayout
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/bt_bug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_menu_bt"
+            android:gravity="center_vertical">
 
-            <!--<ImageView-->
-                <!--android:layout_width="35dp"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:layout_marginLeft="16dp"-->
-                <!--android:src="@drawable/bug" />-->
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/bug" />
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="21dp"-->
-                <!--android:text="意见建议"-->
-                <!--android:textColor="#000"-->
-                <!--android:textSize="14sp" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="意见建议"
+                android:textColor="#000"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/bt_join"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingTop="8dp"-->
-            <!--android:paddingBottom="8dp"-->
-            <!--android:background="@drawable/left_menu_bt"-->
-            <!--android:gravity="center_vertical">-->
+        <LinearLayout
+            android:id="@+id/bt_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/left_menu_bt"
+            android:gravity="center_vertical">
 
-            <!--<ImageView-->
-                <!--android:layout_width="35dp"-->
-                <!--android:layout_height="35dp"-->
-                <!--android:layout_marginLeft="16dp"-->
-                <!--android:src="@drawable/join_me" />-->
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/join_me" />
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="21dp"-->
-                <!--android:text="制作团队"-->
-                <!--android:textColor="#000"-->
-                <!--android:textSize="14sp" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="制作团队"
+                android:textColor="#000"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:paddingTop="8dp"

@@ -70,6 +70,10 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     public String studentId= "";
     public String name= "";
     public int sex = 0;
+    //用于判断是否更改了学号
+    private SharedPreferences SP;
+    private SharedPreferences.Editor edit;
+    private String originalStuID = "";
 
     public String basicURL = "http://api1.ecjtu.org/v1/";
 
@@ -85,6 +89,10 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         waitWin = new ShowWaitPopupWindow(this);
 
         initView();
+        //用于判断是否更改了学号
+        SP = getSharedPreferences("config", MODE_PRIVATE);
+        edit = SP.edit();
+        originalStuID = AVUser.getCurrentUser().getString("StudentId");
 
 
     }
@@ -299,7 +307,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
                 String validateString = bundle.getString("Error");
                 if (validateString!= null){
                     if (validateString.length()!=0){
-                        Toast.makeText(MyDataActivity.this, "登入教务处失败\n学号或密码错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试，或者检查学号密码是否正确", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -320,6 +328,11 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         user.put("StudentId", studentId);
         user.put("JwcPwd", jwcPwd);
         user.put("EcardPwd", eCardPwd);
+        //判断是否更改了学号，更改的话…给个提示让主界面刷新一下
+        if (!studentId.equals(originalStuID)){
+            edit.putInt("stuIDChanged",1);
+            edit.commit();
+        }
         if (bmp != null) {
 
             AVFile icon = user.getAVFile("Icon");

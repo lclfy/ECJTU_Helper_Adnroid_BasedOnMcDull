@@ -28,7 +28,7 @@ public class AboutActivity extends MyTitleActivity implements View.OnClickListen
         findViewById(R.id.bt_bug).setOnClickListener(this);
         findViewById(R.id.bt_updata).setOnClickListener(this);
         findViewById(R.id.bt_cert).setOnClickListener(this);
-        ((TextView) findViewById(R.id.text)).setText("");
+        ((TextView) findViewById(R.id.text)).setText("2.0.0 Beta");
     }
 
     @Override

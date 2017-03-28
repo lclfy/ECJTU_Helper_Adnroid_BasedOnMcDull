@@ -3,6 +3,7 @@ package com.mcdull.cert.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -49,6 +50,7 @@ import com.mcdull.cert.activity.SelectedCourseIDActivity;
 import com.mcdull.cert.activity.TripActivity;
 import com.mcdull.cert.activity.WeatherActivity;
 import com.mcdull.cert.adapter.CalenderAdapter;
+import com.mcdull.cert.utils.GetIcon;
 import com.mcdull.cert.utils.InternetUtil;
 import android.os.Handler;
 import android.os.Message;
@@ -60,6 +62,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.mcdull.cert.utils.ShowSureDialog;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.Util;
 
@@ -123,7 +126,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         //获取主界面的一卡通信息
         findECard(true);
         //获取主界面的日历信息
-        findCalender();
+        findCalender(user.getString("StudentId").length() ==16);
         return view;
     }
 
@@ -177,9 +180,57 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         super.onPause();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
+        int stuChanged = SP.getInt("stuIDChanged",0);
+        String stuID = AVUser.getCurrentUser().getString("StudentId");
+        if (stuChanged==1){
+            //如果学号改了让它刷新一下界面
+            findECard(true);
+            findCalender(stuID.length()==16);
+            SharedPreferences.Editor edit = SP.edit();
+            edit.putInt("stuIDChanged",0);
+            edit.commit();
+            //如果是13,14级学生给个框提醒一下不能查，并且把主页的课表隐藏了
+            if (stuID.length()==14){
+                view.findViewById(R.id.lv_calenderListView).setVisibility(View.GONE);
+                view.findViewById(R.id.scroll_status_bar).setVisibility(View.GONE);
+                        /* @setIcon 设置对话框图标
+                         * @setTitle 设置对话框标题
+                         * @setMessage 设置对话框消息提示
+                         * setXXX方法返回Dialog对象，因此可以链式设置属性
+                         */
+                final AlertDialog.Builder normalDialog =
+                        new AlertDialog.Builder(getActivity());
+                normalDialog.setTitle("查询不可用提醒");
+                normalDialog.setMessage("非常抱歉，由于教务系统的更新，新版本教务系统与旧版已无法通用，受此影响，13/14级同学将仅能使用：\n一卡通信息\n地图信息\n天气信息\n百科信息\n电脑维修\n花椒维权\n四六级查询\n对此造成的不便，我们深表遗憾。");
+                normalDialog.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                normalDialog.show();
+            }else {
+                view.findViewById(R.id.lv_calenderListView).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+            }
+
+        }
+
+    }
+
 
     @Override
     public void onClick(View v) {
+        //判断学号
+        boolean isEnabled = true;
+        if (user.getString("StudentId").length() ==14){
+            isEnabled = false;
+        }
         if (!InternetUtil.isConnected(getActivity())) {
             Toast.makeText(getActivity(), "请检查网络设置", Toast.LENGTH_SHORT).show();
             return;
@@ -190,13 +241,19 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.bt_examScore:
-                universalSearch(2);
+                if (isEnabled){
+                    universalSearch(2);
+                }
                 break;
             case R.id.bt_examTime:
-                universalSearch(1);
+                if (isEnabled){
+                    universalSearch(1);
+                }
                 break;
             case R.id.bt_reExam:
-                universalSearch(0);
+                if (isEnabled){
+                    universalSearch(0);
+                }
                 break;
             case R.id.bt_pcRepair:
                 getOrderState();
@@ -211,7 +268,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.bt_callInClass:
             //新做的点名器
-                StartCallingPeople();
+                if (isEnabled){
+                    StartCallingPeople();
+                }
                 break;
             case R.id.bt_weather:
                 searchWeather(true);
@@ -226,10 +285,15 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 findECard(false);
                 break;
             case R.id.bt_selectedcourse_id:
-                universalSearch(3);
+                if (isEnabled){
+                    universalSearch(3);
+                }
                 break;
             case R.id.tv_reTryBtn:
-                findCalender();
+                if (isEnabled){
+                    findCalender(true);
+                }
+
                 break;
 
         }
@@ -661,6 +725,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             try {
                                 String [] cutData = eCardOwnerData.data.balance.split("（");
                                 tv_eCardBalance.setText(cutData[0]);
+
                             }catch (Exception e){
 
                             }
@@ -670,15 +735,26 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         }
                     }
                 }
+                //借地方更新一下13,14级学生的当日课表标题…
+                if (AVUser.getCurrentUser().getString("StudentId").length() ==14){
+                    TextView tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+                    tv_calenderTitle.setText("你好~"+AVUser.getCurrentUser().getString("Name")+"。");
+                    return;
+                }
             }
         }
     };
 
     //今日课表-校园日历
-    private void findCalender() {
+    private void findCalender(boolean isEnabled) {
+        //13,14级不开放
+        if (!isEnabled){
+            return;
+        }
         if (!isFirstTime){
             //设置主界面日历的标题
             tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+
             tv_calenderTitle.setText("加载当日课表…");
 
             //把重试按钮隐藏
@@ -694,14 +770,11 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 searchNextDays = !searchNextDays;
             }
             isFirstTime = !isFirstTime;
+
         }
 
         final String studentId = user.getString("StudentId");
         final String JwcPwd = user.getString("JwcPwd");
-        //13,14级查不了
-        if (studentId.length() == 14){
-            return;
-        }
         if (TextUtils.isEmpty(studentId) || studentId.equals("null")) {
             return;
         }
@@ -811,6 +884,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         }else {
                             day = "今";
                         }
+
                         tv_calenderTitle.setText(day+"天是第"+CalenderData.data.week+"周，星期"+weekday);
                         if (CalenderData.data.daylist.size()!=0){
                             for (int item = 0;item<CalenderData.data.daylist.size();item++) {

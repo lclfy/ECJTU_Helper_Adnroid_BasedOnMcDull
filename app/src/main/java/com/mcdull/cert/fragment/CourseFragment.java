@@ -46,6 +46,8 @@ import java.util.Map;
 import android.os.Handler;
 import android.widget.Toast;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class CourseFragment extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private SharedPreferences SP;
     private View view;
@@ -92,6 +94,12 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public void onResume() {
         super.onResume();
+        SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
+        int stuChanged = SP.getInt("stuIDChanged",0);
+        if (stuChanged==1){
+            //如果学号改了让它刷新一下界面
+
+        }
 //        final String studentId = AVUser.getCurrentUser().getString("StudentId");
 //        if (TextUtils.isEmpty(studentId)) {
 //            return;
@@ -133,45 +141,61 @@ public class CourseFragment extends Fragment implements AdapterView.OnItemClickL
         CourseBean courseList = new CourseBean();
         adapter = new CourseAdapter(getActivity(), courseList, mGvCourse);
 
-
         mGvCourse.setAdapter(adapter);
         mGvCourse.setOnItemClickListener(this);
         mGvCourse.setOnItemLongClickListener(this);
+
+        return initView(courseList,false);
+    }
+
+    private View initView(CourseBean courseList,boolean Refresh){
+
 
         final String studentId = AVUser.getCurrentUser().getString("StudentId");
         if (TextUtils.isEmpty(studentId)) {
             return view;
         }
         //判断本地有没有课表数据
-        if (getObject("course")!= null){
-            courseList = (CourseBean) getObject("course");
-            if (courseList!=null){
-                if (courseList.data!=null){
-                    adapter.setCourseList(courseList);
-                    adapter.notifyDataSetChanged();
-                    return view;
+        if (!Refresh){
+            //如果没有给在线刷新指令的话
+            if (getObject("course")!= null){
+                courseList = (CourseBean) getObject("course");
+                if (courseList!=null){
+                    if (courseList.data!=null){
+                        adapter.setCourseList(courseList);
+                        adapter.notifyDataSetChanged();
+                        return view;
+                    }
                 }
+
             }
-
         }
-        if (studentId.length() == 16) {
-                //获取课表
-                String password = AVUser.getCurrentUser().getString("JwcPwd");
-                if (!TextUtils.isEmpty(password)) {
-                    Map<String, String> map = new ArrayMap<>();
-                    map.put("stuid", studentId);//设置get参数
-                    map.put("passwd", password);//设置get参数
-                    map.put("term", findCurrentTerm());//设置get参数
-                    new InternetUtil(CourseHandler,basicURL + "schedule", map,true,getActivity());//传入参数
-                } else {
 
-                    return view;
-                }
+        if (studentId.length() == 16) {
+            //获取课表
+            String password = AVUser.getCurrentUser().getString("JwcPwd");
+            if (!TextUtils.isEmpty(password)) {
+                Map<String, String> map = new ArrayMap<>();
+                map.put("stuid", studentId);//设置get参数
+                map.put("passwd", password);//设置get参数
+                map.put("term", findCurrentTerm());//设置get参数
+                new InternetUtil(CourseHandler,basicURL + "schedule", map,true,getActivity());//传入参数
             } else {
-            //Toast.makeText(getActivity(),"抱歉，暂不支持15级以前同学的课程表查询",Toast.LENGTH_SHORT);
+
                 return view;
             }
+        } else {
+            //Toast.makeText(getActivity(),"抱歉，暂不支持15级以前同学的课程表查询",Toast.LENGTH_SHORT);
+            return view;
+        }
         return view;
+    }
+
+    public void refreshCourse(){
+        //用于在其他地方调用，刷新课表
+        CourseBean courseList = new CourseBean();
+        initView(courseList,true);
+        Toast.makeText(getActivity(), "正在刷新…", Toast.LENGTH_SHORT).show();
     }
 
     private String findCurrentTerm(){

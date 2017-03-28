@@ -1,5 +1,6 @@
 package com.mcdull.cert.activity;
 
+import android.app.Fragment;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVUser;
 import com.mcdull.cert.R;
 import com.mcdull.cert.fragment.HomeFragment;
+import com.mcdull.cert.fragment.NewStudentFragment;
 import com.mcdull.cert.utils.GetIcon;
 import com.mcdull.cert.utils.Util;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -38,6 +40,11 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            //结束你的activity
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_home);
 
         //判断SDK版本，设置沉浸状态栏
@@ -53,7 +60,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         mLeftMenu.setOnClickListener(this);
         //创建已用Fragment设定好内容的ActionBar-Layout
         FragmentManager fragmentManager = getSupportFragmentManager();
-
+//        Fragment ft = (Fragment) getSupportFragmentManager().findFragmentById(R.id.);
         HomeFragment homeFragment = new HomeFragment();
         fragmentManager.beginTransaction().replace(R.id.framelayout, homeFragment).commit();
 
@@ -73,6 +80,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             intent.putExtra("back",true);
             startActivity(intent);
         }
+
     }
 
     @Override
@@ -133,21 +141,21 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.left_drawer:
                 break;
-//            case R.id.bt_bug:
-//                mDrawerLayout.closeDrawers();
-//                intent = new Intent(HomeActivity.this, BugFeedbackActivity.class);
-//                startActivity(intent);
-//                break;
+            case R.id.bt_bug:
+                mDrawerLayout.closeDrawers();
+                intent = new Intent(HomeActivity.this, BugFeedbackActivity.class);
+                startActivity(intent);
+                break;
             case R.id.bt_mydata:
                 mDrawerLayout.closeDrawers();
                 intent = new Intent(HomeActivity.this, MyDataActivity.class);
                 startActivity(intent);
                 break;
-//            case R.id.bt_join:
-//                mDrawerLayout.closeDrawers();
-//                intent = new Intent(HomeActivity.this, CERTActivity.class);
-//                startActivity(intent);
-//                break;
+            case R.id.bt_join:
+                mDrawerLayout.closeDrawers();
+                intent = new Intent(HomeActivity.this, CERTActivity.class);
+                startActivity(intent);
+                break;
             case R.id.bt_setting:
                 mDrawerLayout.closeDrawers();
                 intent = new Intent(HomeActivity.this, SettingActivity.class);
@@ -195,8 +203,8 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         ((TextView) findViewById(R.id.tv_name)).setText(AVUser.getCurrentUser().getString("Name"));
         ((TextView) findViewById(R.id.tv_email)).setText(AVUser.getCurrentUser().getEmail());
         findViewById(R.id.bt_mydata).setOnClickListener(this);
-//        findViewById(R.id.bt_bug).setOnClickListener(this);
-//        findViewById(R.id.bt_join).setOnClickListener(this);
+        findViewById(R.id.bt_bug).setOnClickListener(this);
+        findViewById(R.id.bt_join).setOnClickListener(this);
         findViewById(R.id.bt_setting).setOnClickListener(this);
     }
 
@@ -229,5 +237,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 
 }

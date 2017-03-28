@@ -46,7 +46,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             findViewById(R.id.status_bar).setVisibility(View.VISIBLE);
         }
-        waitWin = new ShowWaitPopupWindow(DetailsActivity.this);
+       // waitWin = new ShowWaitPopupWindow(DetailsActivity.this);
 
         String type = getIntent().getStringExtra("type");
         int id = getIntent().getIntExtra("id", 0);
@@ -70,7 +70,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                     new InternetUtil(handler, list.get(0).getString("url"), map);//传入参数
                 } else {
                     Toast.makeText(DetailsActivity.this, "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
-                    waitWin.dismissWait();
+                    //waitWin.dismissWait();
                 }
             }
         });
@@ -88,7 +88,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
         @Override
         public void handleMessage(Message msg) {
             isGetImg = false;
-            waitWin.dismissWait();
+            //waitWin.dismissWait();
             if (msg.what == 1) {
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");

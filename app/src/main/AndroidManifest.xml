@@ -117,6 +117,7 @@
         <activity
             android:name=".activity.LoginRegisterActivity"
             android:label="@string/app_name"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -127,130 +128,161 @@
         <activity
             android:name=".activity.ScoreActivity"
             android:label="@string/title_activity_score"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ExamScheduleActivity"
             android:label="@string/title_activity_exam_schedule"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SelectedCourseIDActivity"
             android:label="@string/title_activity_selected_course_id"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ExamActivity"
             android:label="@string/title_activity_exam"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ReExamActivity"
             android:label="@string/title_activity_re_exam"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.ECardActivity"
             android:label="@string/title_activity_ecard"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.CallStudentInClassActivity"
             android:label="@string/title_activity_ecard"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CetSearchScheduleActivity"
             android:label="@string/title_activity_cetsearch_schedule"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CetSearchActivity"
             android:label="@string/title_activity_cet_search"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LibraryScheduleActivity"
             android:label="@string/title_activity_library_schedule"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LibraryActivity"
             android:label="@string/title_activity_library"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ImportCourseActivity"
             android:label="@string/title_activity_import_course"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MyDataActivity"
             android:label="@string/title_activity_my_data"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AboutActivity"
             android:label="@string/title_activity_about"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MapActivity"
             android:label="@string/title_activity_map"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailsActivity"
             android:label="@string/title_activity_details"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BugFeedbackActivity"
             android:label="@string/title_activity_bug_feedback"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.EnrollActivity"
             android:label="@string/title_activity_enroll"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ShowEnrollActivity"
             android:label="@string/title_activity_show_enroll"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TripActivity"
             android:label="@string/title_activity_trip"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CERTActivity"
             android:label="@string/title_activity_cert"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.JoinCERTActivity"
             android:label="@string/title_activity_join_cert"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
             android:label="@string/title_activity_home"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RepairActivity"
             android:label="@string/title_activity_repair"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ModifyActivity"
             android:label="@string/title_activity_modify"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SettingActivity"
             android:label="@string/title_activity_setting"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ThemeActivity"
             android:label="@string/title_activity_theme"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RepairSucActivity"
             android:label="@string/title_activity_repair_suc"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SignInJWCActivity"
             android:label="@string/title_activity_sign"
+            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WeatherActivity"
             android:label="@string/title_activity_weather"
-            android:theme="@style/AppTheme"></activity>
+            android:alwaysRetainTaskState="true"
+            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".activity.WeatherSearchActivity"
             android:label="@string/title_activity_weathersearch"
-            android:theme="@style/AppTheme"></activity>
+            android:alwaysRetainTaskState="true"
+            android:theme="@style/AppTheme"/>
 
     </application>
 

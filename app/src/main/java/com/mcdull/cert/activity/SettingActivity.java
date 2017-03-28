@@ -49,7 +49,7 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
         setSwitch((Switch) findViewById(R.id.st_home), SP.getBoolean("homeType", false));
 
         ((TextView) findViewById(R.id.tv_title)).setText("个人设置");
-//        findViewById(R.id.bt_about).setOnClickListener(this);
+        findViewById(R.id.bt_about).setOnClickListener(this);
         findViewById(R.id.bt_logout).setOnClickListener(this);
         findViewById(R.id.bt_theme).setOnClickListener(this);
     }
@@ -83,10 +83,10 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
     public void onClick(View v) {
 
         switch (v.getId()) {
-//            case R.id.bt_about:
-//                intent = new Intent(SettingActivity.this, AboutActivity.class);
-//                startActivity(intent);
-//                break;
+            case R.id.bt_about:
+                intent = new Intent(SettingActivity.this, AboutActivity.class);
+                startActivity(intent);
+                break;
             case R.id.bt_logout:
                 showSureDialog();
                 break;

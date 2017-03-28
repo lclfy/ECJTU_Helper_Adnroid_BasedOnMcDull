@@ -192,7 +192,35 @@
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
                 android:background="#bcbcbc" />
+            <LinearLayout
+                android:id="@+id/bt_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_bt">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="关于花椒校园通"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="35dp"
+                    android:src="@drawable/jiantou" />
+
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"

@@ -1,5 +1,7 @@
 package com.mcdull.cert.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -177,11 +179,24 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
                 }
             } else {
                 if (studentId.length() == 14) {
+                    final AlertDialog.Builder normalDialog =
+                            new AlertDialog.Builder(SignInJWCActivity.this);
+                    normalDialog.setTitle("查询不可用提醒");
+                    normalDialog.setMessage("非常抱歉，由于教务系统的更新，新版本教务系统与旧版已无法通用，受此影响，13/14级同学将仅能使用：\n一卡通信息\n地图信息\n天气信息\n百科信息\n电脑维修\n花椒维权\n四六级查询\n对此造成的不便，我们深表遗憾。");
+                    normalDialog.setPositiveButton("确定",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    normalDialog.show();
                     if (TextUtils.isEmpty(jwcPwd)) {
                         sign(name, studentId, eCardPwd, "");
                     } else {
                         sign(name, studentId, eCardPwd, jwcPwd);
                     }
+
                 } else {
                     mEtStudentId.setErrorEnabled(true);
                     mEtStudentId.setError("学号格式有误");

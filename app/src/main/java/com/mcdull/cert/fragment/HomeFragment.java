@@ -27,6 +27,7 @@ import android.widget.PopupWindow;
 
 import com.avos.avoscloud.AVUser;
 import com.bumptech.glide.load.engine.Resource;
+import com.mcdull.cert.Bean.CourseBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.activity.ImportCourseActivity;
 import com.mcdull.cert.activity.MyDataActivity;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private List<Fragment> fragments;
     private String studentId;
     private PopupWindow popupWindow;
+    //课表刷新按钮
     private Button btCourse;
     private ShowWaitPopupWindow waitWin;
     private ImageView mIvTX;
@@ -118,6 +120,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        //换主题
         SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
         getActivity().findViewById(R.id.view_home_title).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
         getActivity().findViewById(R.id.tab).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
@@ -265,10 +268,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_add_course:
-                Bundle bundle = new Bundle();
-                bundle.putString("ARGUMENT", "refreshCourse");
-                CourseFragment contentFragment = new CourseFragment();
-                contentFragment.setArguments(bundle);
+                CourseFragment contentFragment = (CourseFragment)fragments.get(2);
+                contentFragment.refreshCourse();
+
                 break;
             case R.id.bt_me:
                 openLeftWin();

@@ -149,7 +149,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="Copyright© 2015 华东交大计算机紧急响应组. All Rights Reserved"
+        android:text="Copyright© 2015-2017 华东交大计算机紧急响应组. All Rights Reserved"
         android:textColor="#000"
         android:textSize="11sp" />
 
