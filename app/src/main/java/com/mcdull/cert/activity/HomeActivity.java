@@ -195,7 +195,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
     private void init() {
         mIvIcon = (ImageView) findViewById(R.id.iv_icon);
-        mIvIcon.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(getResources().getDrawable(R.drawable.icon))));
+        mIvIcon.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(getResources().getDrawable(R.drawable.ic_account_circle_color2_48dp))));
         new GetIcon(HomeActivity.this, new GetIcon.GetIconCallBack() {
             @Override
             public void done(Bitmap bitmap) {
