@@ -27,7 +27,7 @@
                 android:id="@+id/bt_back"
                 android:gravity="left"
                 android:orientation="vertical">
-            <Button
+            <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"

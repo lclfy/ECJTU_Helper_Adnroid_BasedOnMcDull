@@ -39,6 +39,7 @@ import com.mcdull.cert.Bean.eCardOwnerBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.activity.CallStudentInClassActivity;
 import com.mcdull.cert.activity.CetSearchActivity;
+import com.mcdull.cert.activity.CourseActivity;
 import com.mcdull.cert.activity.ECardActivity;
 import com.mcdull.cert.activity.ExamActivity;
 import com.mcdull.cert.activity.MapActivity;
@@ -140,6 +141,11 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         view.findViewById(R.id.eCardStatus).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
         TextView tvCalenderTitle = (TextView)view.findViewById(R.id.calenderArea_title);
         tvCalenderTitle.setTextColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+        TextView tvAllCourse = (TextView)view.findViewById(R.id.tv_allCourseBtn);
+        tvAllCourse.setTextColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+        TextView retryBtn = (TextView)view.findViewById(R.id.tv_reTryBtn);
+        retryBtn.setTextColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+
         //设置跟随主题变换颜色的图标的颜色
         switch (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 0)){
             case 0:
@@ -171,6 +177,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
         view.findViewById(R.id.bt_selectedcourse_id).setOnClickListener(this);
         view.findViewById(R.id.tv_reTryBtn).setOnClickListener(this);
+        view.findViewById(R.id.tv_allCourseBtn).setOnClickListener(this);
 
 
     }
@@ -290,12 +297,17 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             case R.id.tv_reTryBtn:
+                //重试搜索日历
                 if (isEnabled){
                     findCalender(true);
                 }
 
                 break;
-
+            case R.id.tv_allCourseBtn:
+                //不跟你多bb
+                Intent intent = new Intent(getActivity(), CourseActivity.class);
+                startActivity(intent);
+                break;
         }
 
     }
@@ -681,11 +693,16 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
                 if (eCardOwnerData!=null) {
                     if(eCardOwnerData.msg.contains("不匹配")){
+
                     }else {
                         tv_eCardBalance = (TextView)view.findViewById(R.id.tv_eCardBalance);
                         if (eCardOwnerData.data != null){
-                            String [] cutData = eCardOwnerData.data.balance.split("（");
-                            tv_eCardBalance.setText(cutData[0]);
+                            try{
+                                String [] cutData = eCardOwnerData.data.balance.split("（");
+                                tv_eCardBalance.setText(cutData[0]);
+                            }catch (Exception e){
+                                tv_eCardBalance.setText("——");
+                            }
                         }else {
                             tv_eCardBalance.setText("——");
                         }
@@ -803,9 +820,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 } else {
                     //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                     tv_calenderTitle.setText("加载失败");
-                    //显示重试按钮
+                    //显示重试按钮和全部课表按钮
                     getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
-                    waitWin.dismissWait();
+                    getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -821,6 +838,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                 tv_calenderTitle.setText("加载失败");
                 //显示重试按钮
+                getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                 getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
             } else {
                 waitWin.dismissWait();
@@ -834,6 +852,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     tv_calenderTitle.setText("加载失败");
                     //显示重试按钮
                     getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                     return;
                 }
                 //更新主页面的信息
@@ -847,6 +866,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         tv_calenderTitle.setText("加载失败");
                         //显示重试按钮
                         getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                        getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                     }
                 }
                 if (CalenderData!=null) {
@@ -888,7 +908,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         tv_calenderTitle.setText(day+"天是第"+CalenderData.data.week+"周，星期"+weekday);
                         if (CalenderData.data.daylist.size()!=0){
                             for (int item = 0;item<CalenderData.data.daylist.size();item++) {
-                                //获取每个补考安排
+                                //获取每个项目
                                 CalenderBean.ChildCalenderBean.GrandChildCalenderBean CalenderDetails = CalenderData.data.daylist.get(item);
                                 //把arraylist填充成list
                                 //暂时不知道pktype的意思
@@ -910,11 +930,14 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             CalenderAdapter Adapter = new CalenderAdapter(getActivity(), list);
                             lvCalender.setEnabled(false);
                             lvCalender.setAdapter(Adapter);
+                            //不管怎么样都要显示这个按钮
+                            getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                             setListViewHeightBasedOnChildren(lvCalender);
                         }else {
                             tv_calenderTitle.setText("加载失败");
                             //显示重试按钮
                             getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                            getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                         }
                     }
 

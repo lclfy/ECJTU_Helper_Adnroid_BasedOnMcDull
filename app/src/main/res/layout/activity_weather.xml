@@ -28,7 +28,7 @@ android:orientation="vertical" >
                 android:gravity="left"
                 android:orientation="vertical">
 
-        <Button
+        <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
@@ -46,7 +46,7 @@ android:orientation="vertical" >
                 android:layout_height="wrap_content"
                 android:background="#0fa2f2"
                 android:gravity="right">
-            <Button
+            <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"

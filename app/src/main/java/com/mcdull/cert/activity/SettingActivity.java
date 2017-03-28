@@ -44,9 +44,9 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
         ((Switch) findViewById(R.id.st_map_type)).setChecked(SP.getBoolean("mapType", true));
         ((Switch) findViewById(R.id.st_map_type)).setOnCheckedChangeListener(this);
         setSwitch((Switch) findViewById(R.id.st_map_type), SP.getBoolean("mapType", true));
-        ((Switch) findViewById(R.id.st_home)).setChecked(SP.getBoolean("homeType", false));
-        ((Switch) findViewById(R.id.st_home)).setOnCheckedChangeListener(this);
-        setSwitch((Switch) findViewById(R.id.st_home), SP.getBoolean("homeType", false));
+//        ((Switch) findViewById(R.id.st_home)).setChecked(SP.getBoolean("homeType", false));
+//        ((Switch) findViewById(R.id.st_home)).setOnCheckedChangeListener(this);
+//        setSwitch((Switch) findViewById(R.id.st_home), SP.getBoolean("homeType", false));
 
         ((TextView) findViewById(R.id.tv_title)).setText("个人设置");
         findViewById(R.id.bt_about).setOnClickListener(this);
@@ -72,9 +72,9 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
             case R.id.st_map_type:
                 edit.putBoolean("mapType", isChecked);
                 break;
-            case R.id.st_home:
-                edit.putBoolean("homeType", isChecked);
-                break;
+//            case R.id.st_home:
+//                edit.putBoolean("homeType", isChecked);
+//                break;
         }
         edit.apply();
     }

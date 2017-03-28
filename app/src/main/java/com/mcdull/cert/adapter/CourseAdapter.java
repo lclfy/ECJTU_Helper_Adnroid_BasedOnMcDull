@@ -1,5 +1,6 @@
 package com.mcdull.cert.adapter;
 
+import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,22 +21,19 @@ import java.util.List;
 
 public class CourseAdapter extends BaseAdapter {
 
-    private FragmentActivity activity;
+    private Activity activity;
     private CourseBean courseList;
     private String week[] = {"", "周一", "周二", "周三", "周四", "周五", "周六", "周日"};
     private GridView gridView;
     TextView tv;
 
-    private FragmentActivity getActivity() {
-        return activity;
-    }
 
 
     public void setCourseList(CourseBean courseList) {
         this.courseList = courseList;
     }
 
-    public CourseAdapter(FragmentActivity activity, CourseBean courseList, GridView gridView) {
+    public CourseAdapter(Activity activity, CourseBean courseList, GridView gridView) {
         this.activity = activity;
         this.courseList = courseList;
         this.gridView = gridView;
@@ -67,7 +65,7 @@ public class CourseAdapter extends BaseAdapter {
         View view;
         //如果这时段没课，背景换颜色
         boolean isEmpty = false;
-        view = View.inflate(getActivity(), R.layout.item_week, null);
+        view = View.inflate(activity, R.layout.item_week, null);
         if (courseList.data == null) {
             view.setVisibility(View.GONE);
             return view;
@@ -76,11 +74,11 @@ public class CourseAdapter extends BaseAdapter {
         int x = position % 15;
         if (position < 8) {
             //位置0-7，第一行显示周数
-            view = View.inflate(getActivity(), R.layout.item_week, null);
+            view = View.inflate(activity, R.layout.item_week, null);
             tv = (TextView) view.findViewById(R.id.ItemText);
         } else {
             //第二行开始，显示课程
-            view = View.inflate(getActivity(), R.layout.item_course, null);
+            view = View.inflate(activity, R.layout.item_course, null);
             AbsListView.LayoutParams param = new AbsListView.LayoutParams(
                     android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                     //把表格的高度/4.7来得到每行高度

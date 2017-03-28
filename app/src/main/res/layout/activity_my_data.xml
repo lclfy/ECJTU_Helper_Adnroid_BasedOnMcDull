@@ -29,7 +29,7 @@
                 android:layout_height="50dp"
                 android:gravity="left"
                 android:orientation="vertical">
-            <Button
+            <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="16dp"

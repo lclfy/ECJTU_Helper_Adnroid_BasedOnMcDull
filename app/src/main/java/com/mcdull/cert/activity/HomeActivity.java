@@ -89,6 +89,10 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         SharedPreferences SP = getSharedPreferences("config", MODE_PRIVATE);
         findViewById(R.id.status_bar).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
         try{
+            TextView tvAllCourse = (TextView)findViewById(R.id.tv_allCourseBtn);
+            tvAllCourse.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            TextView retryBtn = (TextView)findViewById(R.id.tv_reTryBtn);
+            retryBtn.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
             findViewById(R.id.eCardStatus).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
             TextView tvCalenderTitle = (TextView)findViewById(R.id.calenderArea_title);
             tvCalenderTitle.setTextColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));

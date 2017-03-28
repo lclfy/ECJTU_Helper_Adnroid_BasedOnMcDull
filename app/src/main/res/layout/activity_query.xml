@@ -86,19 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_weight="1" />
-            <LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/bt_add_course"
-                android:gravity="center"
-                android:orientation="vertical">
-            <Button
-                android:layout_width="24dp"
-                android:layout_height="24dp"
 
-                android:background="@drawable/ic_refresh_white_48dp"
-                android:visibility="visible" />
-            </LinearLayout>
         </LinearLayout>
 
         <android.support.design.widget.TabLayout
@@ -106,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@color/title_color"
+            android:visibility="gone"
             app:tabIndicatorColor="#fff"
             app:tabSelectedTextColor="#ffffff"
             app:tabTextColor="#aaffffff"

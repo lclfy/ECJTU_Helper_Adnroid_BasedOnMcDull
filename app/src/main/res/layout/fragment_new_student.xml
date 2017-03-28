@@ -139,53 +139,67 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:visibility="gone" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/avoscloud_feedback_white"
-            >
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:id="@+id/calenderIcon"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/ic_calendericon_deep_teal"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:textSize="14dp"
-                android:id="@+id/calenderArea_title"
-                android:textColor="@color/title_color"
-                android:text="加载当日课表…"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="right"
-                android:id="@+id/tv_reTryBtn"
-                android:visibility="gone"
                 android:background="@color/avoscloud_feedback_white"
                 >
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:gravity="center"
+                    android:id="@+id/calenderIcon"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/ic_calendericon_deep_teal"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textSize="14dp"
-                    android:id="@+id/tv_reTry"
+                    android:id="@+id/calenderArea_title"
                     android:textColor="@color/title_color"
-                    android:text="重试"/>
+                    android:text="加载当日课表…"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="right"
+
+
+                    android:background="@color/avoscloud_feedback_white"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="14dp"
+                        android:id="@+id/tv_reTryBtn"
+                        android:visibility="gone"
+                        android:textColor="@color/title_color"
+                        android:text="重试"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="26dp"
+                        android:textSize="14dp"
+                        android:visibility="gone"
+                        android:id="@+id/tv_allCourseBtn"
+                        android:textColor="@color/title_color"
+                        android:text="全部课程 >"/>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
         </LinearLayout>
         <ListView
             android:divider="@null"

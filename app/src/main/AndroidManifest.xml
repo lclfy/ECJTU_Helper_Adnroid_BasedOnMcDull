@@ -183,7 +183,7 @@
             android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ImportCourseActivity"
+            android:name=".activity.CourseActivity"
             android:label="@string/title_activity_import_course"
             android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />

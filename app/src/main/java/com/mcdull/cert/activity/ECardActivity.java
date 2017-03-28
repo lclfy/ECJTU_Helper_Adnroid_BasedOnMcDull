@@ -69,6 +69,7 @@ public class ECardActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 19) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             findViewById(R.id.status_bar).setVisibility(View.VISIBLE);
+
         }
         initView(eCardJson);
         //返回键

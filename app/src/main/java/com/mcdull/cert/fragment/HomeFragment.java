@@ -24,12 +24,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.avos.avoscloud.AVUser;
 import com.bumptech.glide.load.engine.Resource;
 import com.mcdull.cert.Bean.CourseBean;
 import com.mcdull.cert.R;
-import com.mcdull.cert.activity.ImportCourseActivity;
+//import com.mcdull.cert.activity.ImportCourseActivity;
 import com.mcdull.cert.activity.MyDataActivity;
 import com.mcdull.cert.utils.GetIcon;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
@@ -77,17 +78,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         init();
 
         initIv();
-        if (studentId == null) {
-            vpMain.setCurrentItem(0);
-        } else {
-            if (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getBoolean("homeType", false)) {
-                vpMain.setCurrentItem(2);
-            } else {
-                vpMain.setCurrentItem(0);
-            }
-
-        }
-
+//        if (studentId == null) {
+//            vpMain.setCurrentItem(0);
+//        } else {
+//            if (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getBoolean("homeType", false)) {
+//                vpMain.setCurrentItem(1);
+//            } else {
+//                vpMain.setCurrentItem(0);
+//            }
+//
+//        }
+        vpMain.setCurrentItem(0);
         Drawable drawable = getResources().getDrawable(R.drawable.icon);
         mIvTX.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(drawable)));
         drawable = null;
@@ -124,6 +125,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         getActivity().findViewById(R.id.view_home_title).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
         getActivity().findViewById(R.id.tab).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
 
+
         if (SP.getBoolean("Icon", true)) {
             new GetIcon(getActivity(), new GetIcon.GetIconCallBack() {
                 @Override
@@ -149,17 +151,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         this.studentId = AVUser.getCurrentUser().getString("StudentId");
 
-        CourseFragment course = new CourseFragment();
-        QueryFragment query = new QueryFragment();
+//        CourseFragment course = new CourseFragment();
+       // QueryFragment query = new QueryFragment();
         NewStudentFragment newStudent = new NewStudentFragment();
 
         fragments = new ArrayList<>();
         fragments.add(newStudent);
-        fragments.add(query);
-        fragments.add(course);
+        //fragments.add(query);
+//        fragments.add(course);
 
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getActivity().getSupportFragmentManager()) {
-            String[] titles = {"首页", "百科", "课表"};
+            String[] titles = {""};
 
             @Override
             public Fragment getItem(int position) {
@@ -194,23 +196,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        initIv();
                         break;
-                    case 1:
-                        initIv();
-                        if (TextUtils.isEmpty(studentId)) {
-                            //提示新生输入学号、
-                            showEditIdWin();
-                        }
-                        break;
-                    case 2:
-                        initIv();
-                        view.findViewById(R.id.bt_add_course).setVisibility(View.VISIBLE);
-                        if (TextUtils.isEmpty(studentId)) {
-                            //提示新生输入学号、
-                            showEditIdWin();
-                        }
-                        break;
+//                    case 1:
+//                        initIv();
+//                        if (TextUtils.isEmpty(studentId)) {
+//                            //提示新生输入学号、
+//                            showEditIdWin();
+//                        }
+//                        break;
+//                    case 1:
+//                        initIv();
+//                        view.findViewById(R.id.bt_add_course).setVisibility(View.VISIBLE);
+//                        if (TextUtils.isEmpty(studentId)) {
+//                            //提示新生输入学号、
+//                            showEditIdWin();
+//                        }
+//                        break;
                 }
             }
 
@@ -250,12 +251,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initIv() {
-        view.findViewById(R.id.bt_add_course).setVisibility(View.GONE);
+//        view.findViewById(R.id.bt_add_course).setVisibility(View.GONE);
     }
 
 
     private void initView() {
-        view.findViewById(R.id.bt_add_course).setOnClickListener(this);
+//        view.findViewById(R.id.bt_add_course).setOnClickListener(this);
         view.findViewById(R.id.bt_me).setOnClickListener(this);
         vpMain = (ViewPager) view.findViewById(R.id.vp_main);
         mIvTX = (ImageView) view.findViewById(R.id.iv_tx);
@@ -265,11 +266,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_add_course:
-                CourseFragment contentFragment = (CourseFragment)fragments.get(2);
-                contentFragment.refreshCourse();
-
-                break;
+//            case R.id.bt_add_course:
+//                //如果要添加页面此处需要修改
+//                CourseFragment contentFragment = (CourseFragment)fragments.get(1);
+//                contentFragment.refreshCourse();
+//
+//                break;
             case R.id.bt_me:
                 openLeftWin();
                 break;
