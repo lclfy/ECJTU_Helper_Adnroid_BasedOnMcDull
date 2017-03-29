@@ -115,6 +115,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     //CET对话框临时保存的数据
     private String cetName = "";
     private String crtNum = "";
+    //保存一卡通的对象
+    private String eCardJson;
 
 
     @Override
@@ -486,7 +488,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
                 } else {
                     Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
-                    waitWin.dismissWait();
+
                 }
             }
         });
@@ -496,10 +498,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
+
                 Toast.makeText(getActivity(), "暂时无法获取，请重试", Toast.LENGTH_SHORT).show();
             } else {
-                waitWin.dismissWait();
+
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -544,6 +546,19 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         new InternetUtil(eCardMainMenuHandler,basicURL + "ecard_daytrade", map,true,getActivity());//传入参数
                         new InternetUtil(eCardOwnerMainMenuHandler,basicURL + "ecard_account", map,true,getActivity());//传入参数
                     }else{
+                        if (eCardJson!=null &&eCardJson.length()!=0){
+                            Intent intent = new Intent(getActivity(), ECardActivity.class);
+                            if (tv_eCardBalance != null){
+                                intent.putExtra("eCardBalance",tv_eCardBalance.getText());
+                            }else {
+                                new InternetUtil(eCardOwnerHandler,basicURL + "ecard_account", map,true,getActivity());//传入参数
+                                intent.putExtra("eCardBalance",tv_eCardBalance.getText());
+                                //intent.putExtra("eCardBalance","——元");
+                            }
+                            intent.putExtra("eCardJson", eCardJson);
+                            startActivity(intent);
+                            return;
+                        }
                         new InternetUtil(eCardOwnerHandler,basicURL + "ecard_account", map,true,getActivity());//传入参数
                         new InternetUtil(eCardHandler,basicURL + "ecard_daytrade", map,true,getActivity());//传入参数
                         Toast.makeText(getActivity(), "正在查询…", Toast.LENGTH_SHORT).show();
@@ -551,7 +566,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
                 } else {
                     Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
-                    waitWin.dismissWait();
+
                 }
             }
         });
@@ -563,10 +578,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
+
                 Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             } else {
-                waitWin.dismissWait();
+
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -576,22 +591,22 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     return;
                 }
                 //更新主页面的信息
-                eCardBean eCardData = new eCardBean();
+                eCardBean eCardDataIn = new eCardBean();
                 try {
-                    eCardData = new Gson().fromJson(json, eCardBean.class);
+                    eCardDataIn = new Gson().fromJson(json, eCardBean.class);
                 }catch (Exception e){
 
                 }
-                if (eCardData!=null) {
-                    if(eCardData.msg.contains("不匹配")){
+                if (eCardDataIn!=null) {
+                    if(eCardDataIn.msg.contains("不匹配")){
                         Toast.makeText(getActivity(), "查询一卡通数据失败：一卡通密码错误", Toast.LENGTH_SHORT).show();
                     }else {
                         tv_eCardConsume = (TextView)view.findViewById(R.id.tv_eCardConsume);
                         float dayConsume = 0;
-                        if (eCardData.data != null){
-                            for (int item = 0;item<eCardData.data.size();item++) {
+                        if (eCardDataIn.data != null){
+                            for (int item = 0;item<eCardDataIn.data.size();item++) {
                                 //获取当日每次消费金额以获取总消费
-                                eCardBean.ChildECardBean consumeLog = eCardData.data.get(item);
+                                eCardBean.ChildECardBean consumeLog = eCardDataIn.data.get(item);
                                 //去除充值金额后的消费金额的绝对值累计
                                 if (Float.parseFloat(consumeLog.consume) < 0){
                                     dayConsume += Math.abs(Float.parseFloat(consumeLog.consume));
@@ -605,6 +620,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     }
 
                 }
+                eCardJson = json;
                 Intent intent = new Intent(getActivity(), ECardActivity.class);
                 if (tv_eCardBalance != null){
                     intent.putExtra("eCardBalance",tv_eCardBalance.getText());
@@ -622,10 +638,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
+
                 Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             } else {
-                waitWin.dismissWait();
+
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -657,6 +673,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                                     dayConsume += Math.abs(Float.parseFloat(consumeLog.consume));
                                 }
                             }
+                            eCardJson = json;
                             tv_eCardConsume.setText(String.valueOf(dayConsume)+"元");
                         }else {
                             tv_eCardConsume.setText("——");
@@ -674,9 +691,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
+
             } else {
-                waitWin.dismissWait();
+
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -716,9 +733,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                waitWin.dismissWait();
+
             } else {
-                waitWin.dismissWait();
+
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -754,7 +771,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
                 //借地方更新一下13,14级学生的当日课表标题…
                 if (AVUser.getCurrentUser().getString("StudentId").length() ==14){
-                    TextView tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+                    TextView tv_calenderTitle = (TextView)view.findViewById(R.id.calenderArea_title);
                     tv_calenderTitle.setText("你好~"+AVUser.getCurrentUser().getString("Name")+"。");
                     return;
                 }
@@ -770,12 +787,12 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         }
         if (!isFirstTime){
             //设置主界面日历的标题
-            tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+            tv_calenderTitle = (TextView)view.findViewById(R.id.calenderArea_title);
 
             tv_calenderTitle.setText("加载当日课表…");
 
             //把重试按钮隐藏
-            getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.GONE);
+            view.findViewById(R.id.tv_reTryBtn).setVisibility(View.GONE);
         }else {
             //第一次进来的时候判断要不要查明天的
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
@@ -821,8 +838,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                     tv_calenderTitle.setText("加载失败");
                     //显示重试按钮和全部课表按钮
-                    getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
-                    getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -832,16 +849,14 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         @Override
         public void handleMessage(Message msg) {
             //设置主界面日历的标题
-            tv_calenderTitle = (TextView)getActivity().findViewById(R.id.calenderArea_title);
+            tv_calenderTitle = (TextView)view.findViewById(R.id.calenderArea_title);
             if (msg.what == 0) {
-                waitWin.dismissWait();
                 //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                 tv_calenderTitle.setText("加载失败");
                 //显示重试按钮
-                getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
-                getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
             } else {
-                waitWin.dismissWait();
 
                 Bundle bundle = (Bundle) msg.obj;
                 String json = bundle.getString("Json");
@@ -851,8 +866,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     //Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                     tv_calenderTitle.setText("加载失败");
                     //显示重试按钮
-                    getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
-                    getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                     return;
                 }
                 //更新主页面的信息
@@ -865,8 +880,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     }catch (Exception e1){
                         tv_calenderTitle.setText("加载失败");
                         //显示重试按钮
-                        getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
-                        getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                     }
                 }
                 if (CalenderData!=null) {
@@ -920,24 +935,24 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             }
                             //用一个透明栏来…有偏移
                             //每行课需要35，一行时候不需要
-                            ViewGroup.LayoutParams para = getActivity().findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
-                            final float scale = getActivity().getResources().getDisplayMetrics().density;
+                            ViewGroup.LayoutParams para = view.findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
+                            final float scale = view.getResources().getDisplayMetrics().density;
                             //dp换算成px
                             para.height=(CalenderData.data.daylist.size()-1)*(int) (40 * scale + 0.5f);//修改高度
 
-                            getActivity().findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
-                            lvCalender = (ListView)getActivity().findViewById(R.id.lv_calenderListView);
+                            view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+                            lvCalender = (ListView)view.findViewById(R.id.lv_calenderListView);
                             CalenderAdapter Adapter = new CalenderAdapter(getActivity(), list);
                             lvCalender.setEnabled(false);
                             lvCalender.setAdapter(Adapter);
                             //不管怎么样都要显示这个按钮
-                            getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                             setListViewHeightBasedOnChildren(lvCalender);
                         }else {
                             tv_calenderTitle.setText("加载失败");
                             //显示重试按钮
-                            getActivity().findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
-                            getActivity().findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.tv_reTryBtn).setVisibility(View.VISIBLE);
+                            view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
                         }
                     }
 

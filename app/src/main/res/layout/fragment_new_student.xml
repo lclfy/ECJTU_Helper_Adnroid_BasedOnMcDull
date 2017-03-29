@@ -228,7 +228,7 @@
             android:layout_width="65dp"
             android:layout_height="97dp"
             android:orientation="vertical"
-            android:background="@color/avoscloud_feedback_white"
+            android:background="@drawable/whitegrade"
             android:id="@+id/bt_map"
             >
             <ImageView

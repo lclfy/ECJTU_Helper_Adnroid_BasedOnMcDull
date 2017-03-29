@@ -33,8 +33,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private String URL = "http://luapi.sinaapp.com";
     private TextView mTextView;
     private SmartImageView mImgView;
-    private ShowWaitPopupWindow waitWin;
-    private boolean isGetImg = true;
+//    private boolean isGetImg = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +86,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            isGetImg = false;
+//            isGetImg = false;
             //waitWin.dismissWait();
             if (msg.what == 1) {
                 Bundle bundle = (Bundle) msg.obj;
@@ -126,9 +125,9 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (isGetImg) {
-            waitWin.showWait();
-        }
+//        if (isGetImg) {
+//
+//        }
     }
 
     @Override
@@ -142,9 +141,6 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
             mImgView.setDrawingCacheEnabled(false);
             mImgView = null;
         }
-        if (waitWin != null) {
-            waitWin.dismissWait();
-            waitWin = null;
-        }
+
     }
 }

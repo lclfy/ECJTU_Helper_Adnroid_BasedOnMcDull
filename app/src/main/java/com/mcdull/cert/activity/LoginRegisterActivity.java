@@ -292,10 +292,10 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
 
     private void toLogin() {
 //
-        String email = mLoginEMain.getText().toString();
-        String pwd = mLoginPwd.getText().toString();
-//        String email = "758003984@qq.com";
-//        String pwd = "1081884068lsc";
+//        String email = mLoginEMain.getText().toString();
+//        String pwd = mLoginPwd.getText().toString();
+        String email = "758003984@qq.com";
+        String pwd = "1081884068lsc";
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(LoginRegisterActivity.this, "请输入邮箱地址", Toast.LENGTH_SHORT).show();
             return;
