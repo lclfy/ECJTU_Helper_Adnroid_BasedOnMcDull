@@ -35,6 +35,11 @@ import java.util.Map;
 
 public class WeatherSearchActivity extends AppCompatActivity {
 
+    private String basicURL = "http://api1.ecjtu.org/v1/";
+    private String selectedItemInBack = "";
+
+    private String nowTemp = "";
+
     private ShowWaitPopupWindow waitWin;
     private String[] mStrs = {"北京", "天津","石家庄","唐山","秦皇岛","邯郸",
             "邢台","保定","张家口","承德","沧州","廊坊","衡水","太原","大同",
@@ -109,7 +114,9 @@ public class WeatherSearchActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "正在更新"+selectedItem+"天气…",
                         Toast.LENGTH_SHORT).show();
-                searchWeather(selectedItem);
+                searchWeather();
+                selectedItemInBack = selectedItem;
+
             }
 
         });
@@ -123,7 +130,7 @@ public class WeatherSearchActivity extends AppCompatActivity {
     }
 
     //根据选中的项目查询天气
-    private void searchWeather(final String selectedItem){
+    private void searchWeather(){
         waitWin.showWait();
         AVQuery<AVObject> query = new AVQuery<>("API");
         query.whereEqualTo("title", "weather");
@@ -132,8 +139,9 @@ public class WeatherSearchActivity extends AppCompatActivity {
             public void done(List<AVObject> list, AVException e) {
                 if (e == null) {
                     Map<String, String> map = new ArrayMap<>();
-                    map.put("city", selectedItem);//设置get参数
-                    new InternetUtil(weatherUIHandler, "http://wthrcdn.etouch.cn/weather_mini", map,true,WeatherSearchActivity.this);//传入参数
+                    map.put("city", selectedItemInBack);//设置get参数
+                    new InternetUtil(nowTempHandler, basicURL+"weather", map,true,WeatherSearchActivity.this);//传入参数
+
                 } else {
                     Toast.makeText(WeatherSearchActivity.this, "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
                     waitWin.dismissWait();
@@ -164,9 +172,37 @@ public class WeatherSearchActivity extends AppCompatActivity {
                 //WeatherBean bean = new Gson().fromJson(json, WeatherBean.class);
 
                 Intent intent = getIntent();
-                intent.putExtra("weatherJson", json);
+                intent.putExtra("weather7DJson", json);
+                intent.putExtra("nowTemp",nowTemp);
                 setResult(Activity.RESULT_OK, intent);//返回之前页面
                 finish();
+
+            }
+        }
+    };
+
+    Handler nowTempHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                waitWin.dismissWait();
+                Toast.makeText(WeatherSearchActivity.this, "查询失败，请稍后再试", Toast.LENGTH_SHORT).show();
+            } else {
+                waitWin.dismissWait();
+
+                Bundle bundle = (Bundle) msg.obj;
+                String json = bundle.getString("Json");
+                if (Util.replace(json).equals("false")) {
+                    Toast.makeText(WeatherSearchActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //用Gson解析天气Json数据
+                WeatherBean bean = new Gson().fromJson(json, WeatherBean.class);
+                nowTemp = bean.data.temp;
+                Map<String, String> map = new ArrayMap<>();
+                map.put("city", selectedItemInBack);//设置get参数
+                new InternetUtil(weatherUIHandler, basicURL+ "weather7d", map,true,WeatherSearchActivity.this);//传入参数
+
 
             }
         }

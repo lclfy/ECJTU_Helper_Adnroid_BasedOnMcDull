@@ -51,9 +51,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/tv_eCardConsume"
+                    android:transitionName="consume"
                     android:text="——元"
                     android:textColor="@color/avoscloud_feedback_white"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,14 +62,15 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
-                    android:text="一卡通消费"
+                    android:transitionName="consumeTitle"
+                    android:text="今日消费"
                     android:textColor="#fff"
                     android:textSize="17sp" />
 
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="168dp"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -76,10 +78,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
+                    android:transitionName="balance"
                     android:id="@+id/tv_eCardBalance"
                     android:text="——元"
                     android:textColor="@color/avoscloud_feedback_white"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,7 +90,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
-                    android:text="余额"
+                    android:transitionName="balanceTitle"
+                    android:text="剩余金额"
                     android:textColor="#fff"
                     android:textSize="17sp" />
 

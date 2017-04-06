@@ -24183,9 +24183,6 @@ com.mcdull.cert.activity.EnrollActivity: EnrollActivity()
 com.mcdull.cert.activity.EnrollActivity: void onClick(android.view.View)
 com.mcdull.cert.activity.ExamActivity
 com.mcdull.cert.activity.ExamActivity: ExamActivity()
-com.mcdull.cert.activity.ExamScheduleActivity
-com.mcdull.cert.activity.ExamScheduleActivity: ExamScheduleActivity()
-com.mcdull.cert.activity.ExamScheduleActivity: void onClick(android.view.View)
 com.mcdull.cert.activity.HomeActivity
 com.mcdull.cert.activity.HomeActivity: HomeActivity()
 com.mcdull.cert.activity.HomeActivity: void onClick(android.view.View)

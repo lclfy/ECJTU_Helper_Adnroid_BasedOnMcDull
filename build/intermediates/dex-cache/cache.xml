@@ -2,265 +2,517 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_172484d3265bc0ac9d8fc600d89898ae6187283f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\libs\android-smart-image-view-1.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\android-smart-image-view-1.0.0_db70a9505bdbe03cec5c9b3c0cbba96774799f23\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\qq-sdk\1.6.1-leancloud\896145203364b9e1d055cb81ac127bab139ad91d\qq-sdk-1.6.1-leancloud.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="896145203364b9e1d055cb81ac127bab139ad91d">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\qq-sdk-1.6.1-leancloud_433a286a7e8155f83a178c7236f522a3d990286b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="26a3134600995d64cfdfc6d43db5e6db420aa930">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_dabfa08f3082e9927e2c8617aede6a6cde6c3413\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\avoscloud-sdk\v3.3.5\14ae61cea50e086b775a0b7dc8ef5388ff31e184\avoscloud-sdk-v3.3.5.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="14ae61cea50e086b775a0b7dc8ef5388ff31e184">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\avoscloud-sdk-v3.3.5_2b8a0903bb2d286f97496d96ae68fd571b89b1b6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\libs\com.umeng.message.lib_v2.4.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="2e43bd4164f510a6b4be65f569356d79237b36ed">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\com.umeng.message.lib_v2.4.1_9241248e22e0fe70b3f11d2d65ed768a06b326e3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\libs\AMap_Services_V2.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3057067b0d15469c99c2e8b1a87d66c94862ac7a">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\AMap_Services_V2.4.0_eeb15a4937fadf0a80c7f74079bded2d2a28f0a4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-statistics\v3.3.5\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="64391b02bbf7417b4c778f646ee591ff78f86377">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.leancloud.android-avoscloud-statistics-v3.3.5_76d5bbcd4908e11412f6925684ee94267526f446\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\Java-WebSocket\1.2.0-leancloud\221fb6750fcf164a85a98bbbafe0879e18868562\Java-WebSocket-1.2.0-leancloud.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="221fb6750fcf164a85a98bbbafe0879e18868562">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\Java-WebSocket-1.2.0-leancloud_9e4ca3eee73e94cf3995323de7b024ed77ef9ee9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-search\v3.3.5\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="94331c8386f6ed5f8ddb2183f585b1360901b9e2">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.leancloud.android-avoscloud-search-v3.3.5_b43356cb3a8b1a6ba3b7bf8dca2eff574c3c5588\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.6.1_842c742070f025b780d14f0da0fa3d8c69c6873e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="6a5701e8df45288df96b703af285711c2a1ae58e">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8a8887962cf213cc3120a6e7a406de373096b32f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\design\23.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.0.1_7b08c62b7648e90c563b9820f07b190d7eeea251\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\fastjson\1.1.38-leancloud\35af3ae48af2f2d20615f0999a20edb385258a82\fastjson-1.1.38-leancloud.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="35af3ae48af2f2d20615f0999a20edb385258a82">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\fastjson-1.1.38-leancloud_281d1ae7737ccf7daada983bebc7142f92242e62\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\fastjson-1.1.38-leancloud_281d1ae7737ccf7daada983bebc7142f92242e62.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.2.4\3b7f38df6de5dd8b500e602ae8c2dd5ee446f883\httpcore-4.2.4.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\com.umeng.message.lib_v2.4.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="3b7f38df6de5dd8b500e602ae8c2dd5ee446f883">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\httpcore-4.2.4_cf1e5af29c5dfe773a521935e9a0fba45a8ebdb5\classes.dex" />
+        revision="25.0.2"
+        sha1="2e43bd4164f510a6b4be65f569356d79237b36ed">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.umeng.message.lib_v2.4.1_9241248e22e0fe70b3f11d2d65ed768a06b326e3.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\75800\hjxyt\app\libs\Android_Location_V1.3.2.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="b64d1f38ef7ee28b538d61a39d040f249c65587c">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\Android_Location_V1.3.2_e318047228e464b70e274c35049acb7aeb2791d7\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Android_Location_V1.3.2_e318047228e464b70e274c35049acb7aeb2791d7.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\transition\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-transition-25.3.1_5c0f058201b728594e7d05ea1b74e042784756f1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\gson-2.8.0_3772b83f770e8d6bc4bd86a61b84521c2401135e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.2.4\3b7f38df6de5dd8b500e602ae8c2dd5ee446f883\httpcore-4.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3b7f38df6de5dd8b500e602ae8c2dd5ee446f883">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\httpcore-4.2.4_cf1e5af29c5dfe773a521935e9a0fba45a8ebdb5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.3.1_31486df6201406ccffa3735caa282de9486b6ed3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\glide-3.6.1_842c742070f025b780d14f0da0fa3d8c69c6873e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_91f46d54b698278ecae2c7a2af14e3a81da888b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.2.4\dba4d4d224e2ca872af5be8d2992777583145478\httpmime-4.2.4.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="dba4d4d224e2ca872af5be8d2992777583145478">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\httpmime-4.2.4_adda0b301beaa861f612458aeb1bb05c92c889d6\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\httpmime-4.2.4_adda0b301beaa861f612458aeb1bb05c92c889d6.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_c46ef154332d173bbdf41468dfbd548f1b482861\classes.dex" />
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.3.1_719b6745be0031283567520cbb13dfafab34c4cc.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_f4b8fd194c7fa49f4580a0af59d26eadba8898db\classes.dex" />
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.3.1_87a02d8907243221a2667bcb654922659f3ac655.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-feedback\v3.3.5\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.6\a845a88238be0b5be9d238652c1bc0605ef91f52\android-async-http-1.4.6.jar"
+        jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="696a6e708d83ec26d0af34eac253e3e00dabe334">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.leancloud.android-avoscloud-feedback-v3.3.5_15cea2db8fc212a82f7fb09568b924633c17c796\classes.dex" />
+        revision="25.0.2"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.6_9c11ff41726f620fd9315a1d468a4d49552d3661.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.3.1_7ad9468adf5cfce4b4b272a04ac9f4cba4d7fb1e.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\75800\hjxyt\app\libs\Android_Map_V2.5.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\Android_Map_V2.5.0_9135248fc18230e001251e6e0ef9e50edd6dd0ea\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Android_Map_V2.5.0_9135248fc18230e001251e6e0ef9e50edd6dd0ea.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\75800\hjxyt\app\libs\umeng-update-v2.6.0.1.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="7bfeea30c4995f90a4374ce4177772a4579f2797">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\umeng-update-v2.6.0.1_954befeee880545dca3664c0191b7faeea0df550\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\umeng-update-v2.6.0.1_954befeee880545dca3664c0191b7faeea0df550.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\android-smart-image-view-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\android-smart-image-view-1.0.0_db70a9505bdbe03cec5c9b3c0cbba96774799f23.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-sns\v3.3.5\jars\classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="e3c2283e54e2db4a3557ba8ddb40fc4f3abcb2dc">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.leancloud.android-avoscloud-sns-v3.3.5_99c61f910628f07888e9ee4b4c6ab21a6caed279\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-sns-v3.3.5_99c61f910628f07888e9ee4b4c6ab21a6caed279.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.3.1_4bf33338f08321f9e41ea5810950489bb1db9fe1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.3.1_2f0cb83f33af756903d57e9bc6e43de7fa9cabd1.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.6\a845a88238be0b5be9d238652c1bc0605ef91f52\android-async-http-1.4.6.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\android-async-http-1.4.6_9c11ff41726f620fd9315a1d468a4d49552d3661\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.6_9c11ff41726f620fd9315a1d468a4d49552d3661.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-push\v3.3.5\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\Java-WebSocket\1.2.0-leancloud\221fb6750fcf164a85a98bbbafe0879e18868562\Java-WebSocket-1.2.0-leancloud.jar"
+        jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="2c6ba8671af44ca37121db1794394e1cec75a7df">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\cn.leancloud.android-avoscloud-push-v3.3.5_957f8bf2fe11aac88d15aec4a5fcdac5f1995639\classes.dex" />
+        revision="25.0.2"
+        sha1="221fb6750fcf164a85a98bbbafe0879e18868562">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Java-WebSocket-1.2.0-leancloud_9e4ca3eee73e94cf3995323de7b024ed77ef9ee9.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\75800\hjxyt\Lib\gson-2.7.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\gson-2.7_88701baaf4e6e7050292201369fe1b1db57c096e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_9792d51791d92eddc0d9758885c1364396bdbf7e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.19\a8f23f65fc1e522ee4a1a697ee569901a46741fa\library-1.0.19.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\10\library-1.0.19_c4d105ead8e78929af8a55725762544796e3669e\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\library-1.0.19_c4d105ead8e78929af8a55725762544796e3669e.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="C:\Users\75800\hjxyt\app\libs\MiPush_SDK_Client_2_2_19.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="01298c1280e97b7367a55252f66a8f19fd494d35">
-        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\transforms\dex\debug\folders\1000\2\MiPush_SDK_Client_2_2_19_d665ee82af31da18e47d3a70cae0fc1e7e14e371\classes.dex" />
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\MiPush_SDK_Client_2_2_19_d665ee82af31da18e47d3a70cae0fc1e7e14e371.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-push\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2c6ba8671af44ca37121db1794394e1cec75a7df">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-push-v3.3.5_957f8bf2fe11aac88d15aec4a5fcdac5f1995639.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-feedback\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="696a6e708d83ec26d0af34eac253e3e00dabe334">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-feedback-v3.3.5_15cea2db8fc212a82f7fb09568b924633c17c796.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\qq-sdk\1.6.1-leancloud\896145203364b9e1d055cb81ac127bab139ad91d\qq-sdk-1.6.1-leancloud.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="896145203364b9e1d055cb81ac127bab139ad91d">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\qq-sdk-1.6.1-leancloud_433a286a7e8155f83a178c7236f522a3d990286b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.3.1_be73a1738ff08c68fbedaf4fa474eabccc7396d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\MiPush_SDK_Client_2_2_19.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="01298c1280e97b7367a55252f66a8f19fd494d35">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\MiPush_SDK_Client_2_2_19_d665ee82af31da18e47d3a70cae0fc1e7e14e371.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.19\a8f23f65fc1e522ee4a1a697ee569901a46741fa\library-1.0.19.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\library-1.0.19_c4d105ead8e78929af8a55725762544796e3669e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\android-smart-image-view-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d76ea8c3e9a60101244d6d04aff8cc75888570f0">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\android-smart-image-view-1.0.0_db70a9505bdbe03cec5c9b3c0cbba96774799f23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-search\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="94331c8386f6ed5f8ddb2183f585b1360901b9e2">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-search-v3.3.5_b43356cb3a8b1a6ba3b7bf8dca2eff574c3c5588.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-push\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2c6ba8671af44ca37121db1794394e1cec75a7df">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-push-v3.3.5_957f8bf2fe11aac88d15aec4a5fcdac5f1995639.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.3.1_727459fd59aedb632fef77a25f57fd442893914a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.2.4\dba4d4d224e2ca872af5be8d2992777583145478\httpmime-4.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dba4d4d224e2ca872af5be8d2992777583145478">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\httpmime-4.2.4_adda0b301beaa861f612458aeb1bb05c92c889d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.3.1_858866be91b123797378b11afffd12d0d8e4b23d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\com.umeng.message.lib_v2.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2e43bd4164f510a6b4be65f569356d79237b36ed">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.umeng.message.lib_v2.4.1_9241248e22e0fe70b3f11d2d65ed768a06b326e3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\Android_Location_V1.3.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b64d1f38ef7ee28b538d61a39d040f249c65587c">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Android_Location_V1.3.2_e318047228e464b70e274c35049acb7aeb2791d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\AMap_Services_V2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3057067b0d15469c99c2e8b1a87d66c94862ac7a">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\AMap_Services_V2.4.0_eeb15a4937fadf0a80c7f74079bded2d2a28f0a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\AMap_Services_V2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3057067b0d15469c99c2e8b1a87d66c94862ac7a">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\AMap_Services_V2.4.0_eeb15a4937fadf0a80c7f74079bded2d2a28f0a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\avoscloud-sdk\v3.3.5\14ae61cea50e086b775a0b7dc8ef5388ff31e184\avoscloud-sdk-v3.3.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="14ae61cea50e086b775a0b7dc8ef5388ff31e184">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\avoscloud-sdk-v3.3.5_2b8a0903bb2d286f97496d96ae68fd571b89b1b6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\Android_Map_V2.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Android_Map_V2.5.0_9135248fc18230e001251e6e0ef9e50edd6dd0ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.3.1_407e890549421d74e789c8c40ca734167aa6c414.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-statistics\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="64391b02bbf7417b4c778f646ee591ff78f86377">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-statistics-v3.3.5_76d5bbcd4908e11412f6925684ee94267526f446.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\Java-WebSocket\1.2.0-leancloud\221fb6750fcf164a85a98bbbafe0879e18868562\Java-WebSocket-1.2.0-leancloud.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="221fb6750fcf164a85a98bbbafe0879e18868562">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\Java-WebSocket-1.2.0-leancloud_9e4ca3eee73e94cf3995323de7b024ed77ef9ee9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-search\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="94331c8386f6ed5f8ddb2183f585b1360901b9e2">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-search-v3.3.5_b43356cb3a8b1a6ba3b7bf8dca2eff574c3c5588.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\avoscloud-sdk\v3.3.5\14ae61cea50e086b775a0b7dc8ef5388ff31e184\avoscloud-sdk-v3.3.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="14ae61cea50e086b775a0b7dc8ef5388ff31e184">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\avoscloud-sdk-v3.3.5_2b8a0903bb2d286f97496d96ae68fd571b89b1b6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-statistics\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64391b02bbf7417b4c778f646ee591ff78f86377">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-statistics-v3.3.5_76d5bbcd4908e11412f6925684ee94267526f446.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\glide-3.6.1_842c742070f025b780d14f0da0fa3d8c69c6873e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\com.android.support\design\25.3.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\com.android.support-design-25.3.1_7f7e1a15233e7cb437bb543bb9c2436831527bf1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\libs\umeng-update-v2.6.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bfeea30c4995f90a4374ce4177772a4579f2797">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\umeng-update-v2.6.0.1_954befeee880545dca3664c0191b7faeea0df550.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.2.4\3b7f38df6de5dd8b500e602ae8c2dd5ee446f883\httpcore-4.2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3b7f38df6de5dd8b500e602ae8c2dd5ee446f883">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\httpcore-4.2.4_cf1e5af29c5dfe773a521935e9a0fba45a8ebdb5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-feedback\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="696a6e708d83ec26d0af34eac253e3e00dabe334">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-feedback-v3.3.5_15cea2db8fc212a82f7fb09568b924633c17c796.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\fastjson\1.1.38-leancloud\35af3ae48af2f2d20615f0999a20edb385258a82\fastjson-1.1.38-leancloud.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="35af3ae48af2f2d20615f0999a20edb385258a82">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\fastjson-1.1.38-leancloud_281d1ae7737ccf7daada983bebc7142f92242e62.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt\app\build\intermediates\exploded-aar\cn.leancloud.android\avoscloud-sns\v3.3.5\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e3c2283e54e2db4a3557ba8ddb40fc4f3abcb2dc">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\cn.leancloud.android-avoscloud-sns-v3.3.5_99c61f910628f07888e9ee4b4c6ab21a6caed279.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\gson-2.8.0_3772b83f770e8d6bc4bd86a61b84521c2401135e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\qq-sdk\1.6.1-leancloud\896145203364b9e1d055cb81ac127bab139ad91d\qq-sdk-1.6.1-leancloud.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="896145203364b9e1d055cb81ac127bab139ad91d">
+        <dex dex="C:\Users\75800\hjxyt\app\build\intermediates\pre-dexed\debug\qq-sdk-1.6.1-leancloud_433a286a7e8155f83a178c7236f522a3d990286b.jar" />
     </item>
 
 </items>

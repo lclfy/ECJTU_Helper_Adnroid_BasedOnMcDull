@@ -11,8 +11,8 @@ android {
             storePassword 'Lu935226769'
         }
     }
-    compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.mcdull.cert"
         minSdkVersion 15
@@ -47,11 +47,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     //volley是一个网络请求框架
     compile 'com.mcxiaoke.volley:library:1.0.19'
 
-    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:support-v4:25.3.1'
     //avoscloud-sdk 为 LeanCloud基础包
     compile 'cn.leancloud.android:avoscloud-sdk:v3.3+'
     //avoscloud-push 与 Java-WebSocket 为推送与IM需要的包
@@ -76,7 +76,7 @@ dependencies {
     //glide图片加载
     compile 'com.github.bumptech.glide:glide:3.6.1'
     //Material Design Support包
-    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:design:25.3.1'
     //Gson:Java to Json conversion
-    compile files('C:/Users/75800/hjxyt/Lib/gson-2.7.jar')
+    compile 'com.google.code.gson:gson:2.8.0'
 }

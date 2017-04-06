@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:id="@+id/tv_cityName"
         android:textColor="@color/avoscloud_feedback_white"
         android:textSize="40dp"/>
@@ -38,13 +38,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_day1"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <ImageView
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/weatherIcon_day1"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day1"
             android:background="@drawable/weather_cloudy"/>
         <TextView
             android:text="-℃"
@@ -54,7 +62,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTemperture_day1"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -70,13 +78,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_day2"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <ImageView
             android:layout_marginTop="13dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/weatherIcon_day2"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day2"
             android:background="@drawable/weather_cloudy"/>
         <TextView
             android:text="-℃"
@@ -86,7 +102,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTemperture_day2"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -102,13 +118,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_day3"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <ImageView
             android:layout_marginTop="14dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/weatherIcon_day3"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day3"
             android:background="@drawable/weather_cloudy"/>
         <TextView
             android:text="-℃"
@@ -118,7 +142,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTemperture_day3"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -134,13 +158,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_day4"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <ImageView
             android:layout_marginTop="14dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/weatherIcon_day4"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day4"
             android:background="@drawable/weather_cloudy"/>
         <TextView
             android:text="-℃"
@@ -150,7 +182,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTemperture_day4"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -166,13 +198,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_day5"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <ImageView
             android:layout_marginTop="14dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="60dp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:id="@+id/weatherIcon_day5"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day5"
             android:background="@drawable/weather_cloudy"/>
         <TextView
             android:text="-℃"
@@ -182,7 +222,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvTemperture_day5"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
 
@@ -192,25 +232,82 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="当前风向"
-            android:layout_width="wrap_content"
+            android:text="——"
+            android:layout_width="60dp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="14dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView7"
+            android:id="@+id/tv_day6"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
+        <ImageView
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon_day6"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day6"
+            android:background="@drawable/weather_cloudy"/>
         <TextView
-            android:text="——"
+            android:text="-℃"
             android:layout_width="match_parent"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="14dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_windDirection"
+            android:id="@+id/tvTemperture_day6"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="——"
+            android:layout_width="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="14dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_day7"
+            android:textColor="@color/avoscloud_feedback_white"
+            android:textSize="16dp"/>
+        <ImageView
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon_day7"
+            android:background="@drawable/weather_cloudy"/>
+        <ImageView
+            android:visibility="invisible"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/weatherIcon2_day7"
+            android:background="@drawable/weather_cloudy"/>
+        <TextView
+            android:text="-℃"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTemperture_day7"
+            android:textColor="@color/avoscloud_feedback_white"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -225,7 +322,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
         <TextView
             android:text="——"
             android:layout_width="match_parent"
@@ -234,7 +331,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_windStrength"
             android:textColor="@color/avoscloud_feedback_white"
-            android:textSize="18dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
 </LinearLayout>

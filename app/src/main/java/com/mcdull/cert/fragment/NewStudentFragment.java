@@ -1,5 +1,6 @@
 package com.mcdull.cert.fragment;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,14 +13,17 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import com.mcdull.cert.Bean.ExamTimeBean;
 import com.mcdull.cert.Bean.ReExamBean;
 import com.mcdull.cert.Bean.ScoreBean;
 import com.mcdull.cert.Bean.SelectedCourseIDBean;
+import com.mcdull.cert.Bean.Weather7DayBean;
 import com.mcdull.cert.Bean.WeatherBean;
 import com.mcdull.cert.Bean.eCardBean;
 import com.mcdull.cert.Bean.eCardOwnerBean;
@@ -66,6 +71,7 @@ import com.avos.avoscloud.FindCallback;
 import com.mcdull.cert.utils.ShowSureDialog;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.Util;
+import com.umeng.message.proguard.B;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,9 +100,13 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     //新的URL
     private String basicURL = "http://api1.ecjtu.org/v1/";
 
-    //饭卡的两个TextView
+    //饭卡的四个TextView
     private TextView tv_eCardConsume;
     private TextView tv_eCardBalance;
+    private TextView tv_eCardConsumeTitle;
+    private TextView tv_eCardBalanceTitle;
+    //当前温度
+    private String nowTemp = "";
 
     //天气的TextView
     private ImageView tv_nowTemperature;
@@ -104,6 +114,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     private TextView tv_calenderTitle;
     //日历的listview
     private ListView lvCalender;
+
     //刷新日历的标记，第一次启动的时候不需要修改重试按钮状态
     private boolean isFirstTime = true;
     //判断是否需要查询第二天的日历
@@ -116,7 +127,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     private String cetName = "";
     private String crtNum = "";
     //保存一卡通的对象
-    private String eCardJson;
+    private String eCardJson = "";
 
 
     @Override
@@ -133,8 +144,17 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    private void initView() {
+    protected void nextActivity(Class cls, Bundle bundle, ActivityOptions options) {
+        Intent intent = new Intent(getActivity(), cls);
+        if (bundle != null)
+            intent.putExtra("bundle", bundle);
+        if (options != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            startActivity(intent, options.toBundle());
+        else
+            startActivity(intent);
+    }
 
+    private void initView() {
         view.findViewById(R.id.bt_map).setOnClickListener(this);
         view.findViewById(R.id.bt_weather).setOnClickListener(this);
         view.findViewById(R.id.bt_ecard).setOnClickListener(this);
@@ -148,8 +168,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         TextView retryBtn = (TextView)view.findViewById(R.id.tv_reTryBtn);
         retryBtn.setTextColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
 
+        tv_eCardConsumeTitle = (TextView) view.findViewById(R.id.tv_consumeTitle);
+        tv_eCardBalanceTitle = (TextView) view.findViewById(R.id.tv_balanceTitle);
         //设置跟随主题变换颜色的图标的颜色
-        switch (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 0)){
+        switch (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 2)){
             case 0:
                 view.findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_purple);
                 break;
@@ -225,7 +247,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 normalDialog.show();
             }else {
                 view.findViewById(R.id.lv_calenderListView).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+//                view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
             }
 
         }
@@ -285,11 +307,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 searchWeather(true);
                 break;
             case R.id.bt_ecard:
-                findECard(false);
-                break;
             case R.id.bt_EcardBalance:
-                findECard(false);
-                break;
             case R.id.bt_checkEcardPaylist:
                 findECard(false);
                 break;
@@ -306,7 +324,6 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
                 break;
             case R.id.tv_allCourseBtn:
-                //不跟你多bb
                 Intent intent = new Intent(getActivity(), CourseActivity.class);
                 startActivity(intent);
                 break;
@@ -328,10 +345,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 if (e == null) {
                     Map<String, String> map = new ArrayMap<>();
                     map.put("city", "南昌");//设置get参数
-                    if (isWeatherButton){
-                        new InternetUtil(weatherUIHandler, "http://wthrcdn.etouch.cn/weather_mini", map,true,getActivity());//传入参数
-                    }else {
-                        new InternetUtil(weatherMainUIHandler, "http://wthrcdn.etouch.cn/weather_mini", map,true,getActivity());//传入参数
+                    new InternetUtil(weatherMainUIHandler, basicURL + "weather", map,true,getActivity());//传入参数
+                    if (isWeatherButton) {
+                        new InternetUtil(weatherUIHandler, basicURL + "weather7d", map, true, getActivity());//传入参数
                     }
 
                 } else {
@@ -365,20 +381,20 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     return;
                 }
                 //用Gson解析天气Json数据
-                WeatherBean bean = new WeatherBean();
+                Weather7DayBean bean = new Weather7DayBean();
                 try{
-                    bean = new Gson().fromJson(json, WeatherBean.class);
-                    createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                    bean = new Gson().fromJson(json, Weather7DayBean.class);
                     Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weatherJson", json);
+                    intent.putExtra("weather7DJson", json);
+                    intent.putExtra("nowTemp",nowTemp);
                     intent.putExtra("Title","天气情况");
                     startActivity(intent);
                 }catch (Exception e ){
                     try{
-                        bean = new Gson().fromJson(json, WeatherBean.class);
-                        createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                        bean = new Gson().fromJson(json, Weather7DayBean.class);
                         Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                        intent.putExtra("weatherJson", json);
+                        intent.putExtra("weather7DJson", json);
+                        intent.putExtra("nowTemp",nowTemp);
                         intent.putExtra("Title","天气情况");
                         startActivity(intent);
                     }catch (Exception e1){
@@ -409,11 +425,13 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 WeatherBean bean = new WeatherBean();
                 try{
                     bean = new Gson().fromJson(json, WeatherBean.class);
-                    createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                    nowTemp = bean.data.temp;
+                    createNowTemperatureDrawable(String.valueOf(bean.data.temp));
                 }catch (Exception e ){
                     try{
                         bean = new Gson().fromJson(json, WeatherBean.class);
-                        createNowTemperatureDrawable(String.valueOf(bean.data.wendu));
+                        nowTemp = bean.data.temp;
+                        createNowTemperatureDrawable(String.valueOf(bean.data.temp));
                     }catch (Exception e1){
                         return;
                     }
@@ -518,6 +536,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     };
     //一卡通查询
     private void findECard(final boolean isMainMenu) {
+        if (eCardJson.length()!=0){
+            findECardWithLocalData(eCardJson);
+        }
         final String studentId = user.getString("StudentId");
         final String eCardPassword = user.getString("EcardPwd");
         if (TextUtils.isEmpty(studentId) || studentId.equals("null")) {
@@ -547,7 +568,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                         new InternetUtil(eCardOwnerMainMenuHandler,basicURL + "ecard_account", map,true,getActivity());//传入参数
                     }else{
                         if (eCardJson!=null &&eCardJson.length()!=0){
-                            Intent intent = new Intent(getActivity(), ECardActivity.class);
+
                             if (tv_eCardBalance != null){
                                 intent.putExtra("eCardBalance",tv_eCardBalance.getText());
                             }else {
@@ -555,9 +576,6 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                                 intent.putExtra("eCardBalance",tv_eCardBalance.getText());
                                 //intent.putExtra("eCardBalance","——元");
                             }
-                            intent.putExtra("eCardJson", eCardJson);
-                            startActivity(intent);
-                            return;
                         }
                         new InternetUtil(eCardOwnerHandler,basicURL + "ecard_account", map,true,getActivity());//传入参数
                         new InternetUtil(eCardHandler,basicURL + "ecard_daytrade", map,true,getActivity());//传入参数
@@ -565,13 +583,33 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     }
 
                 } else {
-                    Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "查询失败，请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
     }
 
+    private void findECardWithLocalData(String json){
+        eCardJson = json;
+        Bundle b = new Bundle();
+        if (tv_eCardBalance != null){
+            b.putSerializable("eCardBalance", tv_eCardBalance.getText().toString());
+        }else {
+            b.putSerializable("eCardBalance","——元");
+        }
+
+        b.putSerializable("eCardJson", json);
+        ActivityOptions options = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                    Pair.create((View) tv_eCardBalanceTitle, "balanceTitle"),
+                    Pair.create((View) tv_eCardConsumeTitle, "consumeTitle"),
+                    Pair.create((View) tv_eCardBalance, "balance"),
+                    Pair.create((View) tv_eCardConsume, "consume"));
+        }
+        nextActivity(ECardActivity.class, b, options);
+    }
 
 
     Handler eCardHandler = new Handler() {
@@ -620,15 +658,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     }
 
                 }
-                eCardJson = json;
-                Intent intent = new Intent(getActivity(), ECardActivity.class);
-                if (tv_eCardBalance != null){
-                    intent.putExtra("eCardBalance",tv_eCardBalance.getText());
-                }else {
-                    intent.putExtra("eCardBalance","——元");
-                }
-                intent.putExtra("eCardJson", json);
-                startActivity(intent);
+                findECardWithLocalData(json);
 
             }
         }
@@ -933,21 +963,22 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                                 CalenderMap.put("classString", CalenderDetails.classString);
                                 list.add(CalenderMap);
                             }
-                            //用一个透明栏来…有偏移
-                            //每行课需要35，一行时候不需要
-                            ViewGroup.LayoutParams para = view.findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
-                            final float scale = view.getResources().getDisplayMetrics().density;
-                            //dp换算成px
-                            para.height=(CalenderData.data.daylist.size()-1)*(int) (40 * scale + 0.5f);//修改高度
-
-                            view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+//                            //用一个透明栏来…有偏移
+//                            //每行课需要35，一行时候不需要
+//                            ViewGroup.LayoutParams para = view.findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
+//                            final float scale = view.getResources().getDisplayMetrics().density;
+//                            //dp换算成px
+//                            para.height=(CalenderData.data.daylist.size()-1)*(int) (40 * scale + 0.5f);//修改高度
+//
+//                            view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
                             lvCalender = (ListView)view.findViewById(R.id.lv_calenderListView);
                             CalenderAdapter Adapter = new CalenderAdapter(getActivity(), list);
                             lvCalender.setEnabled(false);
                             lvCalender.setAdapter(Adapter);
                             //不管怎么样都要显示这个按钮
                             view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
-                            setListViewHeightBasedOnChildren(lvCalender);
+                            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (Util.dip2px(getActivity(), 56) + 1) * list.size());
+                            lvCalender.setLayoutParams(layoutParams);
                         }else {
                             tv_calenderTitle.setText("加载失败");
                             //显示重试按钮
@@ -1014,26 +1045,6 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         }
         return "";
 
-    }
-
-    //设置listview的高度
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            return;
-        }
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-
-        params.height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
     }
 
 

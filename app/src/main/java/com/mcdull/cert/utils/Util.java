@@ -253,4 +253,8 @@ public class Util {
     public static Drawable resourceToDrawable(int res,Context context){
         return context.getResources().getDrawable(res);
     }
+
+    public static int dip2px(Context context, float dipValue) {
+        return (int) (dipValue * context.getResources().getDisplayMetrics().density + 0.5f);
+    }
 }

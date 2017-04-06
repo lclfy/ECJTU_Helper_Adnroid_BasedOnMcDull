@@ -131,11 +131,6 @@
             android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ExamScheduleActivity"
-            android:label="@string/title_activity_exam_schedule"
-            android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SelectedCourseIDActivity"
             android:label="@string/title_activity_selected_course_id"
             android:alwaysRetainTaskState="true"

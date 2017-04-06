@@ -62,8 +62,10 @@ public class ECardActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_ecard);
         super.onCreate(savedInstanceState);
-        String eCardJson = getIntent().getStringExtra("eCardJson");
-        this.eCardBalance = getIntent().getStringExtra("eCardBalance");
+
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        String eCardJson = (String)bundle.getSerializable("eCardJson");
+        this.eCardBalance = (String)bundle.getSerializable("eCardBalance");
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(1);
         //判断SDK版本，设置沉浸状态栏
         if (Build.VERSION.SDK_INT >= 19) {
@@ -76,7 +78,10 @@ public class ECardActivity extends Activity {
         findViewById(R.id.bt_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                    finishAfterTransition();
+                else
+                    finish();
             }
         });
         init(eCardJson);

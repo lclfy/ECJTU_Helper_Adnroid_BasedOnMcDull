@@ -97,7 +97,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             TextView tvCalenderTitle = (TextView)findViewById(R.id.calenderArea_title);
             tvCalenderTitle.setTextColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
             //设置跟随主题变换颜色的图标的颜色
-            switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 0)){
+            switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 2)){
                 case 0:
                     findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_purple);
                     break;

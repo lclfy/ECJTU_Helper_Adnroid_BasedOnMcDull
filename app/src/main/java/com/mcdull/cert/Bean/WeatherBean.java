@@ -8,33 +8,48 @@ import java.util.ArrayList;
 
 public class WeatherBean {
     public ChildWeatherBean data;
-    public int status;
-    public String desc;
+    public int code;
+    public String msg;
 
     public class ChildWeatherBean {
-        public int wendu;
-        public String ganmao;
+        public String nameen;
         public String city;
-        public GrandChildWeatherBean yesterday;
-        public ArrayList<GrandChildsWeatherBean> forecast;
+        public String cityname;//*
+        public String temp;//*
+        public String tempf;
+        public String WD;//*
+        public String wde;
+        public String WS;//*
+        public String wse;
+        public String SD;
+        public String time;
+        public String weather;
+        public String weathere;
+        public String weathercode;
+        public String qy;
+        public String njd;
+        public String sd;
+        public String rain;
+        public String rain24h;
+        public String aqi;
+        public String limitnumber;
+        public String aqi_pm25;
+        public String date;
+        public GrandChildWeatherBean index;
+
 
         public class GrandChildWeatherBean {
-
-            public String high;//高温
-            public String fl;//风力
-            public String date;//星期几
-            public String low;//低温
-            public String type;//天气类型
-            public String fx;//风向
+            public GrandChildsWeatherBean gmzs;
+            public GrandChildsWeatherBean zwxzs;
+            public GrandChildsWeatherBean cyzs;
+            public GrandChildsWeatherBean xczs;
+            public GrandChildsWeatherBean ydzs;
+            public GrandChildsWeatherBean kqwrzs;
         }
 
         public class GrandChildsWeatherBean {
-            public String high;
-            public String fengli;
-            public String fengxiang;
-            public String date;
-            public String low;
-            public String type;
+            public String index;
+            public String suggest;
         }
     }
 }
