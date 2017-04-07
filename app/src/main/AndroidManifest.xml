@@ -243,11 +243,6 @@
             android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ModifyActivity"
-            android:label="@string/title_activity_modify"
-            android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SettingActivity"
             android:label="@string/title_activity_setting"
             android:alwaysRetainTaskState="true"

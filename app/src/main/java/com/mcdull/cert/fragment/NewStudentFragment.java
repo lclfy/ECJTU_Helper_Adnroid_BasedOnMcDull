@@ -538,6 +538,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     private void findECard(final boolean isMainMenu) {
         if (eCardJson.length()!=0){
             findECardWithLocalData(eCardJson);
+            return;
         }
         final String studentId = user.getString("StudentId");
         final String eCardPassword = user.getString("EcardPwd");
@@ -598,7 +599,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         }else {
             b.putSerializable("eCardBalance","——元");
         }
-
+        tv_eCardBalanceTitle = (TextView)view.findViewById(R.id.tv_balanceTitle);
+        tv_eCardConsumeTitle = (TextView)view.findViewById(R.id.tv_consumeTitle);
+        tv_eCardBalance = (TextView)view.findViewById(R.id.tv_eCardBalance);
+        tv_eCardConsume = (TextView)view.findViewById(R.id.tv_eCardConsume);
         b.putSerializable("eCardJson", json);
         ActivityOptions options = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
