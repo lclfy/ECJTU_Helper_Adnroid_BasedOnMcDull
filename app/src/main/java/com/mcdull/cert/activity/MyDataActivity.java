@@ -69,10 +69,11 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     public String studentId= "";
     public String name= "";
     public int sex = 0;
-    //用于判断是否更改了学号
+    //用于判断是否更改了学号和一卡通密码
     private SharedPreferences SP;
     private SharedPreferences.Editor edit;
     private String originalStuID = "";
+    private String originalECardNum = "";
 
     public String basicURL = "http://api1.ecjtu.org/v1/";
 
@@ -91,6 +92,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         SP = getSharedPreferences("config", MODE_PRIVATE);
         edit = SP.edit();
         originalStuID = AVUser.getCurrentUser().getString("StudentId");
+        originalECardNum = AVUser.getCurrentUser().getString("EcardPwd");
 
 
     }
@@ -321,9 +323,13 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         user.put("StudentId", studentId);
         user.put("JwcPwd", jwcPwd);
         user.put("EcardPwd", eCardPwd);
-        //判断是否更改了学号，更改的话…给个提示让主界面刷新一下
+        //判断是否更改了学号或者一卡通密码，更改的话…给个提示让主界面刷新一下
         if (!studentId.equals(originalStuID)){
             edit.putInt("stuIDChanged",1);
+            edit.commit();
+        }
+        if (!eCardPwd.equals(originalECardNum)){
+            edit.putInt("eCardPwdChanged",1);
             edit.commit();
         }
         if (bmp != null) {

@@ -138,7 +138,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         searchWeather(false);
         user = AVUser.getCurrentUser();
         //获取主界面的一卡通信息
-        findECard(true);
+        findECard(true,false);
         //获取主界面的日历信息
         findCalender(user.getString("StudentId").length() ==16);
         return view;
@@ -216,10 +216,17 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         super.onResume();
         SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
         int stuChanged = SP.getInt("stuIDChanged",0);
+        int eCardChanged = SP.getInt("eCardPwdChanged",0);
         String stuID = AVUser.getCurrentUser().getString("StudentId");
+        //如果一卡通密码改了刷一下一卡通
+        if (eCardChanged == 1){
+            SharedPreferences.Editor edit = SP.edit();
+            findECard(true,true);
+            edit.putInt("eCardPwdChanged",0);
+        }
         if (stuChanged==1){
             //如果学号改了让它刷新一下界面
-            findECard(true);
+            findECard(true,true);
             findCalender(stuID.length()==16);
             SharedPreferences.Editor edit = SP.edit();
             edit.putInt("stuIDChanged",0);
@@ -309,7 +316,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
             case R.id.bt_ecard:
             case R.id.bt_EcardBalance:
             case R.id.bt_checkEcardPaylist:
-                findECard(false);
+                findECard(false,false);
                 break;
             case R.id.bt_selectedcourse_id:
                 if (isEnabled){
@@ -535,8 +542,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         }
     };
     //一卡通查询
-    private void findECard(final boolean isMainMenu) {
-        if (eCardJson.length()!=0){
+    private void findECard(final boolean isMainMenu,boolean isRefresh) {
+        if (eCardJson.length()!=0 &&!isRefresh){
             findECardWithLocalData(eCardJson);
             return;
         }
@@ -967,14 +974,14 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                                 CalenderMap.put("classString", CalenderDetails.classString);
                                 list.add(CalenderMap);
                             }
-//                            //用一个透明栏来…有偏移
-//                            //每行课需要35，一行时候不需要
-//                            ViewGroup.LayoutParams para = view.findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
-//                            final float scale = view.getResources().getDisplayMetrics().density;
-//                            //dp换算成px
-//                            para.height=(CalenderData.data.daylist.size()-1)*(int) (40 * scale + 0.5f);//修改高度
-//
-//                            view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
+                            //用一个透明栏来…有偏移
+                            //每行课需要35，一行时候不需要
+                            ViewGroup.LayoutParams para = view.findViewById(R.id.scroll_status_bar).getLayoutParams();//获取偏移量顶置部件的布局
+                            final float scale = view.getResources().getDisplayMetrics().density;
+                            //dp换算成px
+                            para.height=(CalenderData.data.daylist.size()-2)*(int) (40 * scale + 0.5f);//修改高度
+
+                            view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
                             lvCalender = (ListView)view.findViewById(R.id.lv_calenderListView);
                             CalenderAdapter Adapter = new CalenderAdapter(getActivity(), list);
                             lvCalender.setEnabled(false);

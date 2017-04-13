@@ -125,6 +125,7 @@ public class ECardActivity extends Activity {
                         eCardMap.put("consumeCount", consumeLog.consume);
                         eCardMap.put("consumeTime", consumeLog.time);
                         eCardMap.put("consumeAddress", consumeLog.address);
+                        eCardMap.put("consumeType",consumeLog.type);
                         list.add(eCardMap);
 
 
