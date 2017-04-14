@@ -38,9 +38,9 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
 
     private void init() {
         SP = getSharedPreferences("setting", MODE_PRIVATE);
-        ((Switch) findViewById(R.id.st_push)).setChecked(SP.getBoolean("push", true));
-        ((Switch) findViewById(R.id.st_push)).setOnCheckedChangeListener(this);
-        setSwitch((Switch) findViewById(R.id.st_push), SP.getBoolean("push", true));
+//        ((Switch) findViewById(R.id.st_push)).setChecked(SP.getBoolean("push", true));
+//        ((Switch) findViewById(R.id.st_push)).setOnCheckedChangeListener(this);
+//        setSwitch((Switch) findViewById(R.id.st_push), SP.getBoolean("push", true));
         ((Switch) findViewById(R.id.st_map_type)).setChecked(SP.getBoolean("mapType", true));
         ((Switch) findViewById(R.id.st_map_type)).setOnCheckedChangeListener(this);
         setSwitch((Switch) findViewById(R.id.st_map_type), SP.getBoolean("mapType", true));
@@ -59,16 +59,16 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
         setSwitch((Switch) buttonView, isChecked);
         SharedPreferences.Editor edit = SP.edit();
         switch (buttonView.getId()) {
-            case R.id.st_push:
-                edit.putBoolean("push", isChecked);
-                if (shouldInit()) {
-                    if (isChecked) {
-                        MiPushClient.registerPush(this, APP_ID, APP_KEY);
-                    } else {
-                        MiPushClient.unregisterPush(this);
-                    }
-                }
-                break;
+//            case R.id.st_push:
+//                edit.putBoolean("push", isChecked);
+//                if (shouldInit()) {
+//                    if (isChecked) {
+//                        MiPushClient.registerPush(this, APP_ID, APP_KEY);
+//                    } else {
+//                        MiPushClient.unregisterPush(this);
+//                    }
+//                }
+//                break;
             case R.id.st_map_type:
                 edit.putBoolean("mapType", isChecked);
                 break;

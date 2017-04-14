@@ -13,7 +13,7 @@ public class ExamTimeBean {
 
     public class ChildExamTimeBean {
         public String term;
-        public ArrayList<GrandChildExamTimeBean> data;
+        public ArrayList<GrandChildExamTimeBean> exam;
         public class GrandChildExamTimeBean{
             public String kcmc;//课程名称
             public String kcxz;//课程种类（选修必修

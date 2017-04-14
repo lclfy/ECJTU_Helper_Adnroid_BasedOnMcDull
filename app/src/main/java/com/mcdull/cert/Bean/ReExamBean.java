@@ -13,7 +13,7 @@ public class ReExamBean {
 
     public class ChildReExamBean {
         public String term;
-        public ArrayList<GrandChildReExamBean> data;
+        public ArrayList<GrandChildReExamBean> bexam;
         public class GrandChildReExamBean{
             public String kcbh;
             public String kcmc;//课程名称

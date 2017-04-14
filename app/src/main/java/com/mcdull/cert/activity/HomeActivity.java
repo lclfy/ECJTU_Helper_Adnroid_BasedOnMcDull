@@ -155,11 +155,11 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 intent = new Intent(HomeActivity.this, MyDataActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.bt_join:
-                mDrawerLayout.closeDrawers();
-                intent = new Intent(HomeActivity.this, CERTActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.bt_join:
+//                mDrawerLayout.closeDrawers();
+//                intent = new Intent(HomeActivity.this, CERTActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.bt_setting:
                 mDrawerLayout.closeDrawers();
                 intent = new Intent(HomeActivity.this, SettingActivity.class);
@@ -208,7 +208,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         ((TextView) findViewById(R.id.tv_email)).setText(AVUser.getCurrentUser().getEmail());
         findViewById(R.id.bt_mydata).setOnClickListener(this);
         findViewById(R.id.bt_bug).setOnClickListener(this);
-        findViewById(R.id.bt_join).setOnClickListener(this);
+//        findViewById(R.id.bt_join).setOnClickListener(this);
         findViewById(R.id.bt_setting).setOnClickListener(this);
     }
 

@@ -101,7 +101,7 @@ public class MapFragment extends Fragment implements View.OnClickListener, Locat
             marker.remove();
 
         MarkerOptions markerOption = new MarkerOptions().anchor(0.5f, 0.5f).position(latLng).title(title)
-                .snippet("点击进入查看详情").icons(giflist).draggable(true).period(50);
+                .snippet("").icons(giflist).draggable(true).period(50);
         marker = aMap.addMarker(markerOption);
         marker.showInfoWindow();
 
@@ -215,12 +215,12 @@ public class MapFragment extends Fragment implements View.OnClickListener, Locat
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        String title = marker.getTitle();
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), DetailsActivity.class);
-        intent.putExtra("id", Location.getId());
-        intent.putExtra("type", Location.getName());
-        startActivity(intent);
+//        String title = marker.getTitle();
+//        Intent intent = new Intent();
+//        intent.setClass(getActivity(), DetailsActivity.class);
+//        intent.putExtra("id", Location.getId());
+//        intent.putExtra("type", Location.getName());
+//        startActivity(intent);
     }
 
     private void changeCamera(CameraUpdate update) {

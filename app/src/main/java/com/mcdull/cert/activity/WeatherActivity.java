@@ -320,7 +320,7 @@ public class WeatherActivity extends Activity {
 
                     if (weatherDetails.contains("转")){
                         weatherIcon2_day6 = (ImageView)findViewById(R.id.weatherIcon2_day6);
-                        weatherIcon2_day5.setVisibility(View.VISIBLE);
+                        weatherIcon2_day6.setVisibility(View.VISIBLE);
                         weatherIcon2_day6.setBackgroundResource(weatherDetails2Drawable);
                     }
 

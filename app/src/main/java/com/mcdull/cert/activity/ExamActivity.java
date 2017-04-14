@@ -55,11 +55,11 @@ public class ExamActivity extends MyTitleActivity {
         }
         List<Map<String,String>> list = new ArrayList<Map<String,String>>();
         if (ExamData != null) {
-            if (ExamData.data.data != null){
+            if (ExamData.data.exam != null){
                 //有两个data，第一个data内包含学期和其他数据，第二个data包含全部信息（json就这么写的）
-                for (int item = 0;item<ExamData.data.data.size();item++) {
+                for (int item = 0;item<ExamData.data.exam.size();item++) {
                     //获取每个补考安排
-                    ExamTimeBean.ChildExamTimeBean.GrandChildExamTimeBean ExamDetails = ExamData.data.data.get(item);
+                    ExamTimeBean.ChildExamTimeBean.GrandChildExamTimeBean ExamDetails = ExamData.data.exam.get(item);
                     //把arraylist填充成list
                     Map<String, String> ExamMap = new ArrayMap<>();
                     ExamMap.put("kcmc", ExamDetails.kcmc);
