@@ -123,10 +123,11 @@ public class CourseActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 19) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             findViewById(R.id.sb).setVisibility(View.VISIBLE);
+
         }
         //不要问我为什么设这个名字。。。有bug
-        findViewById(R.id.vt).setBackgroundColor(SP.getInt("theme",0xff009688));
         findViewById(R.id.sb).setBackgroundColor(SP.getInt("theme",0xff009688));
+        findViewById(R.id.titlebar).setBackgroundColor(SP.getInt("theme",0xff009688));
         //标题
         TextView tv_title = (TextView)findViewById(R.id.tv_title);
         tv_title.setText("全部课程");
@@ -164,8 +165,8 @@ public class CourseActivity extends Activity {
     public void onResume() {
         super.onResume();
         SharedPreferences SP = CourseActivity.this.getSharedPreferences("setting", MODE_PRIVATE);
-        findViewById(R.id.vt).setBackgroundColor(SP.getInt("theme",0xff009688));
         findViewById(R.id.sb).setBackgroundColor(SP.getInt("theme",0xff009688));
+        findViewById(R.id.titlebar).setBackgroundColor(SP.getInt("theme",0xff009688));
 //        int stuChanged = SP.getInt("stuIDChanged",0);
 //        if (stuChanged==1){
 //            //如果学号改了让它刷新一下界面

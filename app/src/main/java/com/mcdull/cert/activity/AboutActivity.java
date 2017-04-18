@@ -25,29 +25,29 @@ public class AboutActivity extends MyTitleActivity implements View.OnClickListen
 
     private void initView() {
         ((TextView) findViewById(R.id.tv_title)).setText("关于");
-        findViewById(R.id.bt_bug).setOnClickListener(this);
-        findViewById(R.id.bt_updata).setOnClickListener(this);
-        findViewById(R.id.bt_cert).setOnClickListener(this);
+//        findViewById(R.id.bt_bug).setOnClickListener(this);
+//        findViewById(R.id.bt_updata).setOnClickListener(this);
+//        findViewById(R.id.bt_cert).setOnClickListener(this);
         ((TextView) findViewById(R.id.text)).setText("2.0.0 Beta");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_bug:
-                Intent intent = new Intent(AboutActivity.this, BugFeedbackActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.bt_updata:
-                UmengUpdateAgent.forceUpdate(AboutActivity.this);
-                if (!UmengUpdateAgent.getUpdateFromPushMessage()) {
-                    Toast.makeText(this, "已是最新版", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.bt_cert:
-                intent = new Intent(AboutActivity.this, CERTActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.bt_bug:
+//                Intent intent = new Intent(AboutActivity.this, BugFeedbackActivity.class);
+//                startActivity(intent);
+//                break;
+//            case R.id.bt_updata:
+//                UmengUpdateAgent.forceUpdate(AboutActivity.this);
+//                if (!UmengUpdateAgent.getUpdateFromPushMessage()) {
+//                    Toast.makeText(this, "已是最新版", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case R.id.bt_cert:
+//                intent = new Intent(AboutActivity.this, CERTActivity.class);
+//                startActivity(intent);
+//                break;
         }
     }
 

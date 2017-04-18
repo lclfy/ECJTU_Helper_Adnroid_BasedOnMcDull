@@ -25,14 +25,14 @@ public class Application extends android.app.Application {
                 "4kt5i50mtheqpvm89x5wx4kpukob4xwx4lx37wot51o457nd",
                 "swyj402b4fe2i86uaes9d96u8bveepgfnuocvc61w5j1fd1l");
 
-        SharedPreferences SP = getSharedPreferences("config", MODE_PRIVATE);
-        if (shouldInit()) {
-            if (SP.getBoolean("push", true)) {
-                MiPushClient.registerPush(this, APP_ID, APP_KEY);
-            } else {
-                MiPushClient.unregisterPush(this);
-            }
-        }
+//        SharedPreferences SP = getSharedPreferences("config", MODE_PRIVATE);
+//        if (shouldInit()) {
+//            if (SP.getBoolean("push", true)) {
+//                MiPushClient.registerPush(this, APP_ID, APP_KEY);
+//            } else {
+//                MiPushClient.unregisterPush(this);
+//            }
+//        }
 
     }
 

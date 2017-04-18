@@ -70,7 +70,7 @@ public class RepairActivity extends MyTitleActivity implements View.OnClickListe
 
         waitWin = new ShowWaitPopupWindow(this);
 
-        init();
+//        init();
 
         initView();
 
@@ -103,12 +103,12 @@ public class RepairActivity extends MyTitleActivity implements View.OnClickListe
         mTvType4.setOnClickListener(new TypeClick());
         mTvType5.setOnClickListener(new TypeClick());
 
-        LinkedList<String> list = new LinkedList<>();
-        for (String s : orderTimeMap.keySet()) {
-            list.add(s);
-        }
-        mSnTime.setAdapter(new MySpinnerAdapter(this, list));
-        mSnTime.setOnItemSelectedListener(this);
+//        LinkedList<String> list = new LinkedList<>();
+//        for (String s : orderTimeMap.keySet()) {
+//            list.add(s);
+//        }
+//        mSnTime.setAdapter(new MySpinnerAdapter(this, list));
+//        mSnTime.setOnItemSelectedListener(this);
     }
 
     private void init() {

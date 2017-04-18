@@ -19,7 +19,8 @@ import java.util.List;
  * Created by mcdull on 15/7/10.
  */
 
-public class CourseAdapter extends BaseAdapter {
+public class
+CourseAdapter extends BaseAdapter {
 
     private Activity activity;
     private CourseBean courseList;

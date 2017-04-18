@@ -11,53 +11,66 @@ android:orientation="vertical">
     android:layout_height="25dp"
     android:visibility="gone" />
 
-<LinearLayout
-    android:background="@color/title_color"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:id="@+id/vt"
-    android:orientation="horizontal"
-    android:weightSum="1">
-
-    <Button
-        android:id="@+id/bt_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/backbt"
-        android:textColor="#ffffff"
-        android:textSize="17sp"
-        android:layout_weight="0" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginLeft="5dp"
-        android:gravity="center_vertical"
-        android:text="新用户注册"
-        android:textColor="#ffffff"
-        android:textSize="19sp" />
     <LinearLayout
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:gravity="right"
-        android:orientation="vertical">
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/bt_add_course"
-        android:gravity="center"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/titlebar"
+        android:background="@color/title_color"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
-            android:background="@drawable/ic_refresh_white_48dp"
-            android:visibility="visible" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="52dp"
+            android:layout_height="56dp"
+            android:id="@+id/bt_back"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/backbt"
+                android:textColor="#ffffff"
+                android:textSize="17sp"
+                android:layout_weight="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="新用户注册"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="56dp"
+                android:id="@+id/bt_add_course"
+                android:gravity="right"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp"
+
+                    android:background="@drawable/ic_refresh_white_48dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+
+
 
 </LinearLayout>
 

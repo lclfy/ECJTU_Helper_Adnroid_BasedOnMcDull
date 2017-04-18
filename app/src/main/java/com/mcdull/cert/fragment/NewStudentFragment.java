@@ -234,6 +234,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
             //如果是13,14级学生给个框提醒一下不能查，并且把主页的课表隐藏了
             if (stuID.length()==14){
                 view.findViewById(R.id.lv_calenderListView).setVisibility(View.GONE);
+                view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.GONE);
                 view.findViewById(R.id.scroll_status_bar).setVisibility(View.GONE);
                         /* @setIcon 设置对话框图标
                          * @setTitle 设置对话框标题
@@ -254,6 +255,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 normalDialog.show();
             }else {
                 view.findViewById(R.id.lv_calenderListView).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
 //                view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
             }
 
@@ -1062,8 +1064,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
     //下方功能按钮类
     //电脑维修
     private void getOrderState() {
-        waitWin.showWait();
-        new InternetUtil(orderStateHandle, "http://cms.ecjtu.org/index.php?s=/addon/FaultRepair/FaultRepair/api/act/getOrderInfo/student_id/" + AVUser.getCurrentUser().getString("StudentId"));
+        intent = new Intent(getActivity(), RepairActivity.class);
+        startActivity(intent);
+//        new InternetUtil(orderStateHandle, "http://cms.ecjtu.org/index.php?s=/addon/FaultRepair/FaultRepair/api/act/getOrderInfo/student_id/" + AVUser.getCurrentUser().getString("StudentId"));
     }
 
     Handler orderStateHandle = new Handler() {
