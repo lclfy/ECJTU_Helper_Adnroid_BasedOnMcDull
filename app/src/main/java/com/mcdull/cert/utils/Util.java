@@ -3,6 +3,7 @@ package com.mcdull.cert.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,7 +93,16 @@ public class Util {
         return sb.toString();
     }
 
-
+    public static String getTerm() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        int year = Integer.parseInt(dateFormat.format(new Date()));
+        dateFormat = new SimpleDateFormat("MM");
+        int month = Integer.parseInt(dateFormat.format(new Date()));
+        if (month > 7)
+            return year + ".1";
+        else
+            return (year - 1) + ".2";
+    }
 
 
     /**
@@ -230,6 +241,7 @@ public class Util {
 
     /**
      * Drawable转bitmap
+     *
      * @param drawable
      * @return
      */
@@ -246,15 +258,23 @@ public class Util {
 
     /**
      * Resource转Drawable
+     *
      * @param res
      * @param context
      * @returnR
      */
-    public static Drawable resourceToDrawable(int res,Context context){
+    public static Drawable resourceToDrawable(int res, Context context) {
         return context.getResources().getDrawable(res);
     }
 
-    public static int dip2px(Context context, float dipValue) {
-        return (int) (dipValue * context.getResources().getDisplayMetrics().density + 0.5f);
+    /**
+     * dp转成px
+     *
+     * @param dipValue
+     * @return
+     */
+    public static int dip2px(float dipValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 }

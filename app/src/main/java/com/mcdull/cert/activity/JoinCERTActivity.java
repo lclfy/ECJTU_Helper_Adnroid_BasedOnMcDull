@@ -1,25 +1,20 @@
 package com.mcdull.cert.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.SelectAdapter;
 import com.mcdull.cert.anim.ShakeAnim;
@@ -29,7 +24,7 @@ import com.mcdull.cert.utils.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JoinCERTActivity extends MyTitleActivity implements View.OnClickListener {
+public class JoinCERTActivity extends BaseThemeActivity implements View.OnClickListener {
 
     private EditText mEtName;
     private EditText mEtPhone;
@@ -41,9 +36,8 @@ public class JoinCERTActivity extends MyTitleActivity implements View.OnClickLis
     private ShowWaitPopupWindow waitWin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_join_cert);
-        super.onCreate(savedInstanceState);
         initView();
 
     }

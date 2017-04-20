@@ -46,7 +46,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         //小米推送
         <receiver
             android:name="com.xiaomi.push.service.receivers.PingReceiver"
@@ -56,11 +55,29 @@
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
         </receiver>
+        //腾讯QQ登录
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104722411" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         //下载器
-        <receiver android:name="com.mcdull.cert.receiver.DownloadReceiver" >
+        <receiver android:name=".receiver.DownloadReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
-                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"/>
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
             </intent-filter>
         </receiver>
         <receiver
@@ -91,24 +108,6 @@
         <service android:name="com.xiaomi.mipush.sdk.MessageHandleService" />
         //end
 
-        //友盟自动更新
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="5539b33667e58e39770036bd" />
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="Channel ID" />
-
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" />
-
-        <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        //end
-
         //高德地图
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -116,8 +115,8 @@
         //end
         <activity
             android:name=".activity.LoginRegisterActivity"
-            android:label="@string/app_name"
             android:alwaysRetainTaskState="true"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -127,155 +126,144 @@
         </activity>
         <activity
             android:name=".activity.ScoreActivity"
-            android:label="@string/title_activity_score"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_score"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SelectedCourseIDActivity"
-            android:label="@string/title_activity_selected_course_id"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_selected_course_id"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ExamActivity"
-            android:label="@string/title_activity_exam"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_exam"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ReExamActivity"
-            android:label="@string/title_activity_re_exam"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_re_exam"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.ECardActivity"
-            android:label="@string/title_activity_ecard"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_ecard"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.CallStudentInClassActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/title_activity_ecard"
-            android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.CetSearchScheduleActivity"
-            android:label="@string/title_activity_cetsearch_schedule"
-            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CetSearchActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/title_activity_cet_search"
-            android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.LibraryScheduleActivity"
-            android:label="@string/title_activity_library_schedule"
-            android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.LibraryActivity"
-            android:label="@string/title_activity_library"
-            android:alwaysRetainTaskState="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CourseActivity"
-            android:label="@string/title_activity_import_course"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_import_course"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MyDataActivity"
-            android:label="@string/title_activity_my_data"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_my_data"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AboutActivity"
-            android:label="@string/title_activity_about"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_about"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MapActivity"
-            android:label="@string/title_activity_map"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_map"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DetailsActivity"
-            android:label="@string/title_activity_details"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_details"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BugFeedbackActivity"
-            android:label="@string/title_activity_bug_feedback"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_bug_feedback"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.EnrollActivity"
-            android:label="@string/title_activity_enroll"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_enroll"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ShowEnrollActivity"
-            android:label="@string/title_activity_show_enroll"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_show_enroll"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TripActivity"
-            android:label="@string/title_activity_trip"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_trip"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CERTActivity"
-            android:label="@string/title_activity_cert"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_cert"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.JoinCERTActivity"
-            android:label="@string/title_activity_join_cert"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_join_cert"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
-            android:label="@string/title_activity_home"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_home"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RepairActivity"
-            android:label="@string/title_activity_repair"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_repair"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ModifyActivity"
+            android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_modify"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SettingActivity"
-            android:label="@string/title_activity_setting"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_setting"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ThemeActivity"
-            android:label="@string/title_activity_theme"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_theme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RepairSucActivity"
-            android:label="@string/title_activity_repair_suc"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_repair_suc"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SignInJWCActivity"
-            android:label="@string/title_activity_sign"
             android:alwaysRetainTaskState="true"
+            android:label="@string/title_activity_sign"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.WeatherActivity"
-            android:label="@string/title_activity_weather"
             android:alwaysRetainTaskState="true"
-            android:theme="@style/AppTheme"/>
-
+            android:label="@string/title_activity_weather"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.WeatherSearchActivity"
-            android:label="@string/title_activity_weathersearch"
             android:alwaysRetainTaskState="true"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/title_activity_weathersearch"
+            android:theme="@style/AppTheme" />
 
+        <service
+            android:name=".service.CourseIntentService"
+            android:exported="false"></service>
     </application>
-
-
 
 </manifest>

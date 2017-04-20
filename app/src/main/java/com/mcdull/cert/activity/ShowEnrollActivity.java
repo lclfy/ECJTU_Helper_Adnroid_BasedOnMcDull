@@ -1,17 +1,12 @@
 package com.mcdull.cert.activity;
 
-import android.app.Activity;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.InternetUtil;
@@ -22,15 +17,14 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-public class ShowEnrollActivity extends MyTitleActivity {
+public class ShowEnrollActivity extends BaseThemeActivity {
 
     private ShowWaitPopupWindow showWaitPopupWindow;
     private boolean isGetImg = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_show_enroll);
-        super.onCreate(savedInstanceState);
 
         showWaitPopupWindow = new ShowWaitPopupWindow(this);
         String json = getIntent().getStringExtra("json");

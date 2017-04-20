@@ -57,11 +57,8 @@ public class ECardAdapter extends BaseAdapter {
 
         TextView tv_consumeAddress = (TextView) view.findViewById(R.id.tv_FirstLine);
         Map<String, String> map = list.get(position);
-        //地址(银行充值等没有地址的地方，使用type作为消费名称)
+        //地址
         String consumeAddress = map.get("consumeAddress");
-        if(consumeAddress.length()==0){
-            consumeAddress = map.get("consumeType");
-        }
         tv_consumeAddress.setText(consumeAddress);
         //通过地址找图片
         int addressImageDrawable = 0;

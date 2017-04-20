@@ -1,6 +1,4 @@
-package com.mcdull.cert.Bean;
-
-import java.util.ArrayList;
+package com.mcdull.cert.bean;
 
 /**
  * Created by 75800 on 2017/3/24.

@@ -5,26 +5,26 @@ android {
         debug {
         }
         config {
-            keyAlias 'lu935226769'
-            keyPassword 'Lu935226769'
-            storeFile file('/Users/Begin/Documents/Android/key')
-            storePassword 'Lu935226769'
+            keyAlias 'hjxyt'
+            keyPassword 'Ecjtu,CERT!!@#'
+            storeFile file('C:/Users/75800/hjxyt-hjxyt/hjxyt.jks')
+            storePassword 'Ecjtu,CERT!!@#'
         }
     }
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.mcdull.cert"
-        minSdkVersion 15
-        targetSdkVersion 17
+        minSdkVersion 16
+        targetSdkVersion 25
         versionName "1.4.5"//and这个
         versionCode 24//更新的话要修改这个。
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            proguardFile 'C:/Users/75800/hjxyt/app/proguard.cfg'
+            proguardFile 'proguard.cfg'
             signingConfig signingConfigs.config
             pseudoLocalesEnabled true
         }
@@ -50,33 +50,24 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     //volley是一个网络请求框架
     compile 'com.mcxiaoke.volley:library:1.0.19'
-
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.android.support:support-v4:25.3.1'
-    //avoscloud-sdk 为 LeanCloud基础包
-    compile 'cn.leancloud.android:avoscloud-sdk:v3.3+'
-    //avoscloud-push 与 Java-WebSocket 为推送与IM需要的包
-    compile 'cn.leancloud.android:avoscloud-push:v3.3+@aar'
-    compile 'cn.leancloud.android:Java-WebSocket:1.2.0-leancloud'
-    //avoscloud-statistics 为 LeanCloud 统计包
-    compile 'cn.leancloud.android:avoscloud-statistics:v3.3+@aar'
-    //avoscloud-feedback 为 LeanCloud 用户反馈包
-    compile 'cn.leancloud.android:avoscloud-feedback:v3.3+@aar'
-    //avoscloud-sns 为 LeanCloud 第三方登陆包
-    compile 'cn.leancloud.android:avoscloud-sns:v3.3+@aar'
-    compile 'cn.leancloud.android:qq-sdk:1.6.1-leancloud'
-    //avoscloud-search 为 LeanCloud 应用内搜索包
-    compile 'cn.leancloud.android:avoscloud-search:v3.3+@aar'
-    compile files('libs/umeng-update-v2.6.0.1.jar')
+    compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
+    // LeanCloud 统计包
+    compile 'cn.leancloud.android:avoscloud-statistics:v3.+'
+    // LeanCloud 基础包
+    // LeanCloud 用户反馈包
+    compile 'cn.leancloud.android:avoscloud-feedback:v3.+@aar'
     compile files('libs/AMap_Services_V2.4.0.jar')
     compile files('libs/Android_Location_V1.3.2.jar')
     compile files('libs/Android_Map_V2.5.0.jar')
-    compile files('libs/android-smart-image-view-1.0.0.jar')
-    //    compile project(':SlidingMenu/library')
-    compile files('libs/com.umeng.message.lib_v2.4.1.jar')
     //glide图片加载
-    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     //Material Design Support包
     compile 'com.android.support:design:25.3.1'
-    //Gson:Java to Json conversion
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile files('libs/open_sdk_r5788_lite.jar')
 }

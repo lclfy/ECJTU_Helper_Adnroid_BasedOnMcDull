@@ -1,4 +1,4 @@
-package com.mcdull.cert.View;
+package com.mcdull.cert.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

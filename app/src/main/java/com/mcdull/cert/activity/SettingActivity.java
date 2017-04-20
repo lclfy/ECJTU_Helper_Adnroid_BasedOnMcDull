@@ -11,7 +11,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.avos.avoscloud.AVUser;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.HJXYT;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.CourseUtil;
 import com.mcdull.cert.utils.ShowSureDialog;
@@ -19,8 +20,9 @@ import com.mcdull.cert.utils.Util;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
 import java.util.List;
+import java.util.Set;
 
-public class SettingActivity extends MyTitleActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class SettingActivity extends BaseThemeActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     private SharedPreferences SP;
     private ShowSureDialog sureDialog;
     private Intent intent;
@@ -30,17 +32,16 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
     public static final String APP_KEY = "5961736867912";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_setting);
-        super.onCreate(savedInstanceState);
         init();
     }
 
     private void init() {
         SP = getSharedPreferences("setting", MODE_PRIVATE);
-//        ((Switch) findViewById(R.id.st_push)).setChecked(SP.getBoolean("push", true));
-//        ((Switch) findViewById(R.id.st_push)).setOnCheckedChangeListener(this);
-//        setSwitch((Switch) findViewById(R.id.st_push), SP.getBoolean("push", true));
+        ((Switch) findViewById(R.id.st_push)).setChecked(SP.getBoolean("push", true));
+        ((Switch) findViewById(R.id.st_push)).setOnCheckedChangeListener(this);
+        setSwitch((Switch) findViewById(R.id.st_push), SP.getBoolean("push", true));
         ((Switch) findViewById(R.id.st_map_type)).setChecked(SP.getBoolean("mapType", true));
         ((Switch) findViewById(R.id.st_map_type)).setOnCheckedChangeListener(this);
         setSwitch((Switch) findViewById(R.id.st_map_type), SP.getBoolean("mapType", true));
@@ -59,16 +60,16 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
         setSwitch((Switch) buttonView, isChecked);
         SharedPreferences.Editor edit = SP.edit();
         switch (buttonView.getId()) {
-//            case R.id.st_push:
-//                edit.putBoolean("push", isChecked);
-//                if (shouldInit()) {
-//                    if (isChecked) {
-//                        MiPushClient.registerPush(this, APP_ID, APP_KEY);
-//                    } else {
-//                        MiPushClient.unregisterPush(this);
-//                    }
-//                }
-//                break;
+            case R.id.st_push:
+                edit.putBoolean("push", isChecked);
+                if (shouldInit()) {
+                    if (isChecked) {
+                        MiPushClient.registerPush(this, APP_ID, APP_KEY);
+                    } else {
+                        MiPushClient.unregisterPush(this);
+                    }
+                }
+                break;
             case R.id.st_map_type:
                 edit.putBoolean("mapType", isChecked);
                 break;
@@ -122,37 +123,8 @@ public class SettingActivity extends MyTitleActivity implements CompoundButton.O
         sureDialog = new ShowSureDialog(this, "退出登录", new ShowSureDialog.CallBack() {
             @Override
             public void CallBack() {
-
-                sureDialog.dismiss();
-                Intent intent = new Intent(SettingActivity.this, LoginRegisterActivity.class);
-                intent.putExtra("back", true);
-                intent.putExtra("userName", AVUser.getCurrentUser().getEmail());
-                AVUser.getCurrentUser().logOut();
-                SharedPreferences SP = getSharedPreferences("config", MODE_PRIVATE);
-                SharedPreferences.Editor edit = SP.edit();
-                edit.remove("CourseJson");
-                edit.remove("time");
-                edit.remove("mapFirst");
-                edit.remove("Life");
-                edit.remove("Play");
-                edit.remove("Other");
-                edit.remove("Study");
-                edit.remove("Bei");
-                edit.remove("Stay");
-                edit.remove("Nan");
-                edit.remove("Icon");
-                edit.remove("isCourse");
-                edit.apply();
-                Util.removeIcon(SettingActivity.this);
-                CourseUtil.removeAll(SettingActivity.this);
-                startActivity(intent);
+                AVUser.logOut();
                 finish();
-
-                intent = new Intent();
-                intent.setAction("com.mcdull.cert.Home");
-                intent.putExtra("type", 2);
-                SettingActivity.this.sendBroadcast(intent);
-
             }
         });
         sureDialog.showDialog();

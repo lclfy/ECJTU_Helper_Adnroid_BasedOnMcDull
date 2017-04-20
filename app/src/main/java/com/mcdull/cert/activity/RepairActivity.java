@@ -14,21 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.MySpinnerAdapter;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.Util;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,13 +31,12 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class RepairActivity extends MyTitleActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class RepairActivity extends BaseThemeActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private String orderTimeJson;
     private TextView mTvType0;
     private TextView mTvType1;
@@ -64,13 +56,12 @@ public class RepairActivity extends MyTitleActivity implements View.OnClickListe
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_repair);
-        super.onCreate(savedInstanceState);
 
         waitWin = new ShowWaitPopupWindow(this);
 
-//        init();
+        init();
 
         initView();
 
@@ -103,12 +94,12 @@ public class RepairActivity extends MyTitleActivity implements View.OnClickListe
         mTvType4.setOnClickListener(new TypeClick());
         mTvType5.setOnClickListener(new TypeClick());
 
-//        LinkedList<String> list = new LinkedList<>();
-//        for (String s : orderTimeMap.keySet()) {
-//            list.add(s);
-//        }
-//        mSnTime.setAdapter(new MySpinnerAdapter(this, list));
-//        mSnTime.setOnItemSelectedListener(this);
+        LinkedList<String> list = new LinkedList<>();
+        for (String s : orderTimeMap.keySet()) {
+            list.add(s);
+        }
+        mSnTime.setAdapter(new MySpinnerAdapter(this, list));
+        mSnTime.setOnItemSelectedListener(this);
     }
 
     private void init() {

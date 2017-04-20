@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="25dip"
     android:layout_marginTop="2dip"
-    android:background="@drawable/ic_course_bg_cheng" >
+    android:background="@drawable/ic_course_bg_1" >
 
     <TextView
         android:textColor="#FFFFFF"

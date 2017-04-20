@@ -1,70 +1,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e8e6d1"
-    android:id="@+id/main_activity_layout"
     tools:context=".activity.LoginRegisterActivity">
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/qd" />
 
-    <ImageView
-        android:id="@+id/ivLogin"
+    <!--<ImageView-->
+    <!--android:id="@+id/ivLogin"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/qd5"-->
+    <!--android:contentDescription="注册登录图" />-->
+
+    <com.mcdull.cert.view.SlideView
+        android:id="@+id/slide_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/qd5"
-        android:contentDescription="注册登录图" />
-
-    <com.mcdull.cert.View.MyViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="50dp">-->
-
-        <!--<View-->
-            <!--android:id="@+id/view1"-->
-            <!--android:layout_width="9dp"-->
-            <!--android:layout_height="9dp"-->
-            <!--android:background="@drawable/circle" />-->
-
-        <!--<View-->
-            <!--android:id="@+id/view2"-->
-            <!--android:layout_width="9dp"-->
-            <!--android:layout_height="9dp"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:background="@drawable/circletm" />-->
-
-        <!--<View-->
-            <!--android:id="@+id/view3"-->
-            <!--android:layout_width="9dp"-->
-            <!--android:layout_height="9dp"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:background="@drawable/circletm" />-->
-
-        <!--<View-->
-            <!--android:id="@+id/view4"-->
-            <!--android:layout_width="9dp"-->
-            <!--android:layout_height="9dp"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:background="@drawable/circletm" />-->
-
-        <!--<View-->
-            <!--android:id="@+id/view5"-->
-            <!--android:layout_width="9dp"-->
-            <!--android:layout_height="9dp"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:background="@drawable/circletm" />-->
-
-    <!--</LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/input"
@@ -75,122 +34,46 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <LinearLayout
-            android:id="@+id/login"
+        <EditText
+            android:id="@+id/et_email_d"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#0000"
+            android:hint="学号"
+            android:inputType="number"
+            android:maxLength="16"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_email_d"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#0000"
-                android:hint="电子邮箱"
-                android:inputType="text"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:background="#82000000" />
-
-            <EditText
-                android:id="@+id/et_password_d"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#0000"
-                android:hint="密码"
-                android:inputType="textPassword"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:background="#82000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sign"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:background="#82000000" />
 
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#0000"
-                android:hint="电子邮箱"
-                android:inputType="text"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:textSize="16sp" />
+        <EditText
+            android:id="@+id/et_password_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#0000"
+            android:hint="教务系统密码"
+            android:inputType="textPassword"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:textSize="16sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:background="#82000000" />
-
-            <EditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#0000"
-                android:hint="密码"
-                android:inputType="textPassword"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:background="#82000000" />
-
-            <EditText
-                android:id="@+id/et_password2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#0000"
-                android:hint="确认密码"
-                android:inputType="textPassword"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="@dimen/edit_margin"
-                android:layout_marginRight="@dimen/edit_margin"
-                android:background="#82000000" />
-        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/edit_margin"
+            android:layout_marginRight="@dimen/edit_margin"
+            android:background="#82000000" />
 
         <Button
             android:id="@+id/bt_sure"
@@ -204,12 +87,12 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/bt_type"
+            android:id="@+id/bt_qq_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="注册新用户"
+            android:layout_marginTop="15dp"
+            android:text="QQ登录"
             android:textColor="@color/blue" />
 
         <TextView
@@ -233,4 +116,5 @@
         android:layout_marginBottom="10dp"
         android:text="Copyright© 2015-2017 华东交大计算机紧急响应组. All Rights Reserved"
         android:textSize="@dimen/main_text_size" />
+
 </RelativeLayout>

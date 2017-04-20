@@ -1,6 +1,5 @@
 package com.mcdull.cert.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,24 +8,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class RepairSucActivity extends MyTitleActivity {
+public class RepairSucActivity extends BaseThemeActivity {
 
     private TextView myRepairTime;
     private String time;
     private ShowWaitPopupWindow waitWin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_repair_suc);
-        super.onCreate(savedInstanceState);
 
         time = getIntent().getStringExtra("time");
         waitWin = new ShowWaitPopupWindow(this);

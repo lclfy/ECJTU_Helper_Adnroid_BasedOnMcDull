@@ -1,4 +1,4 @@
-package com.mcdull.cert.Bean;
+package com.mcdull.cert.bean;
 
 import java.util.ArrayList;
 

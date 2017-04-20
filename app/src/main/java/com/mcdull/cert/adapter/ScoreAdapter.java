@@ -98,7 +98,7 @@ public class ScoreAdapter extends BaseAdapter {
 					MainImage.setBackgroundResource(R.drawable.ic_img_examscore);
 				}
 			}
-			tv_Right.setText("补考："+item.get("ckcj"));
+			tv_Right.setText("补考："+item.get("cxcj"));
 		}else{
 			//重修
 			//试试考试成绩是不是分数，是的话按60换图

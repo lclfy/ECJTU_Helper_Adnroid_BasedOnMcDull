@@ -1,13 +1,11 @@
 package com.mcdull.cert.activity;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -20,25 +18,24 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 
 import java.util.List;
 
-public class TripActivity extends MyTitleActivity {
+public class TripActivity extends BaseThemeActivity {
 
     private WebView webView;
     private ShowWaitPopupWindow waitWin;
     private boolean isGetImg = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_trip);
-        super.onCreate(savedInstanceState);
 
         //判断SDK版本，设置沉浸状态栏
-        if (Build.VERSION.SDK_INT>=19) {
+        if (Build.VERSION.SDK_INT >= 19) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             findViewById(R.id.status_bar).setVisibility(View.VISIBLE);
         }
@@ -92,7 +89,7 @@ public class TripActivity extends MyTitleActivity {
                     }
                 }
             });
-        }else {
+        } else {
             webView = (WebView) findViewById(R.id.webview);
             //启用支持javascript
             WebSettings settings = webView.getSettings();
@@ -140,7 +137,7 @@ public class TripActivity extends MyTitleActivity {
             webView.destroy();
             webView = null;
         }
-        if (waitWin!=null){
+        if (waitWin != null) {
             waitWin.dismissWait();
             waitWin = null;
         }

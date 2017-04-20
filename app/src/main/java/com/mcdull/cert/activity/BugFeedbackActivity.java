@@ -11,18 +11,16 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 
-public class BugFeedbackActivity extends MyTitleActivity implements View.OnClickListener {
+public class BugFeedbackActivity extends BaseThemeActivity implements View.OnClickListener {
 
     private EditText mEditText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_bug_feedback);
-
-        super.onCreate(savedInstanceState);
 
         ((TextView) findViewById(R.id.tv_title)).setText("意见建议");
         findViewById(R.id.bt_feed).setOnClickListener(this);

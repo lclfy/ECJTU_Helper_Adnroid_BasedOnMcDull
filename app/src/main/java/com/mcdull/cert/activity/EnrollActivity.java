@@ -16,7 +16,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.anim.ShakeAnim;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Map;
 
-public class EnrollActivity extends MyTitleActivity implements View.OnClickListener {
+public class EnrollActivity extends BaseThemeActivity implements View.OnClickListener {
 
     private TextInputLayout mEtZKZ;
     private TextInputLayout mEtName;
@@ -37,9 +37,8 @@ public class EnrollActivity extends MyTitleActivity implements View.OnClickListe
     private ShowWaitPopupWindow waitWin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_enroll);
-        super.onCreate(savedInstanceState);
 
         initView();
 

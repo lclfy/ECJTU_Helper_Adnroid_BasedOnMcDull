@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginRegisterActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <com.mcdull.cert.view.SlideView
+        android:id="@+id/slide_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -39,47 +39,5 @@
         android:layout_marginBottom="@dimen/join_margin_bottom"
         android:layout_marginRight="@dimen/join_margin_right" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp">
-
-        <View
-            android:id="@+id/view1"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:background="@drawable/circle" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circletm" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circletm" />
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circletm" />
-
-        <View
-            android:id="@+id/view5"
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circletm" />
-
-    </LinearLayout>
 
 </RelativeLayout>

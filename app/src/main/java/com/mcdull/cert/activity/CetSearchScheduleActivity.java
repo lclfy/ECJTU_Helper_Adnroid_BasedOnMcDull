@@ -20,14 +20,14 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.anim.ShakeAnim;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.Util;
 
-public class CetSearchScheduleActivity extends MyTitleActivity implements
+public class CetSearchScheduleActivity extends BaseThemeActivity implements
         OnClickListener {
 
     private TextView tvQueryTitle;
@@ -70,9 +70,8 @@ public class CetSearchScheduleActivity extends MyTitleActivity implements
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_cetsearch_schedule);
-        super.onCreate(savedInstanceState);
 
         initView();
 

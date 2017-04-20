@@ -1,29 +1,17 @@
 package com.mcdull.cert.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.util.ArrayMap;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
-import com.mcdull.cert.Bean.CETBean;
-import com.mcdull.cert.Bean.ExamTimeBean;
+import com.mcdull.cert.bean.CETBean;
 import com.mcdull.cert.R;
-import com.mcdull.cert.adapter.ExamAdapter;
+import com.mcdull.cert.activity.base.BaseActivity;
 
-public class CetSearchActivity extends Activity {
+public class CetSearchActivity extends BaseActivity {
 
     private TextView tv_cetName;
     private TextView tv_cetSchool;

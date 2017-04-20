@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     android:orientation="vertical">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="#F5F5F5"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tv_tooltip_title"
             android:layout_width="wrap_content"
@@ -25,20 +26,20 @@
             android:textSize="18dp" />
 
     </LinearLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="62dp"
         android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_tooltip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="10dp"
-        android:ems="10" />
+        <EditText
+            android:id="@+id/et_tooltip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="10dp"
+            android:ems="10" />
 
     </LinearLayout>
 
@@ -46,32 +47,34 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="right"
         android:background="#F5F5F5"
+        android:gravity="right"
         android:orientation="horizontal">
 
 
-        <Button
+        <TextView
             android:id="@+id/bt_no"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="8dp"
-            android:background="#F5F5F5"
-            android:textColor="@color/green"
-            android:text="取消" />
-        <Button
+            android:background="#0000"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="取消"
+            android:textColor="@color/green" />
+
+        <TextView
             android:id="@+id/bt_yes"
             android:layout_width="wrap_content"
             android:layout_height="52dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/green"
-            android:background="#F5F5F5"
-            android:text="确定" />
+            android:layout_marginRight="8dp"
+            android:background="#0000"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="确定"
+            android:textColor="@color/green" />
 
     </LinearLayout>
 

@@ -1,49 +1,61 @@
 package com.mcdull.cert.fragment;
 
-import android.app.Activity;
-import android.content.Context;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.TabLayout;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.util.ArrayMap;
-import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
-import com.bumptech.glide.load.engine.Resource;
-import com.mcdull.cert.Bean.CourseBean;
+import com.mcdull.cert.bean.CalenderBean;
+import com.mcdull.cert.bean.ECardBean;
+import com.mcdull.cert.bean.ECardOwnerBean;
+import com.mcdull.cert.HJXYT;
 import com.mcdull.cert.R;
-//import com.mcdull.cert.activity.ImportCourseActivity;
-import com.mcdull.cert.activity.MyDataActivity;
-import com.mcdull.cert.utils.GetIcon;
-import com.mcdull.cert.utils.ShowWaitPopupWindow;
-import com.mcdull.cert.utils.InternetUtil;
+import com.mcdull.cert.activity.CallStudentInClassActivity;
+import com.mcdull.cert.activity.CetSearchActivity;
+import com.mcdull.cert.activity.CourseActivity;
+import com.mcdull.cert.activity.ECardActivity;
+import com.mcdull.cert.activity.ExamActivity;
+import com.mcdull.cert.activity.HomeActivity;
+import com.mcdull.cert.activity.MapActivity;
+import com.mcdull.cert.activity.ReExamActivity;
+import com.mcdull.cert.activity.RepairSucActivity;
+import com.mcdull.cert.activity.ScoreActivity;
+import com.mcdull.cert.activity.SelectedCourseIDActivity;
+import com.mcdull.cert.activity.TripActivity;
+import com.mcdull.cert.activity.WeatherActivity;
+import com.mcdull.cert.adapter.CalenderAdapter;
+import com.mcdull.cert.utils.IconHelper;
 import com.mcdull.cert.utils.Util;
-import com.umeng.update.UmengUpdateAgent;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -53,81 +65,53 @@ import static android.content.Context.MODE_PRIVATE;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private View view;
-    private ViewPager vpMain;//是界面tab选择器
-    private List<Fragment> fragments;
-    private String studentId;
-    private PopupWindow popupWindow;
     //课表刷新按钮
-    private ShowWaitPopupWindow waitWin;
     private ImageView mIvTX;
-    private TabLayout mTabLayout;
-    private Activity activity;
+    //饭卡的两个TextView
+    private TextView mTvECardConsume;
+    private TextView mTvECardBalance;
+    //日历的TextView
+    private TextView mTvCalenderTitle;
+    //日历的listview
+    private ListView mLvCalender;
+    private TextView mTvAllCourse;
+
+    private com.mcdull.cert.bean.ECardBean eCardBean;
+    private com.mcdull.cert.bean.ECardOwnerBean eCardOwnerBean;
+    public CalenderBean calenderBean;
+
+    private boolean refresh = false;
+    private AVUser user;
+    private boolean isNextDay = false;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private int count = 0;
+    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.activity_query, container, false);
 
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        UmengUpdateAgent.update(getActivity());
-
-        waitWin = new ShowWaitPopupWindow(getActivity());
-        String studentId = AVUser.getCurrentUser().getString("StudentId");
-
         initView();
 
-        init();
+        mIvTX.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(Util.resourceToDrawable(R.drawable.ic_account_circle_color2_48dp, getActivity()))));
 
-        initIv();
-//        if (studentId == null) {
-//            vpMain.setCurrentItem(0);
-//        } else {
-//            if (getActivity().getSharedPreferences("setting", MODE_PRIVATE).getBoolean("homeType", false)) {
-//                vpMain.setCurrentItem(1);
-//            } else {
-//                vpMain.setCurrentItem(0);
-//            }
-//
-//        }
-        vpMain.setCurrentItem(0);
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_account_circle_color2_48dp);
-        mIvTX.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(drawable)));
-        drawable = null;
-
-        new GetIcon(getActivity(), new GetIcon.GetIconCallBack() {
-            @Override
-            public void done(Bitmap bitmap) {
-                if (bitmap != null) {
-                    mIvTX.setImageBitmap(Util.toRoundBitmap(bitmap));
-                }
-            }
-        });
-
-        if (studentId != null) {
-            SharedPreferences SP = getActivity().getSharedPreferences("myInfo", MODE_PRIVATE);
-            if (SP.getString("name", null) == null) {
-
-                Map<String, String> map = new ArrayMap<>();
-                map.put("studentId", studentId);//设置get参数
-                String url = "http://luapi.sinaapp.com/getStudentInfo.php";//设置url
-                new InternetUtil(infoHandler, url, map);//传入参数
-            }
-        }
+//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.content_framelayout, new NewStudentFragment());
+//        fragmentTransaction.commit();
 
         return view;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
-        //换主题
+        //初始化界面数据
+        if (AVUser.getCurrentUser() != null)
+            initData();
         SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
-        getActivity().findViewById(R.id.view_home_title).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
-        getActivity().findViewById(R.id.tab).setBackgroundColor(getActivity().getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
-
 
         if (SP.getBoolean("Icon", true)) {
-            new GetIcon(getActivity(), new GetIcon.GetIconCallBack() {
+            IconHelper.getIcon(getActivity(), new IconHelper.GetIconCallBack() {
                 @Override
                 public void done(Bitmap bitmap) {
                     if (bitmap != null) {
@@ -136,197 +120,275 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
             });
         }
-        //mark
-        int num = vpMain.getCurrentItem();
-        this.studentId = AVUser.getCurrentUser().getString("StudentId");
-        if (num == 1 || num == 2) {
-            if (TextUtils.isEmpty(studentId)) {
-                //提示新生输入学号、
-                showEditIdWin();
-            }
-        }
     }
 
-    private void init() {
-
-        this.studentId = AVUser.getCurrentUser().getString("StudentId");
-
-//        CourseFragment course = new CourseFragment();
-       // QueryFragment query = new QueryFragment();
-        NewStudentFragment newStudent = new NewStudentFragment();
-
-        fragments = new ArrayList<>();
-        fragments.add(newStudent);
-        //fragments.add(query);
-//        fragments.add(course);
-
-        FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getActivity().getSupportFragmentManager()) {
-            String[] titles = {""};
-
-            @Override
-            public Fragment getItem(int position) {
-                return fragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return fragments.size();
-            }
-
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-                super.destroyItem(container, position, object);
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return titles[position];
-            }
-        };
-
-        vpMain.setOffscreenPageLimit(5);
-        vpMain.setAdapter(adapter);
-        vpMain.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        break;
-//                    case 1:
-//                        initIv();
-//                        if (TextUtils.isEmpty(studentId)) {
-//                            //提示新生输入学号、
-//                            showEditIdWin();
-//                        }
-//                        break;
-//                    case 1:
-//                        initIv();
-//                        view.findViewById(R.id.bt_add_course).setVisibility(View.VISIBLE);
-//                        if (TextUtils.isEmpty(studentId)) {
-//                            //提示新生输入学号、
-//                            showEditIdWin();
-//                        }
-//                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        mTabLayout.setTabsFromPagerAdapter(adapter);
-        mTabLayout.setupWithViewPager(vpMain);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
-    private void showEditIdWin() {
-        //未填写学号时展示的窗口
-        Rect outRect = new Rect();
-        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
-        View view = View.inflate(getActivity(), R.layout.win_prompt_id, null);
-        view.findViewById(R.id.other).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vpMain.setCurrentItem(0);
-                popupWindow.dismiss();
-            }
-        });
-        view.findViewById(R.id.bt_details).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //进入个人信息页
-                popupWindow.dismiss();
-                Intent intent = new Intent(getActivity(), MyDataActivity.class);
-                startActivity(intent);
-            }
-        });
-        popupWindow = new PopupWindow(view, outRect.width(), outRect.height());
-        popupWindow.showAsDropDown(View.inflate(getActivity(), R.layout.activity_query, null), 0, outRect.top);
+    private void initData() {
+        this.user = AVUser.getCurrentUser();
+        initECardData();
+        initCalenderData();
     }
-
-    private void initIv() {
-//        view.findViewById(R.id.bt_add_course).setVisibility(View.GONE);
-    }
-
 
     private void initView() {
-//        view.findViewById(R.id.bt_add_course).setOnClickListener(this);
         view.findViewById(R.id.bt_me).setOnClickListener(this);
-        vpMain = (ViewPager) view.findViewById(R.id.vp_main);
         mIvTX = (ImageView) view.findViewById(R.id.iv_tx);
-        mTabLayout = (TabLayout) view.findViewById(R.id.tab);
+        mTvECardConsume = (TextView) view.findViewById(R.id.tv_eCardConsume);
+        mTvECardBalance = (TextView) view.findViewById(R.id.tv_eCardBalance);
+        mTvCalenderTitle = (TextView) view.findViewById(R.id.calenderArea_title);
+        mLvCalender = (ListView) view.findViewById(R.id.lv_calenderListView);
+        mTvAllCourse = (TextView) view.findViewById(R.id.tv_allCourseBtn);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+
+        view.findViewById(R.id.bt_EcardBalance).setOnClickListener(this);
+        view.findViewById(R.id.bt_ecard).setOnClickListener(this);
+        view.findViewById(R.id.bt_checkEcardPaylist).setOnClickListener(this);
+        view.findViewById(R.id.bt_map).setOnClickListener(this);
+        view.findViewById(R.id.bt_examScore).setOnClickListener(this);
+        view.findViewById(R.id.bt_reExam).setOnClickListener(this);
+        view.findViewById(R.id.bt_examTime).setOnClickListener(this);
+        view.findViewById(R.id.bt_pcRepair).setOnClickListener(this);
+        view.findViewById(R.id.bt_cetSearch).setOnClickListener(this);
+        view.findViewById(R.id.bt_backgroundRepair).setOnClickListener(this);
+        view.findViewById(R.id.bt_callInClass).setOnClickListener(this);
+        view.findViewById(R.id.bt_selectedcourse_id).setOnClickListener(this);
+        view.findViewById(R.id.tv_reTryBtn).setOnClickListener(this);
+        view.findViewById(R.id.tv_allCourseBtn).setOnClickListener(this);
+        view.findViewById(R.id.bt_weather).setOnClickListener(this);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh = true;
+                initData();
+            }
+        });
+    }
+
+    protected void nextActivity(Class cls, Bundle bundle, ActivityOptions options) {
+        Intent intent = new Intent(getActivity(), cls);
+        if (bundle != null)
+            intent.putExtra("bundle", bundle);
+        if (options != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            startActivity(intent, options.toBundle());
+        else
+            startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.bt_add_course:
-//                //如果要添加页面此处需要修改
-//                CourseFragment contentFragment = (CourseFragment)fragments.get(1);
-//                contentFragment.refreshCourse();
-//
-//                break;
             case R.id.bt_me:
                 openLeftWin();
+                break;
+            case R.id.bt_map:
+                nextActivity(MapActivity.class, null, null);
+                break;
+            case R.id.bt_reExam:
+                nextActivity(ReExamActivity.class, null, null);
+                break;
+            case R.id.bt_examTime:
+                nextActivity(ExamActivity.class, null, null);
+                break;
+            case R.id.bt_examScore:
+                nextActivity(ScoreActivity.class, null, null);
+                break;
+            case R.id.bt_selectedcourse_id:
+                nextActivity(SelectedCourseIDActivity.class, null, null);
+                break;
+            case R.id.bt_pcRepair:
+                nextActivity(RepairSucActivity.class, null, null);
+                break;
+            case R.id.bt_cetSearch:
+                nextActivity(CetSearchActivity.class, null, null);
+                break;
+            case R.id.bt_callInClass:
+                //新做的点名器
+                nextActivity(CallStudentInClassActivity.class, null, null);
+                break;
+            case R.id.bt_weather:
+                nextActivity(WeatherActivity.class, null, null);
+                break;
+            case R.id.bt_ecard:
+            case R.id.bt_EcardBalance:
+            case R.id.bt_checkEcardPaylist:
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("eCardBean", eCardBean);
+                bundle.putSerializable("eCardOwnerBean", eCardOwnerBean);
+                ActivityOptions options = null;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                            Pair.create((View) mTvECardBalance, "balance"),
+                            Pair.create((View) mTvECardConsume, "consume"));
+                }
+                nextActivity(ECardActivity.class, bundle, options);
+                break;
+            case R.id.tv_allCourseBtn:
+                nextActivity(CourseActivity.class, null, null);
+                break;
+            case R.id.bt_backgroundRepair:
+                intent = new Intent(getActivity(), TripActivity.class);
+                intent.putExtra("Title", "花椒维权");
+                startActivity(intent);
                 break;
         }
     }
 
     private void openLeftWin() {
-        Intent intent = new Intent();
-        intent.setAction("com.mcdull.cert.Home");
-        intent.putExtra("type",1);
-        getActivity().sendBroadcast(intent);
+        ((HomeActivity) getActivity()).openMenu();
     }
 
-    Handler infoHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 1) {
-                Bundle bundle = (Bundle) msg.obj;
-                String json = bundle.getString("Json", null);
-                try {
-                    JSONObject jsonObject = new JSONObject(json);
-                    String departId = jsonObject.getString("departId");
-                    if (TextUtils.isEmpty(departId) || departId.equals("null")) {
-                        return;
-                    }
-                    String depart = jsonObject.getString("depart");
-                    String year = jsonObject.getString("year");
-                    String classId = jsonObject.getString("classId");
-                    String className = jsonObject.getString("className");
-                    String name = jsonObject.getString("name");
-                    String studentId = jsonObject.getString("studentId");
-                    SharedPreferences SP = getActivity().getSharedPreferences("myInfo", MODE_PRIVATE);
-                    SharedPreferences.Editor edit = SP.edit();
-                    edit.putString("departId", departId);
-                    edit.putString("depart", depart);
-                    edit.putString("year", year);
-                    edit.putString("classId", classId);
-                    edit.putString("className", className);
-                    edit.putString("name", name);
-                    edit.putString("studentId", studentId);
-                    edit.apply();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+    private void initECardData() {
+        getECardBean();
+        getECardOwnerBean();
+    }
+
+    public void getECardBean() {
+        if (eCardBean == null || refresh) {
+            final String studentId = user.getString("StudentId");
+            final String eCardPassword = user.getString("EcardPwd");
+            Log.d("TAG", "start");
+            Call<ECardBean> eCardBeanCall = HJXYT.getInstance().getAppClient().getJWXTService().getECard(studentId, eCardPassword);
+            eCardBeanCall.enqueue(new Callback<ECardBean>() {
+                @Override
+                public void onResponse(Call<ECardBean> call, Response<ECardBean> response) {
+                    eCardBean = response.body();
+                    refreshECardConsume();
+                    refreshEnd();
                 }
+
+                @Override
+                public void onFailure(Call<ECardBean> call, Throwable t) {
+                    refreshEnd();
+                }
+            });
+        }
+    }
+
+    public void getECardOwnerBean() {
+        if (eCardOwnerBean == null || refresh) {
+            final String studentId = user.getString("StudentId");
+            final String eCardPassword = user.getString("EcardPwd");
+            Call<ECardOwnerBean> eCardOwnerBeanCall = HJXYT.getInstance().getAppClient().getJWXTService().getECardOwn(studentId, eCardPassword);
+            eCardOwnerBeanCall.enqueue(new Callback<com.mcdull.cert.bean.ECardOwnerBean>() {
+                @Override
+                public void onResponse(Call<ECardOwnerBean> call, Response<ECardOwnerBean> response) {
+                    eCardOwnerBean = response.body();
+                    refreshECardBalance();
+                    refreshEnd();
+                }
+
+                @Override
+                public void onFailure(Call<ECardOwnerBean> call, Throwable t) {
+                    refreshEnd();
+                }
+            });
+        }
+    }
+
+    private void initCalenderData() {
+        SimpleDateFormat format = new SimpleDateFormat("HH", Locale.getDefault());
+        int hour = Integer.parseInt(format.format(new Date()));
+        this.isNextDay = hour >= 20;
+        if (!isNextDay && calenderBean != null && !refresh)
+            return;
+        final String studentId = user.getString("StudentId");
+        final String jwcPwd = user.getString("JwcPwd");
+        Call<CalenderBean> calenderBeanCall = HJXYT.getInstance().getAppClient().getJWXTService().getCalenderBean(studentId, jwcPwd);
+        calenderBeanCall.enqueue(new Callback<CalenderBean>() {
+
+            @Override
+            public void onResponse(Call<CalenderBean> call, Response<CalenderBean> response) {
+                calenderBean = response.body();
+                refreshCalenderView();
+                refreshEnd();
+            }
+
+            @Override
+            public void onFailure(Call<CalenderBean> call, Throwable t) {
+                refreshEnd();
+            }
+        });
+    }
+
+    private void refreshECardConsume() {
+        if (eCardBean == null)
+            return;
+        if (eCardBean.msg.contains("不匹配")) {
+            Toast.makeText(getActivity(), "查询一卡通数据失败：一卡通密码错误", Toast.LENGTH_SHORT).show();
+        } else {
+            float dayConsume = 0;
+            if ("success".equals(eCardBean.msg)) {
+                for (int item = 0; item < eCardBean.data.size(); item++) {
+                    //获取当日每次消费金额以获取总消费
+                    ECardBean.ChildECardBean consumeLog = eCardBean.data.get(item);
+                    //去除充值金额后的消费金额的绝对值累计
+                    if (Float.parseFloat(consumeLog.consume) < 0) {
+                        dayConsume += Math.abs(Float.parseFloat(consumeLog.consume));
+                    }
+                }
+                String sum = dayConsume + "元";
+                mTvECardConsume.setText(sum);
+            } else {
+                mTvECardConsume.setText("——");
+                Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             }
         }
-    };
+    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (waitWin != null) {
-            waitWin.dismissWait();
-            waitWin = null;
+    private void refreshECardBalance() {
+        if (eCardOwnerBean == null)
+            return;
+        if (!eCardOwnerBean.msg.contains("不匹配")) {
+            if (eCardOwnerBean.data != null) {
+                try {
+                    String[] cutData = eCardOwnerBean.data.balance.split("（");
+                    mTvECardBalance.setText(cutData[0]);
+                } catch (Exception e) {
+                    mTvECardBalance.setText("——");
+                }
+            } else {
+                mTvECardBalance.setText("——");
+            }
+        }
+    }
+
+    private void refreshCalenderView() {
+        if (calenderBean == null)
+            return;
+        if ("success".equals(calenderBean.msg)) {
+            String date = calenderBean.data.date;
+            String week = calenderBean.data.week;
+            String calenderTitle = date + " 第" + week + "周";
+            mTvCalenderTitle.setText(calenderTitle);
+
+            List<Map<String, String>> list = new ArrayList<>();
+            for (CalenderBean.ChildCalenderBean.GrandChildCalenderBean bean : calenderBean.data.daylist) {
+                Map<String, String> calenderMap = new HashMap<>();
+                calenderMap.put("course", bean.course);
+                calenderMap.put("classRoom", bean.classRoom);
+                calenderMap.put("classString", bean.classString);
+                list.add(calenderMap);
+            }
+            CalenderAdapter calenderAdapter = new CalenderAdapter(getActivity(), list);
+            mLvCalender.setAdapter(calenderAdapter);
+            mLvCalender.setDividerHeight(0);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (Util.dip2px(56) + 1) * list.size());
+            mLvCalender.setLayoutParams(layoutParams);
+            mTvAllCourse.setVisibility(View.VISIBLE);
+        } else {
+
+        }
+    }
+
+    private void refreshEnd() {
+        if (count++ == 3) {
+            refresh = false;
+            mSwipeRefreshLayout.setRefreshing(false);
+            count = 0;
         }
     }
 }

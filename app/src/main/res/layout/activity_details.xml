@@ -13,12 +13,12 @@
         android:layout_weight="4">
 
 
-        <com.loopj.android.image.SmartImageView
+        <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="#000000" />
+            android:src="@drawable/notjpg" />
 
         <LinearLayout
             android:layout_width="match_parent"

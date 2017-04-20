@@ -7,12 +7,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 
 import java.util.ArrayList;
 
-public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnCheckedChangeListener {
+public class ThemeActivity extends BaseThemeActivity implements CompoundButton.OnCheckedChangeListener {
 
     private SharedPreferences SP;
     private SharedPreferences.Editor edit;
@@ -26,9 +26,8 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
     private CheckBox mCbRed;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_theme);
-        super.onCreate(savedInstanceState);
 
         SP = getSharedPreferences("setting", MODE_PRIVATE);
         edit = SP.edit();

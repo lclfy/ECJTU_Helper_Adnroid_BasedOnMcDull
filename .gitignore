@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.gradle/3.3/tasks/_app_compileReleaseJavaWithJavac/
+.idea/markdown-navigator.xml
+build/android-profile/
+build/generated/
+build/intermediates/proguard-files/
+.gradle
+build
+.idea

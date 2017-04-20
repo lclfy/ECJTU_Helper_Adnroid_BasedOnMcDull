@@ -1,54 +1,46 @@
 package com.mcdull.cert.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SignUpCallback;
-import com.google.gson.Gson;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
-import com.mcdull.cert.Bean.eCardBean;
+import com.mcdull.cert.HJXYT;
+import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
-import com.mcdull.cert.utils.InternetUtil;
+import com.mcdull.cert.bean.UserInfoBean;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
-import com.mcdull.cert.utils.Util;
 
 import java.util.List;
-import java.util.Map;
 
-public class SignInJWCActivity extends MyTitleActivity implements View.OnClickListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    private TextInputLayout mEtJwcPwd;
+public class SignInJWCActivity extends BaseThemeActivity implements View.OnClickListener {
+
+    private TextInputLayout mEtEmail;
     private TextInputLayout mEtECardPwd;
-    private TextInputLayout mEtName;
     private TextInputLayout mEtStudentId;
-    private String mEMail;
-    private String mPwd;
+    private TextInputLayout mEtJwcPwd;
     private ShowWaitPopupWindow waitWin;
-    private String basicURL = "http://api1.ecjtu.org/v1/";
-    public String studentId = "";
-    public String name = "";
-    public String eCardPwd = "";
-    public String jwcPwd = "";
+    private boolean isQQLogin = false;
+    private AVUser avUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onTheme(Bundle savedInstanceState) {
         setContentView(R.layout.activity_sign);
-        super.onCreate(savedInstanceState);
 
         findViewById(R.id.bt_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,29 +52,31 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
             }
         });
 
+        isQQLogin = getIntent().getBooleanExtra("QQ", false);
         init();
+
 
     }
 
     private void init() {
         ((TextView) findViewById(R.id.tv_title)).setText("完善个人信息");
 
-        this.mEtStudentId = (TextInputLayout) findViewById(R.id.et_student_id);
-        this.mEtName = (TextInputLayout) findViewById(R.id.et_name);
+        this.mEtEmail = (TextInputLayout) findViewById(R.id.et_email);
         this.mEtECardPwd = (TextInputLayout) findViewById(R.id.et_eCard_pwd);
+        this.mEtStudentId = (TextInputLayout) findViewById(R.id.et_student_id);
         this.mEtJwcPwd = (TextInputLayout) findViewById(R.id.et_jwc_pwd);
-        mEtName.setHint("姓名");
-        mEtStudentId.setHint("学号");
-        mEtECardPwd.setHint("一卡通密码(如未修改则为888888)");
-        mEtJwcPwd.setHint("教务管理系统密码(15级及以后必填)");
 
         findViewById(R.id.bt_sure).setOnClickListener(this);
-        findViewById(R.id.tv_no_id).setOnClickListener(this);
-
-        mEMail = getIntent().getStringExtra("email");
-        mPwd = getIntent().getStringExtra("pwd");
 
         waitWin = new ShowWaitPopupWindow(this);
+
+        findViewById(R.id.bt_sure).setVisibility(View.VISIBLE);
+        findViewById(R.id.bt_sure).setOnClickListener(this);
+        if (!isQQLogin) {
+            avUser = AVUser.getCurrentUser();
+            mEtStudentId.getEditText().setText(avUser.getUsername());
+            mEtJwcPwd.getEditText().setText(avUser.getString("JwcPwd"));
+        }
     }
 
     @Override
@@ -91,66 +85,21 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
             case R.id.bt_sure:
                 toSign();
                 break;
-            case R.id.tv_no_id:
-                noId();
-                break;
         }
-    }
-
-    private void noId() {
-        String name = mEtName.getEditText().getText().toString();
-
-        mEtName.setErrorEnabled(false);
-
-        if (TextUtils.isEmpty(name)) {
-            mEtName.setErrorEnabled(true);
-            mEtName.setError("请输入姓名");
-            return;
-        }
-
-        waitWin.showWait();
-
-        AVUser user = new AVUser();
-        user.setEmail(mEMail);
-        user.setUsername(mEMail);
-        user.setPassword(mPwd);
-        user.put("Name", name);
-
-        user.signUpInBackground(new SignUpCallback() {
-            @Override
-            public void done(AVException e) {
-                waitWin.dismissWait();
-                if (e==null){
-                    Toast.makeText(SignInJWCActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignInJWCActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    Toast.makeText(SignInJWCActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void toSign() {
-        studentId = mEtStudentId.getEditText().getText().toString();
-        name = mEtName.getEditText().getText().toString();
-        eCardPwd = mEtECardPwd.getEditText().getText().toString();
-        jwcPwd = mEtJwcPwd.getEditText().getText().toString();
+        String eCardPwd = mEtECardPwd.getEditText().getText().toString();
+        String email = mEtEmail.getEditText().getText().toString();
+        String username = mEtStudentId.getEditText().getText().toString();
+        String jwcPwd = mEtJwcPwd.getEditText().getText().toString();
 
         mEtECardPwd.setErrorEnabled(false);
-        mEtName.setErrorEnabled(false);
-        mEtStudentId.setErrorEnabled(false);
-        mEtJwcPwd.setErrorEnabled(false);
+        mEtEmail.setErrorEnabled(false);
 
-        if (TextUtils.isEmpty(name)) {
-            mEtName.setErrorEnabled(true);
-            mEtName.setError("请输入姓名");
-            return;
-        }
-        if (TextUtils.isEmpty(studentId)) {
-            mEtStudentId.setErrorEnabled(true);
-            mEtStudentId.setError("请输入学号");
+        if (TextUtils.isEmpty(email)) {
+            mEtEmail.setErrorEnabled(true);
+            mEtEmail.setError("请输入邮箱地址");
             return;
         }
         if (TextUtils.isEmpty(eCardPwd)) {
@@ -158,136 +107,118 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
             mEtECardPwd.setError("请输入一卡通密码");
             return;
         }
-
-
-        if (studentId.length() >= 14) {
-            int year = Integer.parseInt(studentId.substring(0, 4));
-            if (year > 2014) {
-                if (studentId.length() == 16) {
-                    if (TextUtils.isEmpty(jwcPwd)) {
-                        mEtJwcPwd.setErrorEnabled(true);
-                        mEtJwcPwd.setError("请填写密码或选择无学号注册");
-                        return;
-
-                    } else {
-                        //还需验证用户名密码能否通过教务管理系统
-                        validateStuID_JwcPwd();
-                    }
-                } else {
-                    mEtStudentId.setErrorEnabled(true);
-                    mEtStudentId.setError("学号格式有误");
-                }
-            } else {
-                if (studentId.length() == 14) {
-                    final AlertDialog.Builder normalDialog =
-                            new AlertDialog.Builder(SignInJWCActivity.this);
-                    normalDialog.setTitle("查询不可用提醒");
-                    normalDialog.setMessage("非常抱歉，由于教务系统的更新，新版本教务系统与旧版已无法通用，受此影响，13/14级同学将仅能使用：\n一卡通信息\n地图信息\n天气信息\n百科信息\n电脑维修\n花椒维权\n四六级查询\n对此造成的不便，我们深表遗憾。");
-                    normalDialog.setPositiveButton("确定",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                    normalDialog.show();
-                    if (TextUtils.isEmpty(jwcPwd)) {
-                        sign(name, studentId, eCardPwd, "");
-                    } else {
-                        sign(name, studentId, eCardPwd, jwcPwd);
-                    }
-
-                } else {
-                    mEtStudentId.setErrorEnabled(true);
-                    mEtStudentId.setError("学号格式有误");
-                }
-            }
-        } else {
-            mEtStudentId.setErrorEnabled(true);
-            mEtStudentId.setError("学号格式有误");
+        if (TextUtils.isEmpty(username)) {
+            mEtECardPwd.setErrorEnabled(true);
+            mEtECardPwd.setError("请输入一卡通密码");
+            return;
         }
-
+        if (TextUtils.isEmpty(jwcPwd)) {
+            mEtECardPwd.setErrorEnabled(true);
+            mEtECardPwd.setError("请输入一卡通密码");
+            return;
+        }
+        waitWin.showWait();
+        if (isQQLogin)
+            setQQData(username, jwcPwd, email, eCardPwd);
+        else
+            setData(email, eCardPwd);
     }
 
-    private void sign(String name, String studentId, String eCardPwd, String jwcPwd) {
+    private void setQQData(final String username, final String jwcPwd, final String email, final String eCardPwd) {
+        HJXYT.getInstance().getAppClient().getJWXTService().getUserInfoBean(username, jwcPwd).enqueue(new Callback<UserInfoBean>() {
+            @Override
+            public void onResponse(Call<UserInfoBean> call, Response<UserInfoBean> response) {
+                final UserInfoBean bean = response.body();
+                avUser = new AVUser();
+                avUser.setUsername(bean.getData().getXh());
+                avUser.setPassword(jwcPwd);
+                switch (bean.getData().getXb()) {
+                    case "男":
+                        avUser.put("Sex", 1);
+                        break;
+                    case "女":
+                        avUser.put("Sex", -1);
+                        break;
+                }
+                avUser.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(AVException e) {
+                        if (e == null) {
+                            avUser = AVUser.getCurrentUser();
+                            avUser.put("JwcPwd", jwcPwd);
+                            avUser.put("Name", bean.getData().getXm());
+                            avUser.put("Class", bean.getData().getBj());
+                            avUser.put("StudentId", bean.getData().getXh());
+                            avUser.put("OpenId", getIntent().getStringExtra("openId"));
+                            setData(email, eCardPwd);
+                        } else {
+                            if (e.getCode() == 202) {
+                                bindQQ(bean, jwcPwd, email, eCardPwd);
+                            } else {
+                                Toast.makeText(SignInJWCActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                                waitWin.dismissWait();
+                            }
+                        }
+                    }
+                });
+            }
 
-        waitWin.showWait();
+            @Override
+            public void onFailure(Call<UserInfoBean> call, Throwable t) {
+                waitWin.dismissWait();
+                Toast.makeText(SignInJWCActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
-        AVUser user = new AVUser();
-        user.setUsername(mEMail);
-        user.setEmail(mEMail);
-        user.setPassword(mPwd);
-        user.put("Name", name);
-        user.put("StudentId", studentId);
-        user.put("EcardPwd", eCardPwd);
-        user.put("JwcPwd",jwcPwd);
+    private void bindQQ(final UserInfoBean bean, final String jwcPwd, final String email, final String eCardPwd) {
+        AVQuery<AVUser> query = new AVQuery<>("_User");
+        query.whereEqualTo("username", bean.getData().getXh());
+        query.findInBackground(new FindCallback<AVUser>() {
+            @Override
+            public void done(List<AVUser> list, AVException e) {
+                if (e == null && list != null && list.size() != 0) {
+                    AVUser.logInInBackground(bean.getData().getXh(), jwcPwd, new LogInCallback<AVUser>() {
+                        @Override
+                        public void done(AVUser avUser, AVException e) {
+                            if (e == null) {
+                                avUser.put("JwcPwd", jwcPwd);
+                                avUser.put("Name", bean.getData().getXm());
+                                avUser.put("Class", bean.getData().getBj());
+                                avUser.put("StudentId", bean.getData().getXh());
+                                avUser.put("OpenId", getIntent().getStringExtra("openId"));
+                                setData(email, eCardPwd);
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(SignInJWCActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
-        user.signUpInBackground(new SignUpCallback() {
+    private void setData(String email, String eCardPwd) {
+        avUser = AVUser.getCurrentUser();
+        avUser.setEmail(email);
+        avUser.put("EcardPwd", eCardPwd);
+        avUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 waitWin.dismissWait();
-                if (e==null){
-                    Toast.makeText(SignInJWCActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignInJWCActivity.this, HomeActivity.class);
+                if (e==null) {
+                    Intent intent = new Intent();
+                    intent.setClass(SignInJWCActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }else {
-                    Toast.makeText(SignInJWCActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                    Toast.makeText(SignInJWCActivity.this,error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
-    public void validateStuID_JwcPwd(){
-        //用于验证用户名密码能否登录进入教务系统
-        final boolean Validated = false;
-        AVQuery<AVObject> query = new AVQuery<>("API");
-        query.whereEqualTo("title", "validate");
-        query.findInBackground(new FindCallback<AVObject>() {
-            @Override
-            public void done(List<AVObject> list, AVException e) {
-                if (e == null) {
-                    Map<String, String> map = new ArrayMap<>();
-                    map.put("stuid", studentId);//设置get参数
-                        map.put("passwd", jwcPwd);//设置get参数
-                    new InternetUtil(validateHandler,basicURL + "profile", map,true,SignInJWCActivity.this);//传入参数
-
-                } else {
-                    Toast.makeText(SignInJWCActivity.this, "登入教务处失败\n请检查网络是否顺畅", Toast.LENGTH_SHORT).show();
-                    waitWin.dismissWait();
-                }
-            }
-        });
-
-
-    }
-
-
-
-
-    Handler validateHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 0) {
-                waitWin.dismissWait();
-                Bundle bundle = (Bundle) msg.obj;
-                String validateString = bundle.getString("Error");
-                if (validateString!= null){
-                    if (validateString.length()!=0){
-                        Toast.makeText(SignInJWCActivity.this, "登入教务处失败\n学号或密码错误", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                Toast.makeText(SignInJWCActivity.this, "登入教务处失败\n可能为网络原因", Toast.LENGTH_SHORT).show();
-            } else {
-                //成功验证
-                waitWin.dismissWait();
-                sign(name,studentId,eCardPwd,jwcPwd);
-
-
-            }
-        }
-    };
 }
 

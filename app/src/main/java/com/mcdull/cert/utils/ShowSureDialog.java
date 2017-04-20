@@ -36,21 +36,20 @@ public class ShowSureDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = View.inflate(context, R.layout.sure_dialog, null);
 
-        Button btYes = (Button) view.findViewById(R.id.bt_yes);
-        Button btNo = (Button) view.findViewById(R.id.bt_no);
         TextView tvTooltipTitle = (TextView) view.findViewById(R.id.tv_tooltip_title);
 
         tvTooltipTitle.setText(title);
 
-        btYes.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.bt_yes).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 callBack.CallBack();
+                alertDialog.dismiss();
             }
         });
 
-        btNo.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.bt_no).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -63,8 +62,8 @@ public class ShowSureDialog {
         alertDialog.show();
     }
 
-    public void dismiss(){
-        if (alertDialog!=null)
+    public void dismiss() {
+        if (alertDialog != null)
             alertDialog.dismiss();
     }
 

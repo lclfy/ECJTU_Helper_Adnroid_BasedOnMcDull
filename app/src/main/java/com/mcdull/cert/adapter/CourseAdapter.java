@@ -1,8 +1,6 @@
 package com.mcdull.cert.adapter;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -10,31 +8,28 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.mcdull.cert.Bean.CourseBean;
+import com.mcdull.cert.bean.OldCourseBean;
 import com.mcdull.cert.R;
-
-import java.util.List;
 
 /**
  * Created by mcdull on 15/7/10.
  */
 
-public class
-CourseAdapter extends BaseAdapter {
+public class CourseAdapter extends BaseAdapter {
 
     private Activity activity;
-    private CourseBean courseList;
+    private OldCourseBean courseList;
     private String week[] = {"", "周一", "周二", "周三", "周四", "周五", "周六", "周日"};
     private GridView gridView;
     TextView tv;
 
 
 
-    public void setCourseList(CourseBean courseList) {
+    public void setCourseList(OldCourseBean courseList) {
         this.courseList = courseList;
     }
 
-    public CourseAdapter(Activity activity, CourseBean courseList, GridView gridView) {
+    public CourseAdapter(Activity activity, OldCourseBean courseList, GridView gridView) {
         this.activity = activity;
         this.courseList = courseList;
         this.gridView = gridView;
@@ -508,49 +503,49 @@ CourseAdapter extends BaseAdapter {
         }
         switch (x) {
             case 0:
-                view.setBackgroundResource(R.drawable.ic_course_bg_bohelv);
+                view.setBackgroundResource(R.drawable.ic_course_bg_0);
                 break;
             case 1:
-                view.setBackgroundResource(R.drawable.ic_course_bg_cheng);
+                view.setBackgroundResource(R.drawable.ic_course_bg_1);
                 break;
             case 2:
-                view.setBackgroundResource(R.drawable.ic_course_bg_cyan);
+                view.setBackgroundResource(R.drawable.ic_course_bg_2);
                 break;
             case 3:
-                view.setBackgroundResource(R.drawable.ic_course_bg_fen);
+                view.setBackgroundResource(R.drawable.ic_course_bg_3);
                 break;
             case 4:
-                view.setBackgroundResource(R.drawable.ic_course_bg_huang);
+                view.setBackgroundResource(R.drawable.ic_course_bg_4);
                 break;
             case 5:
-                view.setBackgroundResource(R.drawable.ic_course_bg_zi);
+                view.setBackgroundResource(R.drawable.ic_course_bg_5);
                 break;
             case 6:
-                view.setBackgroundResource(R.drawable.ic_course_bg_kafei);
+                view.setBackgroundResource(R.drawable.ic_course_bg_6);
                 break;
             case 7:
-                view.setBackgroundResource(R.drawable.ic_course_bg_lan);
+                view.setBackgroundResource(R.drawable.ic_course_bg_7);
                 break;
             case 8:
-                view.setBackgroundResource(R.drawable.ic_course_bg_lv);
+                view.setBackgroundResource(R.drawable.ic_course_bg_8);
                 break;
             case 9:
-                view.setBackgroundResource(R.drawable.ic_course_bg_molan);
+                view.setBackgroundResource(R.drawable.ic_course_bg_9);
                 break;
             case 10:
-                view.setBackgroundResource(R.drawable.ic_course_bg_pressed);
+//                view.setBackgroundResource(R.drawable.ic_course_bg_10);
                 break;
             case 11:
-                view.setBackgroundResource(R.drawable.ic_course_bg_pulan);
+                view.setBackgroundResource(R.drawable.ic_course_bg_11);
                 break;
             case 12:
-                view.setBackgroundResource(R.drawable.ic_course_bg_qing);
+                view.setBackgroundResource(R.drawable.ic_course_bg_12);
                 break;
             case 13:
-                view.setBackgroundResource(R.drawable.ic_course_bg_tao);
+                view.setBackgroundResource(R.drawable.ic_course_bg_13);
                 break;
             case 14:
-                view.setBackgroundResource(R.drawable.ic_course_bg_tuhuang);
+                view.setBackgroundResource(R.drawable.ic_course_bg_10);
                 break;
         }
         return view;

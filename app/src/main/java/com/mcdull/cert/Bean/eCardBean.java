@@ -1,17 +1,18 @@
-package com.mcdull.cert.Bean;
+package com.mcdull.cert.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by 75800 on 2017/3/20.
  */
 
-public class eCardBean {
+public class ECardBean implements Serializable {
     public int code;
     public String msg;
     public ArrayList<ChildECardBean> data;
 
-    public class ChildECardBean {
+    public class ChildECardBean implements Serializable {
         public String name;
         public String type;
         public String address;
@@ -21,8 +22,5 @@ public class eCardBean {
         public String swipetimes;
         public String status;
         public String comment;
-
-
-
     }
 }

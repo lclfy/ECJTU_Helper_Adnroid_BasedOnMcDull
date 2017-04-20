@@ -47,10 +47,11 @@ android:orientation="vertical" >
                 android:background="#0fa2f2"
                 android:gravity="right">
             <ImageView
+                android:visibility="gone"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/ic_search_white_48dp" />
                 </LinearLayout>
             </LinearLayout>

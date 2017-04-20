@@ -1,17 +1,17 @@
-package com.mcdull.cert.Bean;
+package com.mcdull.cert.bean;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * Created by 75800 on 2017/3/23.
  */
 
-public class eCardOwnerBean {
+public class ECardOwnerBean implements Serializable{
     public int code;
     public String msg;
     public ChildECardOwnerBean data;
 
-    public class ChildECardOwnerBean {
+    public class ChildECardOwnerBean implements Serializable{
         public String name;
         public String account;
         public String stuid;

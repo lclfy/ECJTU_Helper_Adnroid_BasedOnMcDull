@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="120dip"
-    android:background="@drawable/ic_course_bg_lan" >
+    android:background="@drawable/ic_course_bg_7" >
 
     <TextView
         android:textColor="#FFFFFF"

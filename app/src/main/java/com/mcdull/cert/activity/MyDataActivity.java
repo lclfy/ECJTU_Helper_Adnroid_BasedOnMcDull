@@ -1,6 +1,5 @@
 package com.mcdull.cert.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,11 +31,10 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.SaveCallback;
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
 import com.mcdull.cert.R;
-import com.mcdull.cert.utils.GetIcon;
+import com.mcdull.cert.activity.base.BaseActivity;
+import com.mcdull.cert.utils.IconHelper;
 import com.mcdull.cert.utils.InternetUtil;
-import com.mcdull.cert.utils.ShowWaitPopupWindow;
 import com.mcdull.cert.utils.Util;
 
 import java.io.FileOutputStream;
@@ -44,7 +42,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class MyDataActivity extends Activity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class MyDataActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     //    private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
@@ -69,11 +67,10 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
     public String studentId= "";
     public String name= "";
     public int sex = 0;
-    //用于判断是否更改了学号和一卡通密码
+    //用于判断是否更改了学号
     private SharedPreferences SP;
     private SharedPreferences.Editor edit;
     private String originalStuID = "";
-    private String originalECardNum = "";
 
     public String basicURL = "http://api1.ecjtu.org/v1/";
 
@@ -92,7 +89,6 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         SP = getSharedPreferences("config", MODE_PRIVATE);
         edit = SP.edit();
         originalStuID = AVUser.getCurrentUser().getString("StudentId");
-        originalECardNum = AVUser.getCurrentUser().getString("EcardPwd");
 
 
     }
@@ -123,7 +119,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         String name = AVUser.getCurrentUser().getString("Name");
         mTvName.setText(name);
 
-        new GetIcon(MyDataActivity.this, new GetIcon.GetIconCallBack() {
+        IconHelper.getIcon(MyDataActivity.this, new IconHelper.GetIconCallBack() {
             @Override
             public void done(Bitmap bitmap) {
                 if (bitmap != null) {
@@ -323,13 +319,9 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         user.put("StudentId", studentId);
         user.put("JwcPwd", jwcPwd);
         user.put("EcardPwd", eCardPwd);
-        //判断是否更改了学号或者一卡通密码，更改的话…给个提示让主界面刷新一下
+        //判断是否更改了学号，更改的话…给个提示让主界面刷新一下
         if (!studentId.equals(originalStuID)){
             edit.putInt("stuIDChanged",1);
-            edit.commit();
-        }
-        if (!eCardPwd.equals(originalECardNum)){
-            edit.putInt("eCardPwdChanged",1);
             edit.commit();
         }
         if (bmp != null) {
@@ -392,9 +384,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
         AlertDialog.Builder builder = new AlertDialog.Builder(MyDataActivity.this);
         View DialogView = View.inflate(MyDataActivity.this, R.layout.edit_dialog, null);
         final EditText editText = (EditText) DialogView.findViewById(R.id.et_tooltip);
-        Button btSure = (Button) DialogView.findViewById(R.id.bt_yes);
-        Button btCanCel = (Button) DialogView.findViewById(R.id.bt_no);
-        btCanCel.setOnClickListener(new View.OnClickListener() {
+        DialogView.findViewById(R.id.bt_no).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -402,7 +392,7 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
             }
         });
 
-        btSure.setOnClickListener(new View.OnClickListener() {
+        DialogView.findViewById(R.id.bt_yes).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

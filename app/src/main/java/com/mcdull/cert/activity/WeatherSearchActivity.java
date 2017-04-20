@@ -20,7 +20,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.google.gson.Gson;
-import com.mcdull.cert.Bean.WeatherBean;
+import com.mcdull.cert.bean.WeatherBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;

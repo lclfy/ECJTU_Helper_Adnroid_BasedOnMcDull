@@ -1,8 +1,8 @@
 package com.mcdull.cert.adapter;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +29,9 @@ public class CalenderAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (list==null) {
+        if (list == null) {
             return 0;
-        }else {
+        } else {
             return list.size();
         }
     }
@@ -55,39 +55,23 @@ public class CalenderAdapter extends BaseAdapter {
         TextView tv_SecondLine = (TextView) view.findViewById(R.id.tv_SecondLine);
         TextView tv_ClassTime = (TextView) view.findViewById(R.id.tv_classTime);
 
-        Map<String,String> item = list.get(position);
-        if (item.get("course").length()>14){
+        Map<String, String> item = list.get(position);
+        if (item.get("course").length() > 14) {
             //太长了显示不下
-            tv_FirstLine.setText(item.get("course").substring(0,14)+"…");
-        }else {
+            tv_FirstLine.setText(item.get("course").substring(0, 14) + "…");
+        } else {
             tv_FirstLine.setText(item.get("course"));
         }
         tv_ClassTime.setText(item.get("classString"));
         tv_SecondLine.setText(item.get("classRoom"));
 
-        ImageView MainImage = (ImageView)view.findViewById(R.id.MainImage);
-        switch (position%5){
-            case 0:
-                MainImage.setImageResource(R.drawable.ic_today_color1_48dp);
-                break;
-            case 1:
-                MainImage.setImageResource(R.drawable.ic_today_color2_48dp);
-                break;
-            case 2:
-                MainImage.setImageResource(R.drawable.ic_today_color3_48dp);
-                break;
-            case 3:
-                MainImage.setImageResource(R.drawable.ic_today_color4_48dp);
-                break;
-            case 4:
-                MainImage.setImageResource(R.drawable.ic_today_color5_48dp);
-                break;
-        }
-
+        ImageView MainImage = (ImageView) view.findViewById(R.id.MainImage);
+        int i = position % 5;
+        MainImage.setImageResource(context.getResources().getIdentifier("ic_today_color" + (i + 1), "drawable", context.getApplicationInfo().packageName));
         return view;
     }
 
-    void upDateList(List<Map<String, String>> list){
+    void upDateList(List<Map<String, String>> list) {
         this.list = list;
         notifyDataSetChanged();
     }
