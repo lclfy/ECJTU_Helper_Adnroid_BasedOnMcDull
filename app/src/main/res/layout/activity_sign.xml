@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="请完成以下信息以登录教务系统" />
+        android:text="还差一步，就能完成注册" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/et_email"

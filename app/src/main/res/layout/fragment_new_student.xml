@@ -83,6 +83,8 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
+                        android:transitionName="consumeTitle"
+                        android:id="@+id/tv_consumeTitle"
                         android:text="今日消费"
                         android:textColor="#fff"
                         android:textSize="17sp" />
@@ -101,6 +103,8 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
+                        android:transitionName="balanceTitle"
+                        android:id="@+id/tv_balanceTitle"
                         android:text="剩余金额"
                         android:textColor="#fff"
                         android:textSize="17sp" />

@@ -47,13 +47,12 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     //    private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
-
-    private TextInputLayout mEtJwcPwd;
-    private TextInputLayout mEtStudentId;
     private TextInputLayout mEtEcardPwd;
+    private TextInputLayout mEtEMail;
     private CheckBox mCbMan;
     private CheckBox mCbWoman;
     private TextView mTvName;
+    private TextView mTvStudentID;
     private ImageView mIvIcon;
     private int MAN = 1;
     private int WOMAN = -1;
@@ -67,10 +66,6 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     public String studentId= "";
     public String name= "";
     public int sex = 0;
-    //用于判断是否更改了学号
-    private SharedPreferences SP;
-    private SharedPreferences.Editor edit;
-    private String originalStuID = "";
 
     public String basicURL = "http://api1.ecjtu.org/v1/";
 
@@ -85,10 +80,6 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
         }
 
         initView();
-        //用于判断是否更改了学号
-        SP = getSharedPreferences("config", MODE_PRIVATE);
-        edit = SP.edit();
-        originalStuID = AVUser.getCurrentUser().getString("StudentId");
 
 
     }
@@ -98,19 +89,16 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
         findViewById(R.id.bt_back).setOnClickListener(this);
         findViewById(R.id.tv_save).setOnClickListener(this);
         ((TextView) findViewById(R.id.tv_title)).setText("个人信息");
-        findViewById(R.id.bt_name).setOnClickListener(this);
         this.mIvIcon = (ImageView) findViewById(R.id.iv_icon);
         this.mTvName = (TextView) findViewById(R.id.tv_name);
+        this.mTvStudentID = (TextView)findViewById(R.id.tv_student_id);
         this.mCbMan = (CheckBox) findViewById(R.id.cb_man);
         this.mCbWoman = (CheckBox) findViewById(R.id.cb_woman);
-
-        this.mEtStudentId = (TextInputLayout) findViewById(R.id.et_student_id);
-        this.mEtJwcPwd = (TextInputLayout) findViewById(R.id.et_jwc_pwd);
         this.mEtEcardPwd = (TextInputLayout) findViewById(R.id.et_ecard_pwd);
-        mEtStudentId.setHint("学号");
-        mEtJwcPwd.setHint("学分制教务系统密码");
+        this.mEtEMail = (TextInputLayout) findViewById(R.id.et_email);
         mEtEcardPwd.setHint("一卡通密码");
-        mEtStudentId.setErrorEnabled(false);
+        mEtEMail.setHint("电子邮箱");
+        mEtEMail.setErrorEnabled(false);
 
         mIvIcon.setOnClickListener(this);
         mCbMan.setOnCheckedChangeListener(this);
@@ -118,6 +106,9 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
 
         String name = AVUser.getCurrentUser().getString("Name");
         mTvName.setText(name);
+        String studentID = AVUser.getCurrentUser().getString("StudentId");
+        mTvStudentID.setText(studentID);
+
 
         IconHelper.getIcon(MyDataActivity.this, new IconHelper.GetIconCallBack() {
             @Override
@@ -140,16 +131,10 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
             mCbWoman.setChecked(false);
         }
 
-        String studentId = AVUser.getCurrentUser().getString("StudentId");
-        if (!TextUtils.isEmpty(studentId)) {
-            mEtStudentId.getEditText().setText(studentId);
+        String Email = AVUser.getCurrentUser().getEmail();
+        if (!TextUtils.isEmpty(Email)) {
+            mEtEMail.getEditText().setText(Email);
         }
-
-        String jwcPwd = AVUser.getCurrentUser().getString("JwcPwd");
-        if (!TextUtils.isEmpty(jwcPwd)) {
-            mEtJwcPwd.getEditText().setText(jwcPwd);
-        }
-
 
         String eCardPwd = AVUser.getCurrentUser().getString("EcardPwd");
         if (!TextUtils.isEmpty(eCardPwd)) {
@@ -165,14 +150,10 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
             case R.id.iv_icon:
                 selectIcon();
                 break;
-            case R.id.bt_name:
-                showEditName();
-                break;
             case R.id.bt_back:
                 finish();
                 break;
             case R.id.tv_save:
-                mEtStudentId.setErrorEnabled(false);
                 saveButton();
                 break;
         }
@@ -241,89 +222,19 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
         if (mCbWoman.isChecked()) {
             sex = WOMAN;
         }
-        if (!TextUtils.isEmpty(mEtStudentId.getEditText().getText().toString())) {
-            studentId = mEtStudentId.getEditText().getText().toString();
-            if (studentId.length() != 14 && studentId.length() != 16) {
-                mEtStudentId.setError("学号格式有误");
-                mEtStudentId.setErrorEnabled(true);
-//                Toast.makeText(getApplicationContext(), "学号格式有误", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
-
-        if (!TextUtils.isEmpty(mEtJwcPwd.getEditText().getText().toString())) {
-            jwcPwd = mEtJwcPwd.getEditText().getText().toString();
-        }
 
         if (!TextUtils.isEmpty(mEtEcardPwd.getEditText().getText().toString())) {
             eCardPwd = mEtEcardPwd.getEditText().getText().toString();
         }
-
-        if (studentId.length() == 16){
-            //需要验证教务处用户密码
-            validateStuID_JwcPwd();
-        }else {
-            //13,14级直接保存
-            validatedSave();
-        }
+        Save();
 
     }
-    public void validateStuID_JwcPwd(){
-        //用于验证用户名密码能否登录进入教务系统
-        Toast.makeText(this, "正在登入教务处…", Toast.LENGTH_SHORT).show();
-        AVQuery<AVObject> query = new AVQuery<>("API");
-        query.whereEqualTo("title", "validate");
-        query.findInBackground(new FindCallback<AVObject>() {
-            @Override
-            public void done(List<AVObject> list, AVException e) {
-                if (e == null) {
-                    Map<String, String> map = new ArrayMap<>();
-                    map.put("stuid", studentId);//设置get参数
-                    map.put("passwd", jwcPwd);//设置get参数
-                    new InternetUtil(validateHandler,basicURL + "profile", map,true,MyDataActivity.this);//传入参数
-
-                } else {
-                    Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-    }
-
-    Handler validateHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 0) {
-                Bundle bundle = (Bundle) msg.obj;
-                String validateString = bundle.getString("Error");
-                if (validateString!= null){
-                    if (validateString.length()!=0){
-                        Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试，或者检查学号密码是否正确", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-                Toast.makeText(MyDataActivity.this, "登入教务处失败\n请重试", Toast.LENGTH_SHORT).show();
-            } else {
-                //成功验证
-                validatedSave();
-
-            }
-        }
-    };
     //验证通过后方可储存
-    private void validatedSave(){
+    private void Save(){
         AVUser user = AVUser.getCurrentUser();
-        user.put("Name", name);
         user.put("Sex", sex);
-        user.put("StudentId", studentId);
-        user.put("JwcPwd", jwcPwd);
         user.put("EcardPwd", eCardPwd);
-        //判断是否更改了学号，更改的话…给个提示让主界面刷新一下
-        if (!studentId.equals(originalStuID)){
-            edit.putInt("stuIDChanged",1);
-            edit.commit();
-        }
+        user.setEmail(mEtEMail.getEditText().getText().toString());
         if (bmp != null) {
 
             AVFile icon = user.getAVFile("Icon");
@@ -353,7 +264,8 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "保存失败，请检查网络设置或重试", Toast.LENGTH_SHORT).show();
+                    String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                    Toast.makeText(MyDataActivity.this,error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

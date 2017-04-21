@@ -56,8 +56,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:text="——元"
-                    android:textColor="@color/avoscloud_feedback_white"
-                    android:textSize="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
                     android:transitionName="consume" />
 
                 <TextView
@@ -66,7 +66,9 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
-                    android:text="一卡通消费"
+                    android:transitionName="consumeTitle"
+                    android:id="@+id/tv_consumeTitle"
+                    android:text="今日消费"
                     android:textColor="#fff"
                     android:textSize="17sp" />
 
@@ -85,8 +87,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:text="——元"
-                    android:textColor="@color/avoscloud_feedback_white"
-                    android:textSize="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
                     android:transitionName="balance" />
 
                 <TextView
@@ -94,8 +96,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:transitionName="balanceTitle"
+                    android:id="@+id/tv_balanceTitle"
                     android:layout_marginBottom="20dp"
-                    android:text="余额"
+                    android:text="剩余金额"
                     android:textColor="#fff"
                     android:textSize="17sp" />
 

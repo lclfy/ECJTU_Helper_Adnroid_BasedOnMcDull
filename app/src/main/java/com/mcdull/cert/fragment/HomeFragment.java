@@ -70,6 +70,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //饭卡的两个TextView
     private TextView mTvECardConsume;
     private TextView mTvECardBalance;
+    private TextView mTvECardBalanceTitle;
+    private TextView mTvECardConsumeTitle;
     //日历的TextView
     private TextView mTvCalenderTitle;
     //日历的listview
@@ -138,6 +140,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mIvTX = (ImageView) view.findViewById(R.id.iv_tx);
         mTvECardConsume = (TextView) view.findViewById(R.id.tv_eCardConsume);
         mTvECardBalance = (TextView) view.findViewById(R.id.tv_eCardBalance);
+        mTvECardConsumeTitle = (TextView) view.findViewById(R.id.tv_consumeTitle);
+        mTvECardBalanceTitle= (TextView) view.findViewById(R.id.tv_balanceTitle);
         mTvCalenderTitle = (TextView) view.findViewById(R.id.calenderArea_title);
         mLvCalender = (ListView) view.findViewById(R.id.lv_calenderListView);
         mTvAllCourse = (TextView) view.findViewById(R.id.tv_allCourseBtn);
@@ -220,6 +224,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 ActivityOptions options = null;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),
+                            Pair.create((View)mTvECardBalanceTitle,"balanceTitle"),
+                            Pair.create((View)mTvECardConsumeTitle,"consumeTitle"),
                             Pair.create((View) mTvECardBalance, "balance"),
                             Pair.create((View) mTvECardConsume, "consume"));
                 }
@@ -316,9 +322,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void refreshECardConsume() {
         if (eCardBean == null)
             return;
-        if (eCardBean.msg.contains("不匹配")) {
-            Toast.makeText(getActivity(), "查询一卡通数据失败：一卡通密码错误", Toast.LENGTH_SHORT).show();
-        } else {
             float dayConsume = 0;
             if ("success".equals(eCardBean.msg)) {
                 for (int item = 0; item < eCardBean.data.size(); item++) {
@@ -335,13 +338,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 mTvECardConsume.setText("——");
                 Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
             }
-        }
     }
 
     private void refreshECardBalance() {
         if (eCardOwnerBean == null)
             return;
-        if (!eCardOwnerBean.msg.contains("不匹配")) {
             if (eCardOwnerBean.data != null) {
                 try {
                     String[] cutData = eCardOwnerBean.data.balance.split("（");
@@ -352,7 +353,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             } else {
                 mTvECardBalance.setText("——");
             }
-        }
     }
 
     private void refreshCalenderView() {

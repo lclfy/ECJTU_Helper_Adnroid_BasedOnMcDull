@@ -29,6 +29,8 @@ public interface JWXTService {
     @GET("ecard_daytrade")
     Call<ECardBean> getECard(@Query("user") String id, @Query("passwd") String pwd);
 
+    
+
     @GET("ecard_account")
     Call<ECardOwnerBean> getECardOwn(@Query("user") String id, @Query("passwd") String pwd);
 

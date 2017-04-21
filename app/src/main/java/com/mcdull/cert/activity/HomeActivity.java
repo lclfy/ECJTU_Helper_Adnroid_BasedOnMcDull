@@ -98,7 +98,8 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             ((TextView) findViewById(R.id.tv_reTryBtn)).setTextColor(color);
             ((TextView) findViewById(R.id.calenderArea_title)).setTextColor(color);
             (findViewById(R.id.eCardStatus)).setBackgroundColor(color);
-
+            //更新Email后能显示
+            ((TextView) findViewById(R.id.tv_email)).setText(AVUser.getCurrentUser().getEmail());
             //设置跟随主题变换颜色的图标的颜色
             View icon = findViewById(R.id.calenderIcon);
             switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 2)) {

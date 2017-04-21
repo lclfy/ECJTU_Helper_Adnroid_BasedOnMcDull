@@ -73,6 +73,8 @@ public class SignInJWCActivity extends BaseThemeActivity implements View.OnClick
         findViewById(R.id.bt_sure).setVisibility(View.VISIBLE);
         findViewById(R.id.bt_sure).setOnClickListener(this);
         if (!isQQLogin) {
+            findViewById(R.id.et_student_id).setVisibility(View.GONE);
+            findViewById(R.id.et_jwc_pwd).setVisibility(View.GONE);
             avUser = AVUser.getCurrentUser();
             mEtStudentId.getEditText().setText(avUser.getUsername());
             mEtJwcPwd.getEditText().setText(avUser.getString("JwcPwd"));

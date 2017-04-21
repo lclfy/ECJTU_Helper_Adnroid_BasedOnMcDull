@@ -15,43 +15,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
+                android:orientation="vertical"
                 android:background="@drawable/list_bt">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:id="@+id/img_RedColor"
+                    android:background="@drawable/theme_sidebar" />
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="DEEP PURPLE"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal"
+                    android:background="@drawable/list_bt">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
 
-                <CheckBox
-                    android:id="@+id/cb_deep_purple"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:id="@+id/tv_purple"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="紫色"
+                        android:textSize="16sp" />
 
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_deep_purple"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
-
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/list_bt">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,9 +76,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
-                    android:text="PINK"
+                    android:id="@+id/tv_pink"
+                    android:text="粉色"
                     android:textSize="16sp" />
 
                 <View
@@ -81,14 +96,13 @@
                     android:src="@drawable/jiantou" />
 
             </LinearLayout>
+        </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/list_bt">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,9 +113,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
-                    android:text="TEAL"
+                    android:id="@+id/tv_green"
+                    android:text="绿色"
                     android:textSize="16sp" />
 
                 <View
@@ -118,14 +133,12 @@
                     android:src="@drawable/jiantou" />
 
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/list_bt">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,9 +149,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
-                    android:text="BLUE"
+                    android:id="@+id/tv_blue"
+                    android:text="蓝色"
                     android:textSize="16sp" />
 
                 <View
@@ -155,14 +169,12 @@
                     android:src="@drawable/jiantou" />
 
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/list_bt">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,9 +185,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
-                    android:text="AMBER"
+                    android:id="@+id/tv_ambor"
+                    android:text="琥珀色"
                     android:textSize="16sp" />
 
                 <View
@@ -192,26 +205,28 @@
                     android:src="@drawable/jiantou" />
 
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="vertical"
+            android:background="@drawable/list_bt">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_bt">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="15dp"
-                    android:text="RED"
+                    android:id="@+id/tv_red"
+                    android:text="红色"
                     android:textSize="16sp" />
 
                 <View
@@ -228,13 +243,8 @@
                     android:src="@drawable/jiantou" />
 
             </LinearLayout>
+        </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
 
         </LinearLayout>
 

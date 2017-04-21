@@ -84,6 +84,20 @@ public class ThemeActivity extends BaseThemeActivity implements CompoundButton.O
         this.mCbAmber = (CheckBox) findViewById(R.id.cb_amber);
         this.mCbRed = (CheckBox) findViewById(R.id.cb_red);
 
+        TextView mTvpurple = (TextView)findViewById(R.id.tv_purple);
+        mTvpurple.setTextColor(0xff673AB7);
+        TextView mTvPink = (TextView)findViewById(R.id.tv_pink);
+        mTvPink.setTextColor(0xffE91E63);
+        TextView mTvGreen = (TextView)findViewById(R.id.tv_green);
+        mTvGreen.setTextColor(0xff009688);
+        TextView mTvBlue = (TextView)findViewById(R.id.tv_blue);
+        mTvBlue.setTextColor(0xff2196F3);
+        TextView mTvAmbor = (TextView)findViewById(R.id.tv_ambor);
+        mTvAmbor.setTextColor(0xffFFC107);
+        TextView mTvRed = (TextView)findViewById(R.id.tv_red);
+        mTvRed.setTextColor(0xffF44336);
+
+
         checkBoxList = new ArrayList<>();
         checkBoxList.add(mCbAmber);
         checkBoxList.add(mCbBlue);
