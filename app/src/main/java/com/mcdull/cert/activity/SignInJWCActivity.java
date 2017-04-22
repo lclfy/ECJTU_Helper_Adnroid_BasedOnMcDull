@@ -157,7 +157,8 @@ public class SignInJWCActivity extends BaseThemeActivity implements View.OnClick
                             if (e.getCode() == 202) {
                                 bindQQ(bean, jwcPwd, email, eCardPwd);
                             } else {
-                                Toast.makeText(SignInJWCActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                                Toast.makeText(SignInJWCActivity.this,error, Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                                 waitWin.dismissWait();
                             }
@@ -195,7 +196,8 @@ public class SignInJWCActivity extends BaseThemeActivity implements View.OnClick
                         }
                     });
                 } else {
-                    Toast.makeText(SignInJWCActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                    String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                    Toast.makeText(SignInJWCActivity.this,error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

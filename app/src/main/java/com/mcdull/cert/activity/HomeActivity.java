@@ -89,6 +89,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 });
             }
 
+
             //切换背景色
             int color = getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688);
             findViewById(R.id.status_bar).setBackgroundColor(color);

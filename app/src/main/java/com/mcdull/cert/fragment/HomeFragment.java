@@ -111,7 +111,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (AVUser.getCurrentUser() != null)
             initData();
         SharedPreferences SP = getActivity().getSharedPreferences("config", MODE_PRIVATE);
-
+        SharedPreferences.Editor edit = SP.edit();
+        boolean eCardPwd_Changed = SP.getBoolean("eCardPwdChanged",false);
+        if (eCardPwd_Changed){
+            refresh = true;
+            initECardData();
+            edit.putBoolean("eCardPwdChanged",false);
+            edit.commit();
+        }
         if (SP.getBoolean("Icon", true)) {
             IconHelper.getIcon(getActivity(), new IconHelper.GetIconCallBack() {
                 @Override
@@ -275,6 +282,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void getECardOwnerBean() {
         if (eCardOwnerBean == null || refresh) {
+            if (refresh){
+                refresh = false;
+            }
             final String studentId = user.getString("StudentId");
             final String eCardPassword = user.getString("EcardPwd");
             Call<ECardOwnerBean> eCardOwnerBeanCall = HJXYT.getInstance().getAppClient().getJWXTService().getECardOwn(studentId, eCardPassword);
@@ -336,7 +346,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 mTvECardConsume.setText(sum);
             } else {
                 mTvECardConsume.setText("——");
-                Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "一卡通查询："+eCardBean.msg, Toast.LENGTH_SHORT).show();
             }
     }
 

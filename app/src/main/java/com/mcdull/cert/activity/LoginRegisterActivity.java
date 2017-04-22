@@ -209,8 +209,10 @@ public class LoginRegisterActivity extends BaseActivity implements View.OnClickL
                         loginForJwc(email, pwd, 0);//未注册 转入自动注册及信息补全流程
                     else if (e.getCode() == 210)
                         loginForJwc(email, pwd, 1);//密码错误 转入密码修改流程
-                    else
-                        Toast.makeText(LoginRegisterActivity.this, "网络已成", Toast.LENGTH_SHORT).show();
+                    else {
+                        String error = "错误" + e.toString().split("error")[1].replaceAll("\"", "").replaceAll("\\}", "");
+                        Toast.makeText(LoginRegisterActivity.this, error, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     nextActivity(HomeActivity.class);
                 }
@@ -223,7 +225,7 @@ public class LoginRegisterActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onResponse(Call<UserInfoBean> call, Response<UserInfoBean> response) {
                 UserInfoBean bean = response.body();
-                if (bean == null || bean.getCode() != 1) {
+                if (bean == null || bean.getCode() != 1 ||!bean.getMsg().equals("success")) {
                     //失败
                     waitWin.dismissWait();
                     //未能成功登录教务系统
@@ -415,13 +417,15 @@ public class LoginRegisterActivity extends BaseActivity implements View.OnClickL
                                 if (e == null) {
                                     nextActivity(HomeActivity.class);
                                 }else {
-                                    Toast.makeText(LoginRegisterActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                                    String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                                    Toast.makeText(LoginRegisterActivity.this,error, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
                     }
                 } else {
-                    Toast.makeText(LoginRegisterActivity.this, "网络异常", Toast.LENGTH_SHORT).show();
+                    String error = "错误"+ e.toString().split("error")[1].replaceAll("\"","").replaceAll("\\}","");
+                    Toast.makeText(LoginRegisterActivity.this,error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

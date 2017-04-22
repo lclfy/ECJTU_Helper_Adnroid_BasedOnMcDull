@@ -67,6 +67,11 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     public String name= "";
     public int sex = 0;
 
+    //更改一卡通密码后，提示主界面更新一下.
+    private SharedPreferences SP;
+    private SharedPreferences.Editor edit;
+    private String originalECardPwd = "";
+
     public String basicURL = "http://api1.ecjtu.org/v1/";
 
     @Override
@@ -135,8 +140,11 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
         if (!TextUtils.isEmpty(Email)) {
             mEtEMail.getEditText().setText(Email);
         }
-
+        //判断一卡通密码改了没
+        SP = getSharedPreferences("config", MODE_PRIVATE);
+        edit = SP.edit();
         String eCardPwd = AVUser.getCurrentUser().getString("EcardPwd");
+        originalECardPwd = eCardPwd;
         if (!TextUtils.isEmpty(eCardPwd)) {
             mEtEcardPwd.getEditText().setText(eCardPwd);
         }
@@ -225,6 +233,10 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
 
         if (!TextUtils.isEmpty(mEtEcardPwd.getEditText().getText().toString())) {
             eCardPwd = mEtEcardPwd.getEditText().getText().toString();
+            if (!mEtEcardPwd.getEditText().getText().toString().equals(originalECardPwd)){
+                edit.putBoolean("eCardPwdChanged",true);
+                edit.commit();
+            }
         }
         Save();
 

@@ -71,10 +71,10 @@
             </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="120dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginLeft="120dp"
+            android:gravity="center"
             android:layout_marginTop="10dp">
 
             <ImageView
@@ -85,7 +85,7 @@
                 android:layout_height="120dp"
                 android:src="@drawable/upload" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
