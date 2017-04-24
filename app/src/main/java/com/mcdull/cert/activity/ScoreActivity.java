@@ -6,6 +6,8 @@ import java.util.Map;
 
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.mcdull.cert.bean.ScoreBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.ScoreAdapter;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.LoadingView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +29,13 @@ import retrofit2.Response;
 
 public class ScoreActivity extends BaseThemeActivity {
 
-    private TextView tvTerm;
-    private TextView tvQueryTitle;
-    private ListView lvScore;
+    private TextView mTvTerm;
+    private TextView mTvQueryTitle;
+    private ListView mLvScore;
     private ScoreBean mScoreData;
-    private ShowWaitPopupWindow mWaitPopupWindow;
     private boolean loading = false;
+    private LoadingView mLoadingView;
+    private boolean isError = false;
 
     @Override
     protected void onResume() {
@@ -50,7 +54,11 @@ public class ScoreActivity extends BaseThemeActivity {
                 @Override
                 public void onFailure(Call<ScoreBean> call, Throwable t) {
                     loading = false;
-                    mWaitPopupWindow.dismissWait();
+                    mLoadingView.setVisibility(View.GONE);
+                    ImageView errorImg = (ImageView)findViewById(R.id.img_nodata);
+                    errorImg.setBackgroundResource(R.drawable.pic_error);
+                    errorImg.setVisibility(View.VISIBLE);
+                    isError = true;
                 }
             });
         } else {
@@ -62,7 +70,7 @@ public class ScoreActivity extends BaseThemeActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (loading)
-            mWaitPopupWindow.dismissWait();
+            mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -72,7 +80,7 @@ public class ScoreActivity extends BaseThemeActivity {
 
         initView();
 
-        this.mWaitPopupWindow = new ShowWaitPopupWindow(this);
+        this.mLoadingView = (LoadingView) findViewById(R.id.mLoadingView);
 
         Toast.makeText(ScoreActivity.this, "补考成绩仍可在此处查询\n将显示补考或重修", Toast.LENGTH_SHORT).show();
     }
@@ -81,15 +89,16 @@ public class ScoreActivity extends BaseThemeActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (mScoreData == null)
-            mWaitPopupWindow.showWait();
+            mLoadingView.setVisibility(View.VISIBLE);
+
     }
 
     private void init() {
         loading = false;
-        mWaitPopupWindow.dismissWait();
+        mLoadingView.setVisibility(View.GONE);
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         if (mScoreData != null) {
-            tvTerm.setText("当前学期:" + mScoreData.data.term);
+            mTvTerm.setText("当前学期:" + mScoreData.data.term);
         }
         if (mScoreData != null) {
             if (mScoreData.data != null) {
@@ -108,7 +117,9 @@ public class ScoreActivity extends BaseThemeActivity {
                     list.add(ExamMap);
                 }
                 ScoreAdapter ScoreAdapter = new ScoreAdapter(this, list);
-                lvScore.setAdapter(ScoreAdapter);
+                mLvScore.setAdapter(ScoreAdapter);
+            }else {
+                findViewById(R.id.img_nodata).setVisibility(View.VISIBLE);
             }
 
         }
@@ -116,10 +127,28 @@ public class ScoreActivity extends BaseThemeActivity {
 
 
     private void initView() {
-        tvQueryTitle = (TextView) findViewById(R.id.tv_title);
-        tvTerm = (TextView) findViewById(R.id.tv_term);
-        lvScore = (ListView) findViewById(R.id.lv_searchListView);
-        tvQueryTitle.setText("成绩查询");
+        mTvQueryTitle = (TextView) findViewById(R.id.tv_title);
+        mTvTerm = (TextView) findViewById(R.id.tv_term);
+        mLvScore = (ListView) findViewById(R.id.lv_searchListView);
+        mTvQueryTitle.setText("成绩查询");
+        findViewById(R.id.img_nodata).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isError){
+                    reLoadData();
+                    isError = false;
+                }
+            }
+        });
+    }
+
+    private void reLoadData(){
+        ImageView mIvNodata = (ImageView)findViewById(R.id.img_nodata);
+        mIvNodata.setBackgroundResource(R.drawable.pic_nodata);
+        mIvNodata.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        onResume();
+
     }
 
 

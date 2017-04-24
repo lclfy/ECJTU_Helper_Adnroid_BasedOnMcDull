@@ -1,5 +1,6 @@
 package com.mcdull.cert.utils.services;
 
+import com.mcdull.cert.bean.CETBean;
 import com.mcdull.cert.bean.CalenderBean;
 import com.mcdull.cert.bean.ClassmatesListBean;
 import com.mcdull.cert.bean.ECardBean;
@@ -28,8 +29,6 @@ public interface JWXTService {
 
     @GET("ecard_daytrade")
     Call<ECardBean> getECard(@Query("user") String id, @Query("passwd") String pwd);
-
-    
 
     @GET("ecard_account")
     Call<ECardOwnerBean> getECardOwn(@Query("user") String id, @Query("passwd") String pwd);
@@ -60,5 +59,8 @@ public interface JWXTService {
 
     @GET("weather")
     Call<WeatherBean> getWeatherBean(@Query("city") String city);
+
+    @GET("cetquery")
+    Call<CETBean> getCETBean(@Query("name") String name, @Query("crtNum") String crtNum);
 
 }

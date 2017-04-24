@@ -6,6 +6,8 @@ import java.util.Map;
 
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import com.mcdull.cert.bean.SelectedCourseIDBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.SelectedCourseIDAdapter;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.LoadingView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +32,8 @@ public class SelectedCourseIDActivity extends BaseThemeActivity {
     private ListView lvExam;
     private SelectedCourseIDBean mExamData;
     private boolean loading;
-    private ShowWaitPopupWindow mWaitPopupWindow;
+    private LoadingView mLoadingView;
+    private boolean isError = false;
 
     @Override
     protected void onTheme(Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class SelectedCourseIDActivity extends BaseThemeActivity {
 
         initView();
 
-        mWaitPopupWindow = new ShowWaitPopupWindow(this);
+        this.mLoadingView = (LoadingView) findViewById(R.id.mLoadingView);
     }
 
     @Override
@@ -56,7 +60,11 @@ public class SelectedCourseIDActivity extends BaseThemeActivity {
                 @Override
                 public void onFailure(Call<SelectedCourseIDBean> call, Throwable t) {
                     loading = false;
-                    mWaitPopupWindow.dismissWait();
+                    mLoadingView.setVisibility(View.GONE);
+                    ImageView errorImg = (ImageView)findViewById(R.id.img_nodata);
+                    errorImg.setBackgroundResource(R.drawable.pic_error);
+                    errorImg.setVisibility(View.VISIBLE);
+                    isError = true;
                 }
             });
         } else {
@@ -69,21 +77,19 @@ public class SelectedCourseIDActivity extends BaseThemeActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (loading)
-            mWaitPopupWindow.showWait();
+            mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mWaitPopupWindow != null)
-            mWaitPopupWindow.dismissWait();
     }
 
     private void init() {
         this.loading = false;
-        mWaitPopupWindow.dismissWait();
+        mLoadingView.setVisibility(View.GONE);
         if (mExamData.data == null) {
-
+            findViewById(R.id.img_nodata).setVisibility(View.VISIBLE);
             return;
         }
         tvTerm.setText("当前学期:" + mExamData.data.term);
@@ -111,6 +117,24 @@ public class SelectedCourseIDActivity extends BaseThemeActivity {
         tvTerm = (TextView) findViewById(R.id.tv_term);
         lvExam = (ListView) findViewById(R.id.lv_searchListView);
         tvQueryTitle.setText("选修小班信息");
+        findViewById(R.id.img_nodata).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isError){
+                    reLoadData();
+                    isError = false;
+                }
+            }
+        });
+    }
+
+    private void reLoadData(){
+        ImageView mIvNodata = (ImageView)findViewById(R.id.img_nodata);
+        mIvNodata.setBackgroundResource(R.drawable.pic_nodata);
+        mIvNodata.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        onResume();
+
     }
 
 

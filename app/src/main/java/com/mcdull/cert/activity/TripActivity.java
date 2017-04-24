@@ -21,14 +21,15 @@ import com.avos.avoscloud.FindCallback;
 import com.mcdull.cert.activity.base.BaseThemeActivity;
 import com.mcdull.cert.R;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.ShapeLoadingDialog;
 
 import java.util.List;
 
 public class TripActivity extends BaseThemeActivity {
 
     private WebView webView;
-    private ShowWaitPopupWindow waitWin;
     private boolean isGetImg = true;
+    private ShapeLoadingDialog mLoadingDialog;
 
     @Override
     protected void onTheme(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class TripActivity extends BaseThemeActivity {
         }
 
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(5);
-        waitWin = new ShowWaitPopupWindow(TripActivity.this);
+        mLoadingDialog = new ShapeLoadingDialog(TripActivity.this);
 
         String title = getIntent().getStringExtra("Title");
         String url = getIntent().getStringExtra("url");
@@ -76,7 +77,7 @@ public class TripActivity extends BaseThemeActivity {
                             public void onProgressChanged(WebView view, int newProgress) {
                                 if (newProgress == 100) {
                                     isGetImg = false;
-                                    waitWin.dismissWait();
+                                    mLoadingDialog.dismiss();
                                 } else {
 
                                 }
@@ -84,7 +85,7 @@ public class TripActivity extends BaseThemeActivity {
                         });
                     } else {
                         isGetImg = false;
-                        waitWin.dismissWait();
+                        mLoadingDialog.dismiss();
                         Toast.makeText(TripActivity.this, "加载失败，请检测网络设置", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -111,7 +112,7 @@ public class TripActivity extends BaseThemeActivity {
                 public void onProgressChanged(WebView view, int newProgress) {
                     if (newProgress == 100) {
                         isGetImg = false;
-                        waitWin.dismissWait();
+                        mLoadingDialog.dismiss();
                     }
                 }
             });
@@ -124,7 +125,7 @@ public class TripActivity extends BaseThemeActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (isGetImg) {
-            waitWin.showWait();
+            mLoadingDialog.show();
         }
     }
 
@@ -137,9 +138,9 @@ public class TripActivity extends BaseThemeActivity {
             webView.destroy();
             webView = null;
         }
-        if (waitWin != null) {
-            waitWin.dismissWait();
-            waitWin = null;
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+            mLoadingDialog = null;
         }
     }
 }

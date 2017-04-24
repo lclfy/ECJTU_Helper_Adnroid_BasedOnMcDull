@@ -6,6 +6,8 @@ import java.util.Map;
 
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.ExamAdapter;
 import com.mcdull.cert.bean.ScoreBean;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.LoadingView;
+import com.mingle.widget.ShapeLoadingView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +30,14 @@ import retrofit2.Response;
 
 public class ExamActivity extends BaseThemeActivity {
 
-    private TextView tvTerm;
-    private TextView tvQueryTitle;
-    private ListView lvExam;
+    private TextView mTvTerm;
+    private TextView mTvQueryTitle;
+    private ListView mLvExam;
     private ExamTimeBean mExamData;
-    private ShowWaitPopupWindow mWaitPopupWindow;
     private boolean loading = false;
+    private boolean isError = false;
+
+    private LoadingView mLoadingView;
 
     @Override
     protected void onResume() {
@@ -49,7 +55,11 @@ public class ExamActivity extends BaseThemeActivity {
                 @Override
                 public void onFailure(Call<ExamTimeBean> call, Throwable t) {
                     loading = false;
-                    mWaitPopupWindow.dismissWait();
+                    mLoadingView.setVisibility(View.GONE);
+                    ImageView errorImg = (ImageView)findViewById(R.id.img_nodata);
+                    errorImg.setBackgroundResource(R.drawable.pic_error);
+                    errorImg.setVisibility(View.VISIBLE);
+                    isError = true;
                 }
             });
         } else {
@@ -62,32 +72,30 @@ public class ExamActivity extends BaseThemeActivity {
         setContentView(R.layout.activity_exam);
 
         initView();
-
-        this.mWaitPopupWindow = new ShowWaitPopupWindow(this);
+        this.mLoadingView = (LoadingView) findViewById(R.id.mLoadingView);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (loading)
-            mWaitPopupWindow.showWait();
+            mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mWaitPopupWindow != null)
-            mWaitPopupWindow.dismissWait();
     }
 
     private void init() {
         loading = false;
-        mWaitPopupWindow.dismissWait();
+        mLoadingView.setVisibility(View.GONE);
         if (mExamData.data == null) {
-            Toast.makeText(this, "当前学期考试安排暂未公布", Toast.LENGTH_SHORT).show();
+            findViewById(R.id.img_nodata).setVisibility(View.VISIBLE);
+            isError = false;
             return;
         }
-        tvTerm.setText("当前学期:" + mExamData.data.term);
+        mTvTerm.setText("当前学期:" + mExamData.data.term);
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         if (mExamData != null) {
             if (mExamData.data.exam != null) {
@@ -106,7 +114,7 @@ public class ExamActivity extends BaseThemeActivity {
                     list.add(ExamMap);
                 }
                 ExamAdapter ExamAdapter = new ExamAdapter(this, list);
-                lvExam.setAdapter(ExamAdapter);
+                mLvExam.setAdapter(ExamAdapter);
             }
 
         }
@@ -114,10 +122,28 @@ public class ExamActivity extends BaseThemeActivity {
 
 
     private void initView() {
-        tvQueryTitle = (TextView) findViewById(R.id.tv_title);
-        tvTerm = (TextView) findViewById(R.id.tv_term);
-        lvExam = (ListView) findViewById(R.id.lv_searchListView);
-        tvQueryTitle.setText("考试安排");
+        mTvQueryTitle = (TextView) findViewById(R.id.tv_title);
+        mTvTerm = (TextView) findViewById(R.id.tv_term);
+        mLvExam = (ListView) findViewById(R.id.lv_searchListView);
+        mTvQueryTitle.setText("考试安排");
+        findViewById(R.id.img_nodata).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isError){
+                    reLoadData();
+                    isError = false;
+                }
+            }
+        });
+    }
+
+    private void reLoadData(){
+        ImageView mIvNodata = (ImageView)findViewById(R.id.img_nodata);
+        mIvNodata.setBackgroundResource(R.drawable.pic_nodata);
+        mIvNodata.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        onResume();
+
     }
 
 

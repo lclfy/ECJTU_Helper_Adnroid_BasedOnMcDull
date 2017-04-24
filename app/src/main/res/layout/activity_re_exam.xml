@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
@@ -10,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical" >
 
 
@@ -28,6 +30,26 @@
                 android:text="当前学期"
                 android:textSize="14sp" />
         </RelativeLayout>
+
+
+            <com.mingle.widget.LoadingView
+                android:id="@+id/mLoadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:loadingText="加载中..." />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:id="@+id/img_nodata"
+            android:background="@drawable/pic_nodata"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_height="wrap_content" />
+
 
         <ListView
             android:divider="@null"

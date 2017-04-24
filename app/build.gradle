@@ -70,4 +70,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile files('libs/open_sdk_r5788_lite.jar')
+    compile project(':shapeloading')
 }

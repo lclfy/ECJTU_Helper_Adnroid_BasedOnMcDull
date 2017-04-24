@@ -36,6 +36,7 @@ import com.mcdull.cert.activity.base.BaseActivity;
 import com.mcdull.cert.utils.IconHelper;
 import com.mcdull.cert.utils.InternetUtil;
 import com.mcdull.cert.utils.Util;
+import com.mingle.widget.ShapeLoadingDialog;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,10 +57,11 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     private ImageView mIvIcon;
     private int MAN = 1;
     private int WOMAN = -1;
-    private AlertDialog alertDialog;
     private Bitmap bmp;
     private Button bt_back;
     private ImageView tv_save;
+
+    private ShapeLoadingDialog mLoadingDialog;
 
     public String jwcPwd = "";
     public String eCardPwd= "";
@@ -90,6 +92,9 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
+        //提示框
+        mLoadingDialog = new ShapeLoadingDialog(this);
+        mLoadingDialog.setLoadingText("正在保存…");
         //返回键+保存键
         findViewById(R.id.bt_back).setOnClickListener(this);
         findViewById(R.id.tv_save).setOnClickListener(this);
@@ -223,6 +228,7 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void saveButton() {
+        mLoadingDialog.show();
          name = mTvName.getText().toString();
         if (mCbMan.isChecked()) {
             sex = MAN;
@@ -272,6 +278,7 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
         user.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
+                mLoadingDialog.dismiss();
                 if (e == null) {
                     Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
                     finish();
@@ -302,37 +309,6 @@ public class MyDataActivity extends BaseActivity implements View.OnClickListener
                 }
                 break;
         }
-    }
-
-    private void showEditName() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(MyDataActivity.this);
-        View DialogView = View.inflate(MyDataActivity.this, R.layout.edit_dialog, null);
-        final EditText editText = (EditText) DialogView.findViewById(R.id.et_tooltip);
-        DialogView.findViewById(R.id.bt_no).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
-            }
-        });
-
-        DialogView.findViewById(R.id.bt_yes).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                String name = editText.getText().toString();
-                if (TextUtils.isEmpty(name)) {
-                    Toast.makeText(getApplicationContext(), "输入不能为空", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                mTvName.setText(name);
-                alertDialog.dismiss();
-            }
-        });
-
-        alertDialog = builder.create();
-        alertDialog.setView(DialogView, 0, 0, 0, 0);
-        alertDialog.show();
     }
 
 

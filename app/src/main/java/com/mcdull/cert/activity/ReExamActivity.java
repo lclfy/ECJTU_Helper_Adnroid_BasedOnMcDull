@@ -6,6 +6,8 @@ import java.util.Map;
 
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import com.mcdull.cert.bean.ReExamBean;
 import com.mcdull.cert.R;
 import com.mcdull.cert.adapter.ReExamAdapter;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.LoadingView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,12 +27,13 @@ import retrofit2.Response;
 
 public class ReExamActivity extends BaseThemeActivity {
 
-    private TextView tvTerm;
-    private TextView tvQueryTitle;
-    private ListView lvReExam;
+    private TextView mTvTerm;
+    private TextView mTvQueryTitle;
+    private ListView mLvReExam;
     private ReExamBean mReExamData;
     private boolean loading = false;
-    private ShowWaitPopupWindow mWaitPopupWindow;
+    private LoadingView mLoadingView;
+    private boolean isError = false;
 
     @Override
     protected void onTheme(Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class ReExamActivity extends BaseThemeActivity {
 
         initView();
 
-        mWaitPopupWindow = new ShowWaitPopupWindow(this);
+        this.mLoadingView = (LoadingView) findViewById(R.id.mLoadingView);
 
     }
 
@@ -57,7 +61,11 @@ public class ReExamActivity extends BaseThemeActivity {
                 @Override
                 public void onFailure(Call<ReExamBean> call, Throwable t) {
                     loading = false;
-                    mWaitPopupWindow.dismissWait();
+                    mLoadingView.setVisibility(View.GONE);
+                    ImageView errorImg = (ImageView)findViewById(R.id.img_nodata);
+                    errorImg.setBackgroundResource(R.drawable.pic_error);
+                    errorImg.setVisibility(View.VISIBLE);
+                    isError = true;
                 }
             });
         } else {
@@ -69,25 +77,24 @@ public class ReExamActivity extends BaseThemeActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (loading)
-            mWaitPopupWindow.showWait();
+            mLoadingView.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mWaitPopupWindow != null)
-            mWaitPopupWindow.dismissWait();
     }
 
     private void init() {
         loading = false;
-        mWaitPopupWindow.dismissWait();
+        mLoadingView.setVisibility(View.GONE);
         if (mReExamData.data == null) {
+            findViewById(R.id.img_nodata).setVisibility(View.VISIBLE);
             return;
         }
 //        String reExamJson = getIntent().getStringExtra("reExamJson");
 //        ReExamBean mReExamData = new Gson().fromJson(reExamJson, ReExamBean.class);
-        tvTerm.setText("当前学期:" + mReExamData.data.term);
+        mTvTerm.setText("当前学期:" + mReExamData.data.term);
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         if (mReExamData.data.bexam != null) {
             //有两个data，第一个data内包含学期和其他数据，第二个data包含全部信息（json就这么写的）
@@ -107,16 +114,34 @@ public class ReExamActivity extends BaseThemeActivity {
                 list.add(ReExamMap);
             }
             ReExamAdapter reExamAdapter = new ReExamAdapter(this, list);
-            lvReExam.setAdapter(reExamAdapter);
+            mLvReExam.setAdapter(reExamAdapter);
         }
     }
 
 
     private void initView() {
-        tvQueryTitle = (TextView) findViewById(R.id.tv_title);
-        tvTerm = (TextView) findViewById(R.id.tv_term);
-        lvReExam = (ListView) findViewById(R.id.lv_re_exam);
-        tvQueryTitle.setText("补考安排");
+        mTvQueryTitle = (TextView) findViewById(R.id.tv_title);
+        mTvTerm = (TextView) findViewById(R.id.tv_term);
+        mLvReExam = (ListView) findViewById(R.id.lv_re_exam);
+        mTvQueryTitle.setText("补考安排");
+        findViewById(R.id.img_nodata).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isError){
+                    reLoadData();
+                    isError = false;
+                }
+            }
+        });
+    }
+
+    private void reLoadData(){
+        ImageView mIvNodata = (ImageView)findViewById(R.id.img_nodata);
+        mIvNodata.setBackgroundResource(R.drawable.pic_nodata);
+        mIvNodata.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        onResume();
+
     }
 
 

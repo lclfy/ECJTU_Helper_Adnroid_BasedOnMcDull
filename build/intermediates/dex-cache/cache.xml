@@ -73,5 +73,23 @@
         sha1="b64d1f38ef7ee28b538d61a39d040f249c65587c">
         <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\Android_Location_V1.3.2_f775c81b8aab2359e27ca2a3af2e1f7aed83d658.jar" />
     </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt-hjxyt\shapeloading\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="22c8e16ada8acf1cc280deed7802b534901f14c5">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\classes_616d4f76d93cc196bbd6ea60158dd72474f9b1b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\library-2.4.0_8778b48c01b328b4e5539c708ca3aba5b3873552.jar" />
+    </item>
 
 </items>

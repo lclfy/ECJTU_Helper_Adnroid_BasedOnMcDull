@@ -28,6 +28,7 @@ import com.mcdull.cert.R;
 import com.mcdull.cert.activity.base.BaseActivity;
 import com.mcdull.cert.adapter.CallStudentInClassAdapter;
 import com.mcdull.cert.utils.ShowWaitPopupWindow;
+import com.mingle.widget.ShapeLoadingDialog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +49,9 @@ public class CallStudentInClassActivity extends BaseActivity {
     //“完成点名”计数器，用于更改完成点名按钮上的字
     private boolean isDone = false;
     private ListView lv;
-    private ShowWaitPopupWindow mWaitPopupWindow;
+    private ShapeLoadingDialog shapeLoadingDialog;
+    //取消载入动画
+    private boolean cancel;
     private ClassmatesListBean cmlData;
 
     @Override
@@ -71,10 +74,13 @@ public class CallStudentInClassActivity extends BaseActivity {
 
         //提示点名方法
         Toast.makeText(CallStudentInClassActivity.this, "点击签到\n再次点击则继续记为未到", Toast.LENGTH_SHORT).show();
+        //载入框
+        shapeLoadingDialog=new ShapeLoadingDialog(this);
+        shapeLoadingDialog.setLoadingText("加载中...");
+
+        shapeLoadingDialog.show();
 
         initView();
-
-        mWaitPopupWindow = new ShowWaitPopupWindow(this);
 
         //完成按钮
         findViewById(R.id.bt_finishCalling).setOnClickListener(new View.OnClickListener() {
@@ -109,20 +115,18 @@ public class CallStudentInClassActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mWaitPopupWindow != null)
-            mWaitPopupWindow.dismissWait();
+        if (shapeLoadingDialog != null)
+            shapeLoadingDialog.dismiss();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (cmlData == null)
-            mWaitPopupWindow.showWait();
     }
 
     private void init() {
         //进入页面时候传入Json，此处调用
-        mWaitPopupWindow.dismissWait();
+        shapeLoadingDialog.dismiss();
         if (cmlData != null) {
             //总人数
             tv_shouldCome.setText(String.valueOf(cmlData.data.size()) + "人");
