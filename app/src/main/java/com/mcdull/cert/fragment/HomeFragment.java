@@ -371,7 +371,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if ("success".equals(calenderBean.msg)) {
             String date = calenderBean.data.date;
             String week = calenderBean.data.week;
-            String calenderTitle = date + " 第" + week + "周";
+            String day = "今";
+            if (isNextDay){
+                day = "明";
+            }
+            String calenderTitle = day + "天是"+date + " 第" + week + "周";
             mTvCalenderTitle.setText(calenderTitle);
 
             List<Map<String, String>> list = new ArrayList<>();
