@@ -16,9 +16,11 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +88,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private AVUser user;
     private boolean isNextDay = false;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ScrollView mScrollView;
     private int count = 0;
     private Intent intent;
 
@@ -96,10 +99,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         initView();
 
         mIvTX.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(Util.resourceToDrawable(R.drawable.ic_account_circle_color2_48dp, getActivity()))));
-
-//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.content_framelayout, new NewStudentFragment());
-//        fragmentTransaction.commit();
 
         return view;
     }
@@ -153,6 +152,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mLvCalender = (ListView) view.findViewById(R.id.lv_calenderListView);
         mTvAllCourse = (TextView) view.findViewById(R.id.tv_allCourseBtn);
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        mScrollView = (ScrollView)view.findViewById(R.id.mainMenuScrollView) ;
 
         view.findViewById(R.id.bt_EcardBalance).setOnClickListener(this);
         view.findViewById(R.id.bt_ecard).setOnClickListener(this);
@@ -176,6 +176,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 initData();
             }
         });
+        if (mScrollView != null) {
+            mScrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                @Override
+                public void onScrollChanged() {
+                    if (mSwipeRefreshLayout != null) {
+                        mSwipeRefreshLayout.setEnabled(mScrollView.getScrollY() == 0);
+                    }
+                }
+            });
+        }
     }
 
     protected void nextActivity(Class cls, Bundle bundle, ActivityOptions options) {
@@ -210,7 +220,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 nextActivity(SelectedCourseIDActivity.class, null, null);
                 break;
             case R.id.bt_pcRepair:
-                nextActivity(RepairSucActivity.class, null, null);
+                Toast.makeText(getActivity(), "暂时不可用…请等待修复", Toast.LENGTH_SHORT).show();
+                //nextActivity(RepairSucActivity.class, null, null);
                 break;
             case R.id.bt_cetSearch:
                 nextActivity(CetSearchActivity.class, null, null);

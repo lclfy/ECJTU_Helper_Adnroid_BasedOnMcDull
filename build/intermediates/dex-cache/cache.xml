@@ -3,42 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\Android_Map_V2.5.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
-        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\Android_Map_V2.5.0_176f2c9075b1ba0b75084dbc013c8dc8fb41f6ec.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\open_sdk_r5788_lite.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5080e3fb4b011f5f376e1d04870cd84480be02c3">
-        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\open_sdk_r5788_lite_f6049788844ce1bcc6766a1ad6dfde834c1213be.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\AMap_Services_V2.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3057067b0d15469c99c2e8b1a87d66c94862ac7a">
-        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\AMap_Services_V2.4.0_90dbc2cdc8e7b1ade0fe0a2b1f00be7f51a0bdd9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\avoscloud-sdk\v3.16.4\fb38431f760bee130fa4882ca7a93d7be2a817a5\avoscloud-sdk-v3.16.4.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fb38431f760bee130fa4882ca7a93d7be2a817a5">
-        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\avoscloud-sdk-v3.16.4_66f01e6694c0a21c6a9f35ab0d2c3b9e72075da9.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\75800\hjxyt-hjxyt\app\libs\MiPush_SDK_Client_2_2_19.jar"
         jumboMode="false"
         optimize="true"
@@ -79,8 +43,35 @@
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="22c8e16ada8acf1cc280deed7802b534901f14c5">
+        sha1="a94d1e20ca755ed2b49df542c6acea1fe6c378c3">
         <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\classes_616d4f76d93cc196bbd6ea60158dd72474f9b1b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\Android_Map_V2.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\Android_Map_V2.5.0_176f2c9075b1ba0b75084dbc013c8dc8fb41f6ec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\open_sdk_r5788_lite.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5080e3fb4b011f5f376e1d04870cd84480be02c3">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\open_sdk_r5788_lite_f6049788844ce1bcc6766a1ad6dfde834c1213be.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\hjxyt-hjxyt\app\libs\AMap_Services_V2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3057067b0d15469c99c2e8b1a87d66c94862ac7a">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\AMap_Services_V2.4.0_90dbc2cdc8e7b1ade0fe0a2b1f00be7f51a0bdd9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -90,6 +81,15 @@
         revision="25.0.2"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
         <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\library-2.4.0_8778b48c01b328b4e5539c708ca3aba5b3873552.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\75800\.gradle\caches\modules-2\files-2.1\cn.leancloud.android\avoscloud-sdk\v3.16.4\fb38431f760bee130fa4882ca7a93d7be2a817a5\avoscloud-sdk-v3.16.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fb38431f760bee130fa4882ca7a93d7be2a817a5">
+        <dex dex="C:\Users\75800\hjxyt-hjxyt\app\build\intermediates\pre-dexed\release\avoscloud-sdk-v3.16.4_66f01e6694c0a21c6a9f35ab0d2c3b9e72075da9.jar" />
     </item>
 
 </items>

@@ -24254,7 +24254,6 @@ com.mcdull.cert.activity.TripActivity: TripActivity()
 com.mcdull.cert.fragment.CourseFragment
 com.mcdull.cert.fragment.HomeFragment
 com.mcdull.cert.fragment.MapFragment
-com.mcdull.cert.fragment.NewStudentFragment
 com.mcdull.cert.fragment.QueryFragment
 com.mcdull.cert.receiver.BroadcastReceiver
 com.mcdull.cert.receiver.BroadcastReceiver: android.content.Context context

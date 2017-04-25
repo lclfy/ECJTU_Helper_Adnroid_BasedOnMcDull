@@ -17,8 +17,8 @@ android {
         applicationId "com.mcdull.cert"
         minSdkVersion 16
         targetSdkVersion 25
-        versionName "1.4.5"//and这个
-        versionCode 24//更新的话要修改这个。
+        versionName "2.0.0"//and这个
+        versionCode 25//更新的话要修改这个。
     }
     buildTypes {
         release {

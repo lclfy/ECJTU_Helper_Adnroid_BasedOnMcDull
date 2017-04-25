@@ -118,8 +118,13 @@ public class ScoreAdapter extends BaseAdapter {
 			}
 			tv_Right.setText("重修："+item.get("cxcj"));
 		}
+		String kcmc = item.get("kcmc").split("（")[0].split("\\(")[0];
+		if (kcmc.length()>10){
+			tv_FirstLine.setText(kcmc.substring(0,9) + "…-" + item.get("khfs"));
+		}else {
+			tv_FirstLine.setText(kcmc + "-" + item.get("khfs"));
+		}
 
-		tv_FirstLine.setText(item.get("kcmc") + "-" + item.get("khfs"));
 		tv_SecondLine.setText("本课程有"+item.get("kcxf")+"个学分");
 
 

@@ -63,7 +63,13 @@ public class ExamAdapter extends BaseAdapter {
         MainImage.setBackgroundResource(R.drawable.ic_img_examtime);
 
         Map<String,String> item = list.get(position);
-        tv_FirstLine.setText(item.get("kcmc") + "-" + item.get("kcxz"));
+        String kcmc = item.get("kcmc").split("（")[0].split("\\(")[0];
+        if (kcmc.length()>=10){
+            tv_FirstLine.setText(kcmc.substring(0,10) + "…-" + item.get("kcxz"));
+        }else {
+            tv_FirstLine.setText(kcmc+"-" + item.get("kcxz"));
+        }
+
         tv_SecondLine.setText(item.get("kssj"));
         tv_Right.setText(item.get("ksdd"));
 
