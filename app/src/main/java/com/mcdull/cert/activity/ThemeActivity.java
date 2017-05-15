@@ -1,14 +1,18 @@
 package com.mcdull.cert.activity;
 
+import android.animation.Animator;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.mcdull.cert.ActivityMode.MyTitleActivity;
 import com.mcdull.cert.R;
+import com.mcdull.cert.ActivityMode.MyTitleActivity;
 
 import java.util.ArrayList;
 
@@ -24,6 +28,9 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
     private int themeType = 0;
     private ArrayList<CheckBox> checkBoxList;
     private CheckBox mCbRed;
+    private ObjectAnimator animator;
+    private boolean canStart = false;
+    private int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
 
         SP = getSharedPreferences("setting", MODE_PRIVATE);
         edit = SP.edit();
+        color = SP.getInt("theme", 0xffD83A48);
 
         initView();
 
@@ -47,7 +55,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
         mCbBlue.setChecked(false);
         mCbAmber.setChecked(false);
 
-        switch (getSharedPreferences("setting", Context.MODE_PRIVATE).getInt("theme", 0xff009688)) {
+        switch (getSharedPreferences("setting", Context.MODE_PRIVATE).getInt("theme", 0xffD83A48)) {
             case 0xff673AB7:
                 themeType = mCbDeepPurple.getId();
                 mCbDeepPurple.setChecked(true);
@@ -68,7 +76,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 themeType = mCbAmber.getId();
                 mCbAmber.setChecked(true);
                 break;
-            case 0xffF44336:
+            case 0xffD83A48:
                 themeType = mCbRed.getId();
                 mCbRed.setChecked(true);
                 break;
@@ -84,6 +92,20 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
         this.mCbBlue = (CheckBox) findViewById(R.id.cb_blue);
         this.mCbAmber = (CheckBox) findViewById(R.id.cb_amber);
         this.mCbRed = (CheckBox) findViewById(R.id.cb_red);
+
+        TextView mTvpurple = (TextView) findViewById(R.id.tv_purple);
+        mTvpurple.setTextColor(0xff673AB7);
+        TextView mTvPink = (TextView) findViewById(R.id.tv_pink);
+        mTvPink.setTextColor(0xffE91E63);
+        TextView mTvGreen = (TextView) findViewById(R.id.tv_green);
+        mTvGreen.setTextColor(0xff009688);
+        TextView mTvBlue = (TextView) findViewById(R.id.tv_blue);
+        mTvBlue.setTextColor(0xff2196F3);
+        TextView mTvAmbor = (TextView) findViewById(R.id.tv_ambor);
+        mTvAmbor.setTextColor(0xffFFC107);
+        TextView mTvRed = (TextView) findViewById(R.id.tv_red);
+        mTvRed.setTextColor(0xffD83A48);
+
 
         checkBoxList = new ArrayList<>();
         checkBoxList.add(mCbAmber);
@@ -105,7 +127,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbDeepPurple.getId();
                     edit.putInt("theme", 0xff673AB7);
-                    edit.putInt("themeInt",0);
+                    edit.putInt("themeInt", 0);
                     edit.apply();
                 }
                 break;
@@ -113,7 +135,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbPink.getId();
                     edit.putInt("theme", 0xffE91E63);
-                    edit.putInt("themeInt",1);
+                    edit.putInt("themeInt", 1);
                     edit.apply();
                 }
                 break;
@@ -121,7 +143,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbTeal.getId();
                     edit.putInt("theme", 0xff009688);
-                    edit.putInt("themeInt",2);
+                    edit.putInt("themeInt", 2);
                     edit.apply();
                 }
                 break;
@@ -129,7 +151,7 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbBlue.getId();
                     edit.putInt("theme", 0xff2196F3);
-                    edit.putInt("themeInt",3);
+                    edit.putInt("themeInt", 3);
                     edit.apply();
                 }
                 break;
@@ -137,15 +159,15 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
                 if (isChecked) {
                     themeType = mCbAmber.getId();
                     edit.putInt("theme", 0xffFFC107);
-                    edit.putInt("themeInt",4);
+                    edit.putInt("themeInt", 4);
                     edit.apply();
                 }
                 break;
             case R.id.cb_red:
                 if (isChecked) {
                     themeType = mCbRed.getId();
-                    edit.putInt("theme", 0xffF44336);
-                    edit.putInt("themeInt",5);
+                    edit.putInt("theme", 0xffD83A48);
+                    edit.putInt("themeInt", 5);
                     edit.apply();
                 }
                 break;
@@ -153,6 +175,25 @@ public class ThemeActivity extends MyTitleActivity implements CompoundButton.OnC
         for (CheckBox c : checkBoxList)
             c.setChecked(false);
         ((CheckBox) findViewById(themeType)).setChecked(true);
-        findViewById(R.id.view_title).setBackgroundColor(SP.getInt("theme", 0xff009688));
+        if(animator != null) {
+            animator.pause();
+            changeColorAnimator((Integer) animator.getAnimatedValue(), SP.getInt("theme", 0xffD83A48));
+        } else if (canStart) {
+            changeColorAnimator(color, SP.getInt("theme", 0xffD83A48));
+        }
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        canStart = true;
+    }
+
+    private void changeColorAnimator(int color1, int color2) {
+        animator = ObjectAnimator.ofInt(findViewById(R.id.view_title), "backgroundColor", color1, color2);
+        animator.setEvaluator(new ArgbEvaluator());
+        animator.setDuration(600);
+        animator.start();
+    }
+
 }

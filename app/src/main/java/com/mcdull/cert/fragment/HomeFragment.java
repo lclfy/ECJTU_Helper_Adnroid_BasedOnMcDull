@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //
 //        }
         vpMain.setCurrentItem(0);
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_account_circle_color2_48dp);
+        Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
         mIvTX.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(drawable)));
         drawable = null;
 

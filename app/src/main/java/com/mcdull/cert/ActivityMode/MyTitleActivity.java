@@ -34,6 +34,6 @@ public class MyTitleActivity extends Activity{
     protected void onResume() {
         super.onResume();
         SharedPreferences SP = getSharedPreferences("setting",MODE_PRIVATE);
-        findViewById(R.id.view_title).setBackgroundColor(SP.getInt("theme",0xff009688));
+        findViewById(R.id.view_title).setBackgroundColor(SP.getInt("theme",0xffd83a48));
     }
 }

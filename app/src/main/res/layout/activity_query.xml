@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="10dp"
-                    android:text="花椒校园通"
+                    android:text="华交校园通"
                     android:textColor="#ffffff"
                     android:textSize="17sp" />
 

@@ -40,8 +40,6 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
 
 
     private Intent intent = new Intent();
-    private MyViewPager viewPagerView;
-    private List<ImageView> ivs;
     private ImageView view6;
     private LinearLayout sign;
     private LinearLayout login;
@@ -65,10 +63,6 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.activity_main);
-        view6 = (ImageView) findViewById(R.id.img);
-        view6.setImageResource(R.drawable.qd);
-        view6.setScaleType(ImageView.ScaleType.FIT_XY);
-
 
         if (AVUser.getCurrentUser() != null) {
 
@@ -114,19 +108,10 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
     private void initView() {
 
 
-
-        viewPagerView = (MyViewPager) findViewById(R.id.viewpager);
-
-        viewPagerView.setIsEvent(false);
         findViewById(R.id.input).setVisibility(View.VISIBLE);
         findViewById(R.id.input).startAnimation(AnimationUtils.loadAnimation(LoginRegisterActivity.this, R.anim.alpha_in));
         waitWin = new ShowWaitPopupWindow(LoginRegisterActivity.this);
 
-//        view1 = findViewById(R.id.view1);
-//        view2 = findViewById(R.id.view2);
-//        view3 = findViewById(R.id.view3);
-//        view4 = findViewById(R.id.view4);
-//        view5 = findViewById(R.id.view5);
 
         sign = (LinearLayout) findViewById(R.id.sign);
         login = (LinearLayout) findViewById(R.id.login);
@@ -141,81 +126,8 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
         mSignEMail = (EditText) findViewById(R.id.et_email);
         mSignPwd = (EditText) findViewById(R.id.et_password);
         mSignPwd2 = (EditText) findViewById(R.id.et_password2);
-//
-//        ImageView iv1 = new ImageView(LoginRegisterActivity.this);
-//        ImageView iv2 = new ImageView(LoginRegisterActivity.this);
-//        ImageView iv3 = new ImageView(LoginRegisterActivity.this);
-//        ImageView iv4 = new ImageView(LoginRegisterActivity.this);
-//        ImageView iv5 = new ImageView(LoginRegisterActivity.this);
-//        ivs = new ArrayList<>();
-//        ivs.add(iv1);
-//        ivs.add(iv2);
-//        ivs.add(iv3);
-//        ivs.add(iv4);
-//        ivs.add(iv5);
-
-//        MyAdapter adapter = new MyAdapter();
-//        viewPagerView.setAdapter(adapter);
-
-        viewPagerView.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int arg0) {
-
-//                view1.setVisibility(View.VISIBLE);
-//                view2.setVisibility(View.VISIBLE);
-//                view3.setVisibility(View.VISIBLE);
-//                view4.setVisibility(View.VISIBLE);
-//                view5.setVisibility(View.VISIBLE);
-//                view1.setBackgroundResource(R.drawable.circletm);
-//                view2.setBackgroundResource(R.drawable.circletm);
-//                view3.setBackgroundResource(R.drawable.circletm);
-//                view4.setBackgroundResource(R.drawable.circletm);
-//                view5.setBackgroundResource(R.drawable.circletm);
-//                switch (arg0) {
-//                    case 0:
-//                        view1.setBackgroundResource(R.drawable.circle);
-//                        break;
-//                    case 1:
-//                        view2.setBackgroundResource(R.drawable.circle);
-//                        break;
-//                    case 2:
-//                        view3.setBackgroundResource(R.drawable.circle);
-//                        break;
-//                    case 3:
-//                        view4.setBackgroundResource(R.drawable.circle);
-//                        break;
-//                    case 4:
-//                        view1.setVisibility(View.GONE);
-//                        view2.setVisibility(View.GONE);
-//                        view3.setVisibility(View.GONE);
-//                        view4.setVisibility(View.GONE);
-//                        view5.setVisibility(View.GONE);
-//
-//
-//                        break;
-//                }
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
 
-        if (getIntent().getBooleanExtra("back", false)) {
-            viewPagerView.setCurrentItem(4);
-            if(!TextUtils.isEmpty(getIntent().getStringExtra("userName"))){
-                mLoginEMain.setText(getIntent().getStringExtra("userName"));
-            }
-        }
 
     }
 
@@ -291,11 +203,11 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
     }
 
     private void toLogin() {
-//
-//        String email = mLoginEMain.getText().toString();
-//        String pwd = mLoginPwd.getText().toString();
-        String email = "758003984@qq.com";
-        String pwd = "1081884068lsc";
+
+        String email = mLoginEMain.getText().toString();
+        String pwd = mLoginPwd.getText().toString();
+//        String email = "758003984@qq.com";
+//        String pwd = "1081884068lsc";
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(LoginRegisterActivity.this, "请输入邮箱地址", Toast.LENGTH_SHORT).show();
             return;
@@ -384,7 +296,6 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        freeMemory();
 
     }
 
@@ -479,80 +390,4 @@ public class LoginRegisterActivity extends Activity implements View.OnClickListe
 //        }
 //    }
 
-    private void freeMemory() {
-//        if (view1 != null) {
-//            view1.setDrawingCacheEnabled(true);
-//            if (view1.getDrawingCache() != null) {
-//                view1.getDrawingCache().recycle();
-//            }
-//            view1.setDrawingCacheEnabled(false);
-//            view1 = null;
-//        }
-//        if (view2 != null) {
-//            view2.setDrawingCacheEnabled(true);
-//            if (view2.getDrawingCache() != null) {
-//                view2.getDrawingCache().recycle();
-//            }
-//            view2.setDrawingCacheEnabled(false);
-//            view2 = null;
-//        }
-//        if (view3 != null) {
-//            view3.setDrawingCacheEnabled(true);
-//            if (view3.getDrawingCache() != null) {
-//                view3.getDrawingCache().recycle();
-//            }
-//            view3.setDrawingCacheEnabled(false);
-//            view3 = null;
-//        }
-//        if (view4 != null) {
-//            view4.setDrawingCacheEnabled(true);
-//            if (view4.getDrawingCache() != null) {
-//                view4.getDrawingCache().recycle();
-//            }
-//            view4.setDrawingCacheEnabled(false);
-//            view4 = null;
-//        }
-//        if (view5 != null) {
-//            view5.setDrawingCacheEnabled(true);
-//            if (view5.getDrawingCache() != null) {
-//                view5.getDrawingCache().recycle();
-//            }
-//            view5.setDrawingCacheEnabled(false);
-//            view5 = null;
-//        }
-        if (view6 != null) {
-            view6.setDrawingCacheEnabled(true);
-            if (view6.getDrawingCache() != null) {
-                view6.getDrawingCache().recycle();
-            }
-            view6.setDrawingCacheEnabled(false);
-            view6 = null;
-        }
-        if (ivs != null) {
-            for (int i = 0; i < ivs.size(); i++) {
-                ImageView iv = ivs.get(i);
-                iv.setDrawingCacheEnabled(true);
-                if (iv.getDrawingCache() != null) {
-                    iv.getDrawingCache().recycle();
-                }
-                iv.setDrawingCacheEnabled(false);
-                iv = null;
-            }
-            ivs = null;
-        }
-        if (viewPagerView != null) {
-            for (int i = 0; i < viewPagerView.getCurrentItem(); i++) {
-                ImageView iv = (ImageView) viewPagerView.getChildAt(i);
-                if (iv != null) {
-                    iv.setDrawingCacheEnabled(true);
-                    if (iv.getDrawingCache() != null) {
-                        iv.getDrawingCache().recycle();
-                    }
-                    iv.setDrawingCacheEnabled(false);
-                    iv = null;
-                }
-            }
-            viewPagerView = null;
-        }
-    }
 }

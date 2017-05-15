@@ -87,17 +87,17 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     protected void onResume() {
         super.onResume();
         SharedPreferences SP = getSharedPreferences("config", MODE_PRIVATE);
-        findViewById(R.id.status_bar).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+        findViewById(R.id.status_bar).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
         try{
             TextView tvAllCourse = (TextView)findViewById(R.id.tv_allCourseBtn);
-            tvAllCourse.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            tvAllCourse.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
             TextView retryBtn = (TextView)findViewById(R.id.tv_reTryBtn);
-            retryBtn.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
-            findViewById(R.id.eCardStatus).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            retryBtn.setTextColor(HomeActivity.this.getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
+            findViewById(R.id.eCardStatus).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
             TextView tvCalenderTitle = (TextView)findViewById(R.id.calenderArea_title);
-            tvCalenderTitle.setTextColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+            tvCalenderTitle.setTextColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
             //设置跟随主题变换颜色的图标的颜色
-            switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 2)){
+            switch (getSharedPreferences("setting", MODE_PRIVATE).getInt("themeInt", 5)){
                 case 0:
                     findViewById(R.id.calenderIcon).setBackgroundResource(R.drawable.ic_calendericon_deep_purple);
                     break;
@@ -120,7 +120,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         }catch (Exception e){
 
         }
-        findViewById(R.id.view_home_menu).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xff009688));
+        findViewById(R.id.view_home_menu).setBackgroundColor(getSharedPreferences("setting", MODE_PRIVATE).getInt("theme", 0xffd83a48));
         if (SP.getBoolean("Icon", true)) {
             new GetIcon(HomeActivity.this, new GetIcon.GetIconCallBack() {
                 @Override
@@ -195,7 +195,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
     private void init() {
         mIvIcon = (ImageView) findViewById(R.id.iv_icon);
-        mIvIcon.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(getResources().getDrawable(R.drawable.ic_account_circle_color2_48dp))));
+        mIvIcon.setImageBitmap(Util.toRoundBitmap(Util.drawableToBitmap(getResources().getDrawable(R.mipmap.ic_launcher))));
         new GetIcon(HomeActivity.this, new GetIcon.GetIconCallBack() {
             @Override
             public void done(Bitmap bitmap) {

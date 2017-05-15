@@ -265,7 +265,12 @@ public class MyDataActivity extends Activity implements View.OnClickListener, Co
 
         if (studentId.length() == 16){
             //需要验证教务处用户密码
-            validateStuID_JwcPwd();
+            if (TextUtils.isEmpty(jwcPwd)) {
+                mEtJwcPwd.setErrorEnabled(true);
+                mEtJwcPwd.setError("请填写教务密码");
+            }else {
+                validateStuID_JwcPwd();
+            }
         }else {
             //13,14级直接保存
             validatedSave();

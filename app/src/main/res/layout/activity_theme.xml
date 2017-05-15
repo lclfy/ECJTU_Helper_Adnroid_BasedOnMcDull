@@ -15,226 +15,245 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="DEEP PURPLE"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/cb_deep_purple"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/img_RedColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@drawable/theme_sidebar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="PINK"
-                    android:textSize="16sp" />
+                    android:background="@drawable/list_bt"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
 
-                <CheckBox
-                    android:id="@+id/cb_pink"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <TextView
+                        android:id="@+id/tv_purple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="紫色"
+                        android:textSize="16sp" />
 
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+
+                    <CheckBox
+                        android:id="@+id/cb_deep_purple"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="TEAL"
-                    android:textSize="16sp" />
+                    android:background="@drawable/list_bt">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/tv_pink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="粉色"
+                        android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/cb_teal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
 
+                    <CheckBox
+                        android:id="@+id/cb_pink"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="BLUE"
-                    android:textSize="16sp" />
+                    android:background="@drawable/list_bt">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/tv_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="绿色"
+                        android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/cb_blue"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
 
+                    <CheckBox
+                        android:id="@+id/cb_teal"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="AMBER"
-                    android:textSize="16sp" />
+                    android:background="@drawable/list_bt">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/tv_blue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="蓝色"
+                        android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/cb_amber"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
 
+                    <CheckBox
+                        android:id="@+id/cb_blue"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_bt">
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:text="RED"
-                    android:textSize="16sp" />
+                    android:background="@drawable/list_bt">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/tv_ambor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="琥珀色"
+                        android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/cb_red"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="35dp"
-                    android:src="@drawable/jiantou" />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
 
+                    <CheckBox
+                        android:id="@+id/cb_amber"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:background="#bcbcbc" />
+                android:layout_height="56dp"
+                android:background="@drawable/list_bt"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/list_bt">
+
+
+                    <TextView
+                        android:id="@+id/tv_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="15dp"
+                        android:text="红色"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:id="@+id/cb_red"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="35dp"
+                        android:src="@drawable/jiantou" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
         </LinearLayout>
 

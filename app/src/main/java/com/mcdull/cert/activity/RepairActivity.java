@@ -112,20 +112,8 @@ public class RepairActivity extends MyTitleActivity implements View.OnClickListe
     }
 
     private void init() {
-        orderTimeJson = getIntent().getStringExtra("TimeJson");
         orderTimeMap = new LinkedHashMap<>();
         orderTimeMap.put("请选择预约时间", "0");
-        try {
-            JSONObject jsonObject = new JSONObject(orderTimeJson);
-            JSONObject json = jsonObject.getJSONObject("json");
-            JSONArray numArray = json.getJSONArray("num");
-            JSONArray dateArray = json.getJSONArray("date");
-            for (int i = 0; i < numArray.length(); i++) {
-                orderTimeMap.put(dateArray.getString(i), numArray.getString(i));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 

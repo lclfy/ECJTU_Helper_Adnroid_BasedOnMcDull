@@ -223,6 +223,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
             SharedPreferences.Editor edit = SP.edit();
             findECard(true,true);
             edit.putInt("eCardPwdChanged",0);
+            edit.commit();
         }
         if (stuChanged==1){
             //如果学号改了让它刷新一下界面
@@ -235,6 +236,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
             if (stuID.length()==14){
                 view.findViewById(R.id.lv_calenderListView).setVisibility(View.GONE);
                 view.findViewById(R.id.scroll_status_bar).setVisibility(View.GONE);
+                view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.GONE);
                         /* @setIcon 设置对话框图标
                          * @setTitle 设置对话框标题
                          * @setMessage 设置对话框消息提示
@@ -254,6 +256,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 normalDialog.show();
             }else {
                 view.findViewById(R.id.lv_calenderListView).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.tv_allCourseBtn).setVisibility(View.VISIBLE);
 //                view.findViewById(R.id.scroll_status_bar).setVisibility(View.VISIBLE);
             }
 
@@ -294,7 +297,9 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             case R.id.bt_pcRepair:
-                getOrderState();
+                intent = new Intent(getActivity(), RepairActivity.class);
+                intent.putExtra("Title", "电脑报修");
+                startActivity(intent);
                 break;
             case R.id.bt_cetSearch:
                 CETSetNameAndID();
@@ -604,7 +609,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
         if (tv_eCardBalance != null){
             b.putSerializable("eCardBalance", tv_eCardBalance.getText().toString());
         }else {
-            b.putSerializable("eCardBalance","——元");
+            b.putSerializable("eCardBalance","0.00元");
         }
         tv_eCardBalanceTitle = (TextView)view.findViewById(R.id.tv_balanceTitle);
         tv_eCardConsumeTitle = (TextView)view.findViewById(R.id.tv_consumeTitle);
@@ -663,8 +668,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             }
                             tv_eCardConsume.setText(String.valueOf(dayConsume)+"元");
                         }else {
-                            tv_eCardConsume.setText("——");
-                            Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
+                            tv_eCardConsume.setText("0.00元");
+                            eCardJson = json;
                         }
                     }
 
@@ -717,10 +722,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                             eCardJson = json;
                             tv_eCardConsume.setText(String.valueOf(dayConsume)+"元");
                         }else {
-                            tv_eCardConsume.setText("——");
-                            Toast.makeText(getActivity(), "获取一卡通数据失败\n点击消费详情以重试\n如多次失败，请校验一卡通密码", Toast.LENGTH_SHORT).show();
+                            tv_eCardConsume.setText("0.00元");
                         }
                     }
+                    eCardJson = json;
                 }
             }
         }
@@ -750,8 +755,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
                 }
                 if (eCardOwnerData!=null) {
-                    if(eCardOwnerData.msg.contains("不匹配")){
-
+                    if(eCardOwnerData.data == null){
+                        return;
                     }else {
                         tv_eCardBalance = (TextView)view.findViewById(R.id.tv_eCardBalance);
                         if (eCardOwnerData.data != null){
@@ -759,10 +764,10 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                                 String [] cutData = eCardOwnerData.data.balance.split("（");
                                 tv_eCardBalance.setText(cutData[0]);
                             }catch (Exception e){
-                                tv_eCardBalance.setText("——");
+                                tv_eCardBalance.setText("————");
                             }
                         }else {
-                            tv_eCardBalance.setText("——");
+                            tv_eCardBalance.setText("————");
                         }
                     }
                 }
@@ -792,8 +797,8 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
 
                 }
                 if (eCardOwnerData!=null) {
-                    if(eCardOwnerData.msg.contains("不匹配")){
-
+                    if(eCardOwnerData.data == null){
+                        return;
                     }else {
                         tv_eCardBalance = (TextView)view.findViewById(R.id.tv_eCardBalance);
                         if (eCardOwnerData.data != null){
@@ -1279,7 +1284,7 @@ public class NewStudentFragment extends Fragment implements View.OnClickListener
                     Map<String, String> map = new ArrayMap<>();
                     map.put("stuid", studentId);//设置get参数
                     map.put("passwd",JwcPassword );//设置get参数
-//                    map.put("term","2015.2" );//学期，默认为当前
+                    map.put("term","2015.2" );//学期，默认为当前
                     if (searchId == 0){
                         new InternetUtil(reExamHandler, basicURL+"bexam", map);//传入参数
                     }else if (searchId == 1){

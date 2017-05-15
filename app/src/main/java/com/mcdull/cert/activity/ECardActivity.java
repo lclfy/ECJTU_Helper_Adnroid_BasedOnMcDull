@@ -101,6 +101,7 @@ public class ECardActivity extends Activity {
         noDetails = (ImageView)findViewById(R.id.noCardDetails);
         noDetails.setVisibility(View.GONE);
         lvECard = (ListView) findViewById(R.id.lv_ecard);
+
         try{
             eCardBean eCardData = new Gson().fromJson(eCardJson, eCardBean.class);
 
@@ -108,6 +109,7 @@ public class ECardActivity extends Activity {
             if (eCardData!=null) {
                 tv_eCardConsume = (TextView)findViewById(R.id.tv_eCardConsume);
                 tv_eCardBalance = (TextView)findViewById(R.id.tv_eCardBalance);
+                tv_eCardBalance.setText(this.eCardBalance);
                 float dayConsume = 0;
                 float nowBalance = 0;
                 if (eCardData.data != null){
@@ -130,6 +132,9 @@ public class ECardActivity extends Activity {
 
 
                     }
+                }else {
+                    tv_eCardConsume.setText("0.00元");
+                    noDetails.setVisibility(View.VISIBLE);
                 }
                 if (eCardData.data.size() == 0){
                     noDetails.setVisibility(View.VISIBLE);
@@ -147,7 +152,7 @@ public class ECardActivity extends Activity {
                 Toast.makeText(ECardActivity.this, "一卡通信息暂时无法获取", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
-            Toast.makeText(ECardActivity.this, "发生错误，请重试", Toast.LENGTH_SHORT).show();
+
         }
 
 

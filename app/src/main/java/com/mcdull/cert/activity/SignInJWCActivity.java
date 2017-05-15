@@ -77,7 +77,6 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
         mEtJwcPwd.setHint("教务管理系统密码(15级及以后必填)");
 
         findViewById(R.id.bt_sure).setOnClickListener(this);
-        findViewById(R.id.tv_no_id).setOnClickListener(this);
 
         mEMail = getIntent().getStringExtra("email");
         mPwd = getIntent().getStringExtra("pwd");
@@ -90,9 +89,6 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.bt_sure:
                 toSign();
-                break;
-            case R.id.tv_no_id:
-                noId();
                 break;
         }
     }
@@ -166,7 +162,7 @@ public class SignInJWCActivity extends MyTitleActivity implements View.OnClickLi
                 if (studentId.length() == 16) {
                     if (TextUtils.isEmpty(jwcPwd)) {
                         mEtJwcPwd.setErrorEnabled(true);
-                        mEtJwcPwd.setError("请填写密码或选择无学号注册");
+                        mEtJwcPwd.setError("请填写教务密码");
                         return;
 
                     } else {
