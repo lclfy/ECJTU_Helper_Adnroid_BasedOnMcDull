@@ -1,0 +1,4 @@
+OnCreate()
+AVOSCloud.initialize(this,
+"4kt5i50mtheqpvm89x5wx4kpukob4xwx4lx37wot51o457nd",
+"swyj402b4fe2i86uaes9d96u8bveepgfnuocvc61w5j1fd1l");
